@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fc;
+package Cloud.fc;
 
 /**
  *
@@ -16,4 +16,14 @@ public class Image {
         this.longueur=longueur;
         this.largeur=largeur;
     }
+    public void afficherImage(){
+        
+    }
+    public void lectureImage(){
+        
+    }
+    public void transfoImg(){
+        
+    }
+            
 }

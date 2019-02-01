@@ -52,7 +52,7 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         jPasswordField2.setText("jPasswordField2");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/flecheRetour.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/ui/flecheRetour.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

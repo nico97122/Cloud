@@ -41,7 +41,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
 
         jButton1.setText("Connexion");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/paramètre .png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/ui/paramètre .png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

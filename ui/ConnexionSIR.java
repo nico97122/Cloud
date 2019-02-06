@@ -89,7 +89,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jPanel2.add(jButton1);
         jButton1.setBounds(360, 150, 112, 29);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/ui/LoginFrame.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/LoginFrame.png"))); // NOI18N
         jPanel2.add(jLabel4);
         jLabel4.setBounds(0, 0, 500, 320);
 

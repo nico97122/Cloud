@@ -5,6 +5,8 @@
  */
 package Cloud.fc;
 
+import java.awt.Image;
+
 /**
  *
  * @author nicol

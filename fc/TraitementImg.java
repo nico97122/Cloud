@@ -59,24 +59,24 @@ public class TraitementImg {
         }
         
   }
-  public BufferedImage rotationImg90(BufferedImage img){
-   
-  }
-   public BufferedImage retournerImg(BufferedImage img){
-   
-  }
-   public BufferedImage éclaircissmentImg(BufferedImage img){
-   
-  }
-   public BufferedImage inversionGris(BufferedImage img){
-   
-  }
-    
-   
-  public BufferedImage ajoutNote(BufferedImage img){
-   
-  }
-  
+//  public BufferedImage rotationImg90(BufferedImage img){
+//   
+//  }
+//   public BufferedImage retournerImg(BufferedImage img){
+//   
+//  }
+//   public BufferedImage éclaircissmentImg(BufferedImage img){
+//   
+//  }
+//   public BufferedImage inversionGris(BufferedImage img){
+//   
+//  }
+//    
+//   
+//  public BufferedImage ajoutNote(BufferedImage img){
+//   
+//  }
+//  
  
   
     

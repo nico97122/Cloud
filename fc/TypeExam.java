@@ -10,5 +10,9 @@ package Cloud.fc;
  * @author nicol
  */
 public enum TypeExam {
-    
+    echographie,
+    scanner,
+    irm,
+    mammographie,
+    scintigraphie;
 }

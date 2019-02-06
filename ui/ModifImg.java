@@ -147,7 +147,7 @@ private void b1MouseClicked(java.awt.event.MouseEvent evt) {
      setSize(800,600);
         try {
          // TODO add your handling code here:
-         this.PanelImg.setImage("src\\Cloud\\image\\img.jpg");
+         this.PanelImg.setImage("src/Cloud/image/img.jpg");
          this.Imginitial=PanelImg.getImage();
      } catch (IOException ex) {
          Logger.getLogger(ModifImg.class.getName()).log(Level.SEVERE, null, ex);

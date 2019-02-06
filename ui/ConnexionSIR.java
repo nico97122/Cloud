@@ -16,6 +16,13 @@ public class ConnexionSIR extends javax.swing.JFrame {
      */
     public ConnexionSIR() {
         initComponents();
+        setResizable(false);
+        int a;
+        int b;
+        a = jLabel4.getHeight();
+        b = jLabel4.getWidth();
+        setSize(b,a);
+        
     }
 
     /**
@@ -51,8 +58,16 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jLabel2.setText("Mot de passe : ");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(205, 90, 110, 17);
+
+        jTextField1.setText("                                   ");
+        jTextField1.setToolTipText("");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
         jPanel2.add(jTextField1);
-        jTextField1.setBounds(320, 40, 14, 28);
+        jTextField1.setBounds(320, 40, 154, 28);
 
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,6 +81,11 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jLabel3.setBounds(358, 15, 0, 0);
 
         jButton1.setText("Connexion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1);
         jButton1.setBounds(360, 150, 112, 29);
 
@@ -90,6 +110,27 @@ public class ConnexionSIR extends javax.swing.JFrame {
     private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
         jPasswordField1.setText("");
     }//GEN-LAST:event_jPasswordField1MouseClicked
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//BASE DE DONNEE 
+//        if(PH){
+//            
+//        }
+//        if(ManipRadio){
+//            ManipRadio manipR= new ManipRadio();
+//            manipR.setVisible(true);
+//            this.dispose();
+//        }
+//        if(SM){
+//            SecretaireMed secmed = new SecretaireMed();
+//            secmed.setVisible(true);
+//            this.dispose();
+//        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +163,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ConnexionSIR().setVisible(true);
+                
             }
         });
     }

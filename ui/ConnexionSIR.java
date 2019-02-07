@@ -22,7 +22,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         a = jLabel4.getHeight();
         b = jLabel4.getWidth();
         setSize(b,a);
-        
+        System.out.println(a+"et"+b);
     }
 
     /**

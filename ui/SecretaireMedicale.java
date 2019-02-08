@@ -92,7 +92,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Trier");
-        jButton4.setActionCommand("Trier");
         jPanel1.add(jButton4);
         jButton4.setBounds(460, 80, 77, 29);
 
@@ -128,7 +127,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
         jPanel2.add(jButton1);
         jButton1.setBounds(80, 570, 50, 50);
 

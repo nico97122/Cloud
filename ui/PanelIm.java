@@ -190,7 +190,7 @@ public class PanelIm extends JPanel {
         int colonne = img.getHeight();
 
         BufferedImage imgDest = new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
-        RescaleOp imgeclair = new RescaleOp(m, 0, null);
+        RescaleOp imgeclair = new RescaleOp(1, (float)(m*2.56*2-256), null);
         imgeclair.filter(img, imgDest);
         return imgDest;
     }

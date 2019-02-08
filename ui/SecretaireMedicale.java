@@ -90,7 +90,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jComboBox2.setBounds(320, 130, 121, 27);
 
         jButton4.setText("Trier");
-        jButton4.setActionCommand("Trier");
         jPanel1.add(jButton4);
         jButton4.setBounds(480, 130, 75, 29);
 
@@ -123,7 +122,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
         jPanel2.add(jButton1);
         jButton1.setBounds(90, 702, 60, 50);
 

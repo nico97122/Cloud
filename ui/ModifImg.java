@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 /**
  *
@@ -31,6 +32,9 @@ public class ModifImg extends javax.swing.JFrame {
   private JButton b4=new JButton("reinitialiserImg");
    private JButton b5=new JButton("inverserNivGris");
   private BufferedImage Imginitial;
+  private BufferedImage Imginitiallumi;
+  private  JSlider lumi=new JSlider();
+  int incre=0; //incrementation pour la classe éclairerAssombrirImg
     /**
      * Creates new form ModifImg
      */
@@ -49,13 +53,20 @@ public class ModifImg extends javax.swing.JFrame {
         b3.setAlignmentX(Component.CENTER_ALIGNMENT);
         b4.setAlignmentX(Component.CENTER_ALIGNMENT);
         b5.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lumi.setAlignmentX(Component.CENTER_ALIGNMENT);
+      this.jPanelBouton.add(lumi);
        this.jPanelBouton.add(b1);
        this.jPanelBouton.add(b2);
        this.jPanelBouton.add(b3);
        this.jPanelBouton.add(b4);
         this.jPanelBouton.add(b5);
         add(jPanelBouton, BorderLayout.EAST);
-        
+         lumi.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                lumiStateChanged(evt);
+            }
+        });
+                                        
         b1.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,27 +113,42 @@ public class ModifImg extends javax.swing.JFrame {
        private void b3MouseClicked(java.awt.event.MouseEvent evt) {  
      BufferedImage img=PanelImg.getImage();
     BufferedImage imgr= PanelImg.retourner(img);
+    this.incre=0;
     PanelImg.setImage(imgr);
 }
        private void b5MouseClicked(java.awt.event.MouseEvent evt) {  
      BufferedImage img=PanelImg.getImage();
     BufferedImage imgG= PanelImg.inversionGris(img);
     PanelImg.setImage(imgG);
+    this.incre=0;
 }
           private void b4MouseClicked(java.awt.event.MouseEvent evt) {  
-     
+     this.incre=0;
     PanelImg.setImage(this.Imginitial);
 }
     private void b2MouseClicked(java.awt.event.MouseEvent evt) {  
      BufferedImage img=PanelImg.getImage();
     BufferedImage imgr= PanelImg.rotation90G(img);
     PanelImg.setImage(imgr);
+    this.incre=0;
 } 
 private void b1MouseClicked(java.awt.event.MouseEvent evt) {  
      BufferedImage img=PanelImg.getImage();
     BufferedImage imgr= PanelImg.rotation90D(img);
     PanelImg.setImage(imgr);
+    this.incre=0;
 } 
+    private void lumiStateChanged(javax.swing.event.ChangeEvent evt) {                                      
+        if (incre==0){
+            this.incre=0;
+            Imginitiallumi=PanelImg.getImage();
+        }
+        incre+=1;
+        int tauxLumi=lumi.getValue();
+        BufferedImage imglumi=PanelImg.eclairerAssombrir(Imginitiallumi, ((float)tauxLumi)/20);
+         PanelImg.setImage(imglumi);
+        
+    }  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

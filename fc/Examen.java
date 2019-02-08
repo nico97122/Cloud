@@ -6,6 +6,7 @@
 package Cloud.fc;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -14,11 +15,11 @@ import java.awt.Image;
 public class Examen {
     private Date2 date;
     private Patient p;
-    private Image img;
+    private BufferedImage img;
     private CompteRendu cr;
     private TypeExam typeExamen;
     private PersonneH ph;
-    public Examen(Date2 date, Patient p , Image img , CompteRendu cr,TypeExam typeExamen, PersonneH ph){
+    public Examen(Date2 date, Patient p , BufferedImage img , CompteRendu cr,TypeExam typeExamen, PersonneH ph){
         this.date=date;
         this.cr=cr;
         this.p=p;

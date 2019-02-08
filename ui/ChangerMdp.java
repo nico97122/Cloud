@@ -67,14 +67,29 @@ public class ChangerMdp extends javax.swing.JFrame {
         jLabel3.setBounds(390, 360, 220, 30);
 
         jTextField1.setText("                            ");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jTextField1);
         jTextField1.setBounds(650, 140, 270, 40);
 
         jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jPasswordField1);
         jPasswordField1.setBounds(650, 250, 270, 40);
 
         jPasswordField2.setText("jPasswordField2");
+        jPasswordField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField2MouseClicked(evt);
+            }
+        });
         jPanel1.add(jPasswordField2);
         jPasswordField2.setBounds(650, 360, 270, 40);
 
@@ -89,6 +104,11 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Enregistrer les modifications ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(670, 520, 250, 40);
 
@@ -114,8 +134,25 @@ public class ChangerMdp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        //BD
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+        jPasswordField1.setText("");
+    }//GEN-LAST:event_jPasswordField1MouseClicked
+
+    private void jPasswordField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField2MouseClicked
+        jPasswordField2.setText("");
+    }//GEN-LAST:event_jPasswordField2MouseClicked
 
     /**
      * @param args the command line arguments

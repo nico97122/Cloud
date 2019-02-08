@@ -48,6 +48,9 @@ public class ManipRadio extends javax.swing.JFrame {
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -70,6 +73,17 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jComboBox3 = new javax.swing.JComboBox();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jTextField7 = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,33 +134,83 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel7.add(jLabel8);
         jLabel8.setBounds(810, 370, 70, 40);
 
-        jTextField4.setText("jTextField4");
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
         jPanel7.add(jTextField4);
         jTextField4.setBounds(350, 230, 260, 40);
 
-        jTextField5.setText("jTextField5");
+        jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField5MouseClicked(evt);
+            }
+        });
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jTextField5);
         jTextField5.setBounds(350, 320, 260, 40);
 
-        jFormattedTextField2.setText("jFormattedTextField2");
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField2.setText("jj/mm/aa");
+        jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField2MouseClicked(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField2);
         jFormattedTextField2.setBounds(350, 420, 260, 40);
 
-        jFormattedTextField3.setText("jFormattedTextField3");
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField3.setText("jj/mm/aa");
+        jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField3MouseClicked(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField3);
         jFormattedTextField3.setBounds(910, 260, 200, 40);
 
-        jFormattedTextField4.setText("jFormattedTextField4");
+        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField4.setText("hh:mm");
+        jFormattedTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField4MouseClicked(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField4);
         jFormattedTextField4.setBounds(910, 370, 200, 40);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Ajouter cet examen");
         jPanel7.add(jButton4);
-        jButton4.setBounds(1040, 560, 180, 50);
+        jButton4.setBounds(1050, 560, 170, 50);
+
+        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Sélectionner une image :");
+        jPanel7.add(jLabel17);
+        jLabel17.setBounds(210, 560, 230, 22);
+
+        jTextField6.setText("URL");
+        jPanel7.add(jTextField6);
+        jTextField6.setBounds(440, 560, 240, 28);
+
+        jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton5.setText("Parcourir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton5);
+        jButton5.setBounds(680, 560, 107, 29);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
-        jLabel12.setText("jLabel12");
         jPanel7.add(jLabel12);
         jLabel12.setBounds(0, 0, 1420, 650);
 
@@ -203,7 +267,6 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel3.add(jLabel5);
         jLabel5.setBounds(380, 460, 70, 20);
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -212,7 +275,6 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel3.add(jTextField1);
         jTextField1.setBounds(470, 60, 310, 40);
 
-        jTextField2.setText("jTextField2");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -220,12 +282,8 @@ public class ManipRadio extends javax.swing.JFrame {
         });
         jPanel3.add(jTextField2);
         jTextField2.setBounds(470, 158, 310, 40);
-
-        jFormattedTextField1.setText("jFormattedTextField1");
         jPanel3.add(jFormattedTextField1);
         jFormattedTextField1.setBounds(470, 250, 160, 40);
-
-        jTextField3.setText("jTextField3");
         jPanel3.add(jTextField3);
         jTextField3.setBounds(470, 338, 310, 40);
 
@@ -318,6 +376,64 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Accueil", jPanel4);
 
+        jPanel6.setLayout(null);
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel6.add(jScrollPane1);
+        jScrollPane1.setBounds(238, 114, 707, 476);
+
+        jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par ..." }));
+        jPanel6.add(jComboBox3);
+        jComboBox3.setBounds(238, 74, 132, 27);
+
+        jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton6.setText("Trier ");
+        jPanel6.add(jButton6);
+        jButton6.setBounds(382, 73, 81, 29);
+
+        jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton7.setText("OK");
+        jPanel6.add(jButton7);
+        jButton7.setBounds(870, 73, 75, 29);
+
+        jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jTextField7.setText("Rechercher..");
+        jPanel6.add(jTextField7);
+        jTextField7.setBounds(765, 72, 99, 29);
+
+        jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton8.setText("Imprimer");
+        jPanel6.add(jButton8);
+        jButton8.setBounds(838, 602, 107, 29);
+
+        jButton9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton9.setText("Exporter en PDF");
+        jPanel6.add(jButton9);
+        jButton9.setBounds(665, 602, 155, 29);
+
+        jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton10.setText("Consulter");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton10);
+        jButton10.setBounds(536, 602, 111, 29);
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jPanel6.add(jLabel18);
+        jLabel18.setBounds(0, 0, 1440, 660);
+
+        jTabbedPane1.addTab("DMR", jPanel6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,12 +467,45 @@ public class ManipRadio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ChangerMdp changemanip = new ChangerMdp();
         changemanip.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // A toi de jouer nico 
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        jTextField4.setText("");
+    }//GEN-LAST:event_jTextField4MouseClicked
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseClicked
+        jTextField5.setText("");
+    }//GEN-LAST:event_jTextField5MouseClicked
+
+    private void jFormattedTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MouseClicked
+        jFormattedTextField2.setText("");
+    }//GEN-LAST:event_jFormattedTextField2MouseClicked
+
+    private void jFormattedTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField3MouseClicked
+        jFormattedTextField3.setText("");
+    }//GEN-LAST:event_jFormattedTextField3MouseClicked
+
+    private void jFormattedTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField4MouseClicked
+        jFormattedTextField4.setText("");
+    }//GEN-LAST:event_jFormattedTextField4MouseClicked
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        ConsulterDMRMR consultMR = new ConsulterDMRMR();
+        consultMR.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,11 +544,18 @@ public class ManipRadio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
@@ -412,6 +568,8 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -420,17 +578,22 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

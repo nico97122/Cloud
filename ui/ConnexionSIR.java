@@ -6,6 +6,7 @@
 package  Cloud.ui;
 import Cloud.fc.ConnexionBD;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -130,11 +131,14 @@ public class ConnexionSIR extends javax.swing.JFrame {
             secmed.setVisible(true);
             this.dispose();
         }
+        else {
+            JOptionPane.showMessageDialog(this, "Identifiant ou Mot de passe inconnu");
+        }
 
 
 
 
-        //GEN-FIRST:event_jButton1ActionPerformed
+//GEN-FIRST:event_jButton1ActionPerformed
 //BASE DE DONNEE 
 //        if(PH){
 //              PH ph = new PH();

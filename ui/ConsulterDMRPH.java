@@ -114,6 +114,11 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Modifier Image");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(805, 593, 147, 29);
 
@@ -155,6 +160,12 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         ph.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ModifImg modif= new ModifImg();
+        modif.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -82,12 +82,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Date", "??" }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(112, 63, 121, 27);
+        jComboBox2.setBounds(112, 63, 90, 22);
 
         jButton4.setText("Trier");
-        jButton4.setActionCommand("Trier");
         jPanel1.add(jButton4);
-        jButton4.setBounds(239, 62, 75, 29);
+        jButton4.setBounds(239, 62, 61, 25);
 
         jTextField4.setText("Rechercher...");
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,19 +95,19 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(427, 61, 144, 28);
+        jTextField4.setBounds(427, 61, 144, 22);
 
         jButton5.setText("OK");
         jPanel1.add(jButton5);
-        jButton5.setBounds(577, 62, 75, 29);
+        jButton5.setBounds(577, 62, 49, 25);
 
         jButton6.setText("Exporter en PDF");
         jPanel1.add(jButton6);
-        jButton6.setBounds(395, 385, 144, 29);
+        jButton6.setBounds(395, 385, 125, 25);
 
         jButton7.setText("Imprimer");
         jPanel1.add(jButton7);
-        jButton7.setBounds(545, 385, 101, 29);
+        jButton7.setBounds(545, 385, 85, 25);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel10);
@@ -118,9 +117,9 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
         jPanel2.add(jButton1);
-        jButton1.setBounds(20, 380, 36, 32);
+        jButton1.setBounds(20, 379, 53, 20);
 
         jButton2.setText("Déconnexion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +128,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(600, 380, 127, 29);
+        jButton2.setBounds(600, 380, 105, 25);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,35 +154,35 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(162, 50, 60, 22);
+        jLabel2.setBounds(162, 50, 60, 24);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Prénom : ");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(129, 110, 90, 22);
+        jLabel3.setBounds(129, 110, 90, 24);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date de Naissance : ");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(30, 170, 190, 22);
+        jLabel4.setBounds(30, 170, 190, 24);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Identifiant : ");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(97, 230, 120, 22);
+        jLabel5.setBounds(97, 230, 120, 24);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sexe : ");
         jPanel3.add(jLabel6);
-        jLabel6.setBounds(151, 290, 60, 22);
+        jLabel6.setBounds(151, 290, 60, 24);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(230, 290, 96, 27);
+        jComboBox1.setBounds(230, 290, 96, 22);
 
         jTextField1.setText("                            ");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,7 +191,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(230, 40, 190, 28);
+        jTextField1.setBounds(230, 40, 190, 22);
 
         jTextField2.setText("                            ");
         jTextField2.setToolTipText("");
@@ -202,7 +201,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(230, 100, 190, 28);
+        jTextField2.setBounds(230, 100, 190, 22);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,7 +210,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(230, 160, 190, 28);
+        jFormattedTextField1.setBounds(230, 160, 190, 22);
 
         jTextField3.setText("                           ");
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,11 +219,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(230, 220, 190, 28);
+        jTextField3.setBounds(230, 220, 190, 22);
 
         jButton3.setText("Ajouter ce patient");
         jPanel3.add(jButton3);
-        jButton3.setBounds(540, 380, 160, 29);
+        jButton3.setBounds(540, 380, 160, 25);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
@@ -242,7 +241,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
         );
 
         pack();

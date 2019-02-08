@@ -7,14 +7,17 @@ package Cloud.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,9 +34,13 @@ public class ModifImg extends javax.swing.JFrame {
   private JButton b3=new JButton("retournerImg");
   private JButton b4=new JButton("reinitialiserImg");
    private JButton b5=new JButton("inverserNivGris");
+   private JLabel nom =new JLabel("luminosité");
   private BufferedImage Imginitial;
   private BufferedImage Imginitiallumi;
   private  JSlider lumi=new JSlider();
+  private JPanel jPanelSE=new JPanel();
+  private JButton save=new JButton("save");
+   private JButton exit=new JButton("exit");
   int incre=0; //incrementation pour la classe éclairerAssombrirImg
     /**
      * Creates new form ModifImg
@@ -48,25 +55,46 @@ public class ModifImg extends javax.swing.JFrame {
         
         
         this.jPanelBouton.setLayout(new BoxLayout(jPanelBouton,BoxLayout.Y_AXIS));//ajout bouton au jpanel des boutons
+        this.jPanelSE.setLayout(new FlowLayout());
             b2.setAlignmentX(Component.CENTER_ALIGNMENT);
         b1.setAlignmentX(Component.CENTER_ALIGNMENT);
         b3.setAlignmentX(Component.CENTER_ALIGNMENT);
         b4.setAlignmentX(Component.CENTER_ALIGNMENT);
         b5.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nom.setAlignmentX(Component.CENTER_ALIGNMENT);
         lumi.setAlignmentX(Component.CENTER_ALIGNMENT);
-      this.jPanelBouton.add(lumi);
+        jPanelSE.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+         
+                 
+     
        this.jPanelBouton.add(b1);
        this.jPanelBouton.add(b2);
        this.jPanelBouton.add(b3);
        this.jPanelBouton.add(b4);
+       this.jPanelBouton.add(nom);
+        this.jPanelBouton.add(lumi);
         this.jPanelBouton.add(b5);
+        
+        this.jPanelSE.add(save);
+        jPanelSE.add(exit);
+        this.jPanelBouton.add(jPanelSE);
         add(jPanelBouton, BorderLayout.EAST);
          lumi.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 lumiStateChanged(evt);
             }
         });
-                                        
+         exit.addMouseListener(new java.awt.event.MouseAdapter() { 
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                 exitMouseClicked(evt);
+            }
+        });
+          save.addMouseListener(new java.awt.event.MouseAdapter() { 
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                 saveMouseClicked(evt);
+            }
+        });                               
         b1.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,6 +138,11 @@ public class ModifImg extends javax.swing.JFrame {
           
         initComponents();
     }
+     private void exitMouseClicked(java.awt.event.MouseEvent evt) {  
+     this.dispose();}
+      private void saveMouseClicked(java.awt.event.MouseEvent evt) {  
+          new sauvegardeF(PanelImg.getImage()).setVisible(true);
+     }
        private void b3MouseClicked(java.awt.event.MouseEvent evt) {  
      BufferedImage img=PanelImg.getImage();
     BufferedImage imgr= PanelImg.retourner(img);
@@ -145,7 +178,7 @@ private void b1MouseClicked(java.awt.event.MouseEvent evt) {
         }
         incre+=1;
         int tauxLumi=lumi.getValue();
-        BufferedImage imglumi=PanelImg.eclairerAssombrir(Imginitiallumi, ((float)tauxLumi)/20);
+        BufferedImage imglumi=PanelImg.eclairerAssombrir(Imginitiallumi, ((float)tauxLumi));
          PanelImg.setImage(imglumi);
         
     }  
@@ -173,7 +206,7 @@ private void b1MouseClicked(java.awt.event.MouseEvent evt) {
      setSize(800,600);
         try {
          // TODO add your handling code here:
-         this.PanelImg.setImage("src/Cloud/image/img.jpg");
+         this.PanelImg.setImage("src/Cloud/image/sinus1_0083.jpg");  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
          this.Imginitial=PanelImg.getImage();
      } catch (IOException ex) {
          Logger.getLogger(ModifImg.class.getName()).log(Level.SEVERE, null, ex);

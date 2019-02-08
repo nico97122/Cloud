@@ -5,6 +5,8 @@
  */
 package Cloud.ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juliette-Trouillet
@@ -294,6 +296,11 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Ajouter ce patient");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1);
         jButton1.setBounds(1021, 560, 177, 48);
 
@@ -447,7 +454,7 @@ public class ManipRadio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -506,6 +513,15 @@ public class ManipRadio extends javax.swing.JFrame {
         consultMR.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//       if(patient existe deja){
+//        JOptionPane.showMessageDialog(this, "Ce patient existe déjà", "Erreur", JOptionPane.WARNING_MESSAGE);
+//    }
+//       else{
+//        JOptionPane.showMessageDialog(this, "Le patient a bien été ajouté", "", JOptionPane.WARNING_MESSAGE);       
+//               }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

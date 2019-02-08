@@ -105,7 +105,9 @@ public class ConnexionSIR extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //BASE DE DONNEE 
 //        if(PH){
-//            
+//              PH ph = new PH();
+//              ph.setVisible(true);
+//              this.dispose();
 //        }
 //        if(ManipRadio){
 //            ManipRadio manipR= new ManipRadio();

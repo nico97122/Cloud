@@ -21,13 +21,71 @@ public class CompteRendu {
         this.exam=exam;
         this.ph=ph;
     }
+    
+    
     public String ajoutercontenu(String texte){ //permet au medecin d'ajouter sa note 
-        this.contenu+= "\n"+texte+"realisé "+this.date.toString();
+        this.setContenu(this.getContenu() + "\n"+texte+"realisé " + this.getDate().toString());
         return "votre texte a bien été ajouté";
     }
     public String modifierContenu(String texte){
-         this.contenu= "\n"+texte+"\n realisé "+this.date.toString();
+        this.setContenu("\n"+texte+"\n realisé " + this.getDate().toString());
         return "votre texte a bien été modifiié";
+    }
+
+    /**
+     * @return the date
+     */
+    public Date2 getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date2 date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the contenu
+     */
+    public String getContenu() {
+        return contenu;
+    }
+
+    /**
+     * @param contenu the contenu to set
+     */
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    /**
+     * @return the exam
+     */
+    public Examen getExam() {
+        return exam;
+    }
+
+    /**
+     * @param exam the exam to set
+     */
+    public void setExam(Examen exam) {
+        this.exam = exam;
+    }
+
+    /**
+     * @return the ph
+     */
+    public PracticienH getPh() {
+        return ph;
+    }
+
+    /**
+     * @param ph the ph to set
+     */
+    public void setPh(PracticienH ph) {
+        this.ph = ph;
     }
     
 }

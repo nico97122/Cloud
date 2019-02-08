@@ -17,12 +17,8 @@ public class ConnexionSIR extends javax.swing.JFrame {
     public ConnexionSIR() {
         initComponents();
         setResizable(false);
-        int a;
-        int b;
-        a = jLabel4.getHeight();
-        b = jLabel4.getWidth();
-        setSize(b,a);
-        System.out.println(a+"et"+b);
+        jLabel4.setSize(1500,700);
+        setSize(1500,700);
     }
 
     /**
@@ -39,25 +35,25 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jPanel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Identifiant : ");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(217, 40, 90, 30);
+        jLabel1.setBounds(850, 90, 230, 30);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mot de passe : ");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(205, 90, 110, 17);
+        jLabel2.setBounds(800, 200, 290, 50);
 
         jTextField1.setText("                                   ");
         jTextField1.setToolTipText("");
@@ -67,7 +63,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jTextField1);
-        jTextField1.setBounds(320, 40, 154, 28);
+        jTextField1.setBounds(1110, 90, 270, 40);
 
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,10 +72,9 @@ public class ConnexionSIR extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jPasswordField1);
-        jPasswordField1.setBounds(320, 80, 154, 28);
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(358, 15, 0, 0);
+        jPasswordField1.setBounds(1110, 210, 270, 40);
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton1.setText("Connexion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,22 +82,14 @@ public class ConnexionSIR extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(360, 150, 112, 29);
+        jButton1.setBounds(1230, 330, 140, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/LoginFrame.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/LoginFrame-2.png"))); // NOI18N
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(0, 0, 500, 320);
+        jLabel4.setBounds(0, -10, 1780, 720);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 1700, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -172,7 +159,6 @@ public class ConnexionSIR extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;

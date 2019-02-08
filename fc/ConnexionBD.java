@@ -113,5 +113,13 @@ public class ConnexionBD {
         return i;
     }
 
+    public void deconnexion() throws Exception
+    {
+        if(con != null)
+        {
+            con.close();
+        }
+    }
+
     // ajouter patient ajouter exam a faire
 }

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package  Cloud.ui;
+import Cloud.fc.ConnexionBD;
+import java.util.ArrayList;
 
 /**
  *
@@ -77,8 +79,9 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton1.setText("Connexion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) { // Léo: try/catch ajouté pour la gestion de Exception
+                try{jButton1ActionPerformed(evt);}
+                catch(Exception e){};
             }
         });
         jPanel2.add(jButton1);
@@ -102,7 +105,36 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+        ConnexionBD con = new ConnexionBD();
+        ArrayList<ArrayList<String>> listeIdentifiants = new ArrayList<>();
+        String id = jTextField1.getText();
+        String password = jPasswordField1.getText();
+        con.connexion();
+        listeIdentifiants = con.requete("typepersonnel","personnel","where idpersonnel="+"'"+id+"' and mdp="+"'"+password+"' ;");
+
+        if(listeIdentifiants.get(0).get(0)=="PH"){
+            PH ph = new PH();
+            ph.setVisible(true);
+            this.dispose();
+        }
+
+        if(listeIdentifiants.get(0).get(0)=="manip"){
+            ManipRadio manipR= new ManipRadio();
+            manipR.setVisible(true);
+            this.dispose();
+        }
+
+        if(listeIdentifiants.get(0).get(0)=="secretaire"){
+            SecretaireMedicale secmed = new SecretaireMedicale();
+            secmed.setVisible(true);
+            this.dispose();
+        }
+
+
+
+
+        //GEN-FIRST:event_jButton1ActionPerformed
 //BASE DE DONNEE 
 //        if(PH){
 //              PH ph = new PH();
@@ -120,6 +152,9 @@ public class ConnexionSIR extends javax.swing.JFrame {
 //            this.dispose();
 //        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+
+
 
     /**
      * @param args the command line arguments

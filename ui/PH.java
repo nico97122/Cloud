@@ -233,11 +233,12 @@ public class PH extends javax.swing.JFrame {
         jTextField3.setBounds(290, 294, 226, 37);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField1.setText("jj/mm/aaaa");
         jPanel1.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(290, 445, 14, 28);
+        jFormattedTextField1.setBounds(290, 445, 220, 28);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.setText("jj/mm/aa");
+        jFormattedTextField2.setText("jj/mm/aaaa");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
@@ -298,6 +299,7 @@ public class PH extends javax.swing.JFrame {
         ConsulterDMRPH consultDMR = new ConsulterDMRPH();
         setVisible(true);
         this.dispose();
+        //BD
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked

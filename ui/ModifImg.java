@@ -52,7 +52,8 @@ public class ModifImg extends javax.swing.JFrame {
      * Creates new form ModifImg
      */
     public ModifImg() {
-
+        setResizable(false);
+        setSize(1700,500);
         PanelImg.setSize(256, 256);
         setLayout(new BorderLayout());//modif de la presentation du panel img dans la fenetre
         add(PanelImg, BorderLayout.CENTER);

@@ -17,11 +17,8 @@ public class ChangerMdp extends javax.swing.JFrame {
     public ChangerMdp() {
         initComponents();
         setResizable(false);
-        int a;
-        int b;
-        a = jLabel4.getHeight();
-        b = jLabel4.getWidth();
-        setSize(b,a);
+        jLabel4.setSize(1500,700);
+        setSize(1500,700);
     }
 
     /**
@@ -51,35 +48,35 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Identifiant : ");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 100, 90, 17);
+        jLabel1.setBounds(470, 150, 130, 22);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ancien mot de passe : ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(13, 160, 170, 17);
+        jLabel2.setBounds(380, 250, 220, 40);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nouve mot de passe :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(40, 220, 155, 17);
+        jLabel3.setBounds(390, 360, 220, 30);
 
         jTextField1.setText("                            ");
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(210, 90, 176, 28);
+        jTextField1.setBounds(650, 140, 270, 40);
 
         jPasswordField1.setText("jPasswordField1");
         jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(210, 150, 176, 28);
+        jPasswordField1.setBounds(650, 250, 270, 40);
 
         jPasswordField2.setText("jPasswordField2");
         jPanel1.add(jPasswordField2);
-        jPasswordField2.setBounds(210, 210, 176, 28);
+        jPasswordField2.setBounds(650, 360, 270, 40);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -88,33 +85,47 @@ public class ChangerMdp extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(0, 0, 36, 32);
+        jButton2.setBounds(0, 0, 70, 50);
 
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Enregistrer les modifications ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
-        jButton1.setBounds(350, 330, 229, 29);
+        jButton1.setBounds(670, 520, 250, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperfi.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(0, -10, 580, 410);
+        jLabel4.setBounds(0, 0, 1480, 700);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1481, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        //BD
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

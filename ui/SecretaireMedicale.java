@@ -17,10 +17,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     public SecretaireMedicale() {
         initComponents();
         setResizable(false);
-        jLabel1.setSize(1800,900);
-        jLabel7.setSize(1800,900);
-        jLabel10.setSize(1800,900);
-        setSize(1800,900);
+        jLabel1.setSize(1500,700);
+        jLabel7.setSize(1500,700);
+        jLabel10.setSize(1500,700);
+        setSize(1500,700);
         
     }
 
@@ -83,15 +83,17 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(330, 190, 770, 450);
+        jScrollPane1.setBounds(290, 120, 770, 450);
 
+        jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Date", "??" }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(320, 130, 121, 27);
+        jComboBox2.setBounds(290, 80, 130, 27);
 
+        jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Trier");
         jPanel1.add(jButton4);
-        jButton4.setBounds(480, 130, 75, 29);
+        jButton4.setBounds(460, 80, 77, 29);
 
         jTextField4.setText("Rechercher...");
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,19 +102,22 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(740, 130, 144, 28);
+        jTextField4.setBounds(840, 80, 144, 28);
 
+        jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("OK");
         jPanel1.add(jButton5);
-        jButton5.setBounds(890, 130, 75, 29);
+        jButton5.setBounds(990, 80, 75, 29);
 
+        jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
         jPanel1.add(jButton6);
-        jButton6.setBounds(750, 690, 144, 29);
+        jButton6.setBounds(800, 610, 150, 40);
 
+        jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Imprimer");
         jPanel1.add(jButton7);
-        jButton7.setBounds(1000, 690, 101, 29);
+        jButton7.setBounds(950, 610, 110, 40);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel10);
@@ -123,8 +128,13 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel2.setLayout(null);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1);
-        jButton1.setBounds(90, 702, 60, 50);
+        jButton1.setBounds(80, 570, 50, 50);
 
         jButton2.setText("Déconnexion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +143,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(1140, 709, 150, 40);
+        jButton2.setBounds(1000, 570, 150, 40);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,7 +159,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1720, 830);
+        jLabel1.setBounds(0, 0, 1570, 710);
 
         jTabbedPane1.addTab("Accueil", jPanel2);
 
@@ -227,9 +237,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel3.add(jTextField3);
         jTextField3.setBounds(440, 360, 250, 28);
 
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Ajouter ce patient");
         jPanel3.add(jButton3);
-        jButton3.setBounds(780, 670, 160, 29);
+        jButton3.setBounds(1090, 580, 180, 50);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
@@ -242,12 +253,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1767, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1502, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         pack();
@@ -282,6 +293,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private void jList1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jList1ComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_jList1ComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ChangerMdp change = new ChangerMdp();
+        change.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

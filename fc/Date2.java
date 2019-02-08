@@ -54,6 +54,7 @@ public class Date2 {
        d[4]=date.minute;
         return d;
     }
+    @Override
     public String toString(){ //renvoie la date sous forme de texte
         return "le "+this.jour+" "+this.mois+" "+this.année+" à "+this.heure+":"+this.minute;
     }

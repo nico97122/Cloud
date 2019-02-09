@@ -15,17 +15,19 @@ import javax.swing.JFileChooser;
  * @author Juliette-Trouillet
  */
 public class PH extends javax.swing.JFrame {
- Vector<String> dataUrlImg = new Vector();
+
+    Vector<String> dataUrlImg = new Vector();
+    int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
+
     /**
      * Creates new form PH
      */
     public PH() {
         initComponents();
-        setSize(1500,700);
-        jLabel3.setSize(1500,700);
-        jLabel4.setSize(1500,700);
-       
-        
+        setSize(1500, 700);
+        jLabel3.setSize(1500, 700);
+        jLabel4.setSize(1500, 700);
+
     }
 
     /**
@@ -38,6 +40,12 @@ public class PH extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -49,12 +57,6 @@ public class PH extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -72,11 +74,56 @@ public class PH extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jPanel4.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nom ");
+        jPanel4.add(jLabel1);
+        jLabel1.setBounds(190, 90, 120, 62);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Prénom ");
+        jPanel4.add(jLabel2);
+        jLabel2.setBounds(120, 230, 192, 62);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1);
+        jButton1.setBounds(84, 581, 44, 30);
+
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton2.setText("Déconnexion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2);
+        jButton2.setBounds(1061, 590, 115, 38);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(0, 0, 1470, 680);
+
+        jTabbedPane1.addTab("Accueil", jPanel4);
 
         jPanel3.setLayout(null);
 
@@ -141,45 +188,6 @@ public class PH extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("DMR", jPanel3);
 
-        jPanel4.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nom ");
-        jPanel4.add(jLabel1);
-        jLabel1.setBounds(190, 90, 120, 62);
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Prénom ");
-        jPanel4.add(jLabel2);
-        jLabel2.setBounds(120, 230, 192, 62);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1);
-        jButton1.setBounds(84, 581, 44, 30);
-
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton2.setText("Déconnexion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton2);
-        jButton2.setBounds(1061, 590, 115, 38);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
-        jPanel4.add(jLabel3);
-        jLabel3.setBounds(0, 0, 1470, 680);
-
-        jTabbedPane1.addTab("Accueil", jPanel4);
-
         jPanel1.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -242,7 +250,7 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setText("jj/mm/aaaa");
         jPanel1.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(290, 437, 230, 30);
+        jFormattedTextField1.setBounds(290, 445, 220, 22);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField2.setText("jj/mm/aaaa");
@@ -272,7 +280,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8);
-        jButton8.setBounds(740, 550, 91, 27);
+        jButton8.setBounds(740, 550, 110, 27);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Url" };
@@ -289,22 +297,78 @@ public class PH extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2);
         jScrollPane2.setBounds(410, 550, 290, 90);
 
+        jButton9.setText("RetirerImgS");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9);
+        jButton9.setBounds(740, 600, 110, 30);
+
+        jButton10.setText("ViderListe");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton10);
+        jButton10.setBounds(870, 600, 110, 30);
+
+        jButton11.setText("Visualiser");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11);
+        jButton11.setBounds(870, 550, 110, 30);
+
+        jButton12.setText("Enregistrer");
+        jPanel1.add(jButton12);
+        jButton12.setBounds(1160, 570, 110, 40);
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel13);
         jLabel13.setBounds(0, 40, 1380, 660);
 
         jTabbedPane1.addTab("Ajouter un examen", jPanel1);
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1373, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Modifier une Image", jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1505, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Accueil");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -344,26 +408,59 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       JFileChooser fileOuvrir = new JFileChooser();
-       
-            if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
-               
-                this.jList2.setListData(dataUrlImg);
-            }
+        JFileChooser fileOuvrir = new JFileChooser();
+
+        if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
+
+            this.jList2.setListData(dataUrlImg);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
-         int p=0;
-         if (p==0){
-         Vector<String> dataIni = new Vector();
-        this.jList2.setListData(dataIni);
-        p+=1;
-         }
-
         
+        if (jList2.getLastVisibleIndex()!=-1) {
+            
+            
+            if ("Url".equals(jList2.getModel().getElementAt(0)) ) {
+               
+                Vector<String> dataIni = new Vector();
+                this.jList2.setListData(dataIni);
+
+            }
+        }
+
+
     }//GEN-LAST:event_jList2MouseClicked
-    
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+
+        int elemASup = this.jList2.getSelectedIndex();
+        dataUrlImg.remove(elemASup);
+        jList2.setListData(dataUrlImg);
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        Vector<String> dataIni = new Vector();
+        jList2.setListData(dataIni);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+           if (jList2.getLastVisibleIndex()!=-1) {
+                if (!"Url".equals(jList2.getModel().getElementAt(0)) ) {
+               new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
+                }
+           }
+    }//GEN-LAST:event_jButton11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -395,13 +492,16 @@ public class PH extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PH().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -409,6 +509,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -429,6 +530,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JList jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

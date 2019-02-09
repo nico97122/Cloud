@@ -52,6 +52,116 @@ public class ModifImg extends javax.swing.JFrame {
      * Creates new form ModifImg
      */
     public ModifImg() {
+        
+        setResizable(false);
+        setSize(1700,500);
+        PanelImg.setSize(256, 256);
+        setLayout(new BorderLayout());//modif de la presentation du panel img dans la fenetre
+        add(PanelImg, BorderLayout.CENTER);
+        add(jPanelWest, BorderLayout.WEST);
+        add(jPanelNorth, BorderLayout.NORTH);
+        add(jPanelSouth, BorderLayout.SOUTH);
+
+        this.jPanelBouton.setLayout(new FlowLayout());//ajout bouton au jpanel des boutons
+        this.jPanelSE.setLayout(new FlowLayout());
+        b2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b5.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nom.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lumi.setAlignmentX(Component.CENTER_ALIGNMENT);
+        imprimer.setAlignmentX(Component.CENTER_ALIGNMENT);
+        note.setAlignmentX(Component.CENTER_ALIGNMENT);
+        jPanelSE.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        lumi.setPreferredSize(new Dimension(150,20));
+        note.setPreferredSize(new Dimension(200,300));
+       this.jPanelBouton.setPreferredSize((new Dimension(200,500)));
+        this.jPanelBouton.add(b1);
+        this.jPanelBouton.add(b2);
+        this.jPanelBouton.add(b3);
+        this.jPanelBouton.add(b4);
+        this.jPanelBouton.add(nom);
+        this.jPanelBouton.add(lumi);
+        this.jPanelBouton.add(b5);
+        this.jPanelBouton.add(imprimer);
+        this.jPanelBouton.add(note);
+        
+        this.jPanelSE.add(save);
+        jPanelSE.add(exit);
+        this.jPanelBouton.add(jPanelSE);
+        add(jPanelBouton, BorderLayout.EAST);
+        lumi.addChangeListener(new javax.swing.event.ChangeListener() {
+            @Override
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                lumiStateChanged(evt);
+            }
+        });//ajout d'un listenner si on  bouge le Jslider lumi
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });//ajout d'un listenner si on clique sur  le bouton exit
+        save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveMouseClicked(evt);
+            }
+        });  //ajout d'un listenner si on clique sur  le bouton save                             
+        b1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b1MouseClicked(evt);
+
+            }
+        });//ajout d'un listenner si on clique sur  le bouton rotation90D
+        b2.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b2MouseClicked(evt);
+
+            }
+        });//ajout d'un listenner si on clique sur  le bouton rotation90G   
+        b3.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b3MouseClicked(evt);
+
+            }
+        });//ajout d'un listenner si on clique sur  le bouton retournerImg
+        b4.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b4MouseClicked(evt);
+
+            }
+        });//ajout d'un listenner si on clique sur  le bouton reinitialiser
+        b5.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b5MouseClicked(evt);
+
+            }
+        });//ajout d'un listenner si on clique sur  le bouton inverserGris
+         note.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                noteMouseClicked(evt);
+
+            }
+        });
+        initComponents();
+         PanelImg.setPreferredSize(new Dimension(200, 500));
+        setSize(new Dimension(1000, 700));
+        try {
+            // TODO add your handling code here:
+            this.PanelImg.setImage("src/Cloud/image/sinus1_0083.jpg");  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
+            this.Imginitial = PanelImg.getImage();
+        } catch (IOException ex) {
+            Logger.getLogger(ModifImg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public ModifImg(String pathFile) {
+        
         setResizable(false);
         setSize(1700,500);
         PanelImg.setSize(256, 256);
@@ -149,6 +259,15 @@ public class ModifImg extends javax.swing.JFrame {
             }
         });
         initComponents();
+         PanelImg.setPreferredSize(new Dimension(200, 500));
+        setSize(new Dimension(1000, 700));
+        try {
+            // TODO add your handling code here:
+            this.PanelImg.setImage(pathFile);  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
+            this.Imginitial = PanelImg.getImage();
+        } catch (IOException ex) {
+            Logger.getLogger(ModifImg.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,15 +348,7 @@ public class ModifImg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        PanelImg.setPreferredSize(new Dimension(200, 500));
-        setSize(new Dimension(1000, 700));
-        try {
-            // TODO add your handling code here:
-            this.PanelImg.setImage("src/Cloud/image/sinus1_0083.jpg");  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
-            this.Imginitial = PanelImg.getImage();
-        } catch (IOException ex) {
-            Logger.getLogger(ModifImg.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_formWindowOpened
 
     /**

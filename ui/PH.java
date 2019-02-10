@@ -5,21 +5,54 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.*;
+import java.awt.Component;
+import java.io.File;
+import java.util.Vector;
+import javax.swing.JFileChooser;
+import java.lang.Package;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Juliette-Trouillet
  */
 public class PH extends javax.swing.JFrame {
 
+    ConnexionBD co = new ConnexionBD();
+    Vector<String> dataUrlImg = new Vector();
+    Vector<String> ListeImgV = new Vector();
+    public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
+    public ArrayList<String> ListeImgR2 = new ArrayList<String>();
+
+    int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
+
     /**
      * Creates new form PH
      */
     public PH() {
         initComponents();
-        setSize(1500,700);
-        jLabel3.setSize(1500,700);
-        jLabel4.setSize(1500,700);
-        jLabel12.setSize(1500,700);
+        setSize(1500, 700);
+        jLabel3.setSize(1500, 700);
+        jLabel4.setSize(1500, 700);
+        System.out.println(ListeImgR.toString());
+//        try {
+//            ListeImgR = co.requete("URL", "image", "aucune"); //a confirmer par leo
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.println(ListeImgR.toString());
+//
+//        for (int i = 0; i < ListeImgR.size(); i++) {
+//            ListeImgR2.add(ListeImgR.get(i).get(0));
+//        }
+//        Vector<String> ListeImgV = new Vector(ListeImgR2);
+//
+//        this.jList3.setListData(ListeImgV);
+
     }
 
     /**
@@ -32,6 +65,12 @@ public class PH extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -43,12 +82,6 @@ public class PH extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -63,13 +96,64 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jTextField4 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        jButton13 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jPanel4.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nom ");
+        jPanel4.add(jLabel1);
+        jLabel1.setBounds(190, 90, 120, 62);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Prénom ");
+        jPanel4.add(jLabel2);
+        jLabel2.setBounds(120, 230, 192, 62);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1);
+        jButton1.setBounds(84, 581, 44, 30);
+
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton2.setText("Déconnexion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2);
+        jButton2.setBounds(1061, 590, 115, 38);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(0, 0, 1470, 680);
+
+        jTabbedPane1.addTab("Accueil", jPanel4);
 
         jPanel3.setLayout(null);
 
@@ -86,17 +170,17 @@ public class PH extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par..." }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(261, 125, 128, 27);
+        jComboBox1.setBounds(261, 125, 97, 25);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Trier");
         jPanel3.add(jButton3);
-        jButton3.setBounds(401, 124, 77, 29);
+        jButton3.setBounds(401, 124, 63, 27);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("OK");
         jPanel3.add(jButton4);
-        jButton4.setBounds(847, 124, 75, 29);
+        jButton4.setBounds(847, 124, 53, 27);
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField1.setText("Rechercher ...");
@@ -106,17 +190,17 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(728, 123, 107, 29);
+        jTextField1.setBounds(728, 123, 96, 25);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Imprimer");
         jPanel3.add(jButton5);
-        jButton5.setBounds(815, 599, 107, 29);
+        jButton5.setBounds(815, 599, 87, 27);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
         jPanel3.add(jButton6);
-        jButton6.setBounds(648, 599, 155, 29);
+        jButton6.setBounds(648, 599, 137, 27);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Consulter");
@@ -126,7 +210,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton7);
-        jButton7.setBounds(520, 600, 111, 29);
+        jButton7.setBounds(520, 600, 93, 27);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel4);
@@ -134,93 +218,54 @@ public class PH extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("DMR", jPanel3);
 
-        jPanel4.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nom ");
-        jPanel4.add(jLabel1);
-        jLabel1.setBounds(190, 90, 131, 58);
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Prénom ");
-        jPanel4.add(jLabel2);
-        jLabel2.setBounds(120, 230, 205, 58);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1);
-        jButton1.setBounds(84, 581, 44, 32);
-
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton2.setText("Déconnexion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton2);
-        jButton2.setBounds(1061, 590, 135, 38);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
-        jPanel4.add(jLabel3);
-        jLabel3.setBounds(0, 0, 1470, 680);
-
-        jTabbedPane1.addTab("Accueil", jPanel4);
-
         jPanel1.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nom : ");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(213, 156, 59, 22);
+        jLabel5.setBounds(213, 156, 52, 24);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Type d'examen");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(451, 53, 131, 22);
+        jLabel6.setBounds(451, 53, 121, 24);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Prénom : ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(188, 299, 84, 22);
+        jLabel7.setBounds(188, 299, 77, 24);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Date de Naissance : ");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(95, 446, 177, 22);
+        jLabel8.setBounds(95, 446, 167, 24);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Date : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(687, 207, 58, 22);
+        jLabel9.setBounds(687, 207, 53, 24);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Heure : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(676, 358, 69, 22);
+        jLabel10.setBounds(676, 358, 64, 24);
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Sélectionner une image :");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(277, 558, 215, 22);
+        jLabel11.setBounds(180, 550, 198, 40);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radio", "Scanner", "IRM", "..." }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(600, 53, 180, 27);
+        jComboBox2.setBounds(600, 53, 180, 25);
         jPanel1.add(jTextField2);
         jTextField2.setBounds(290, 151, 238, 36);
 
@@ -235,7 +280,7 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setText("jj/mm/aaaa");
         jPanel1.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(290, 445, 220, 28);
+        jFormattedTextField1.setBounds(290, 445, 220, 22);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField2.setText("jj/mm/aaaa");
@@ -257,36 +302,124 @@ public class PH extends javax.swing.JFrame {
         jPanel1.add(jFormattedTextField3);
         jFormattedTextField3.setBounds(763, 353, 202, 37);
 
-        jTextField4.setText("url");
-        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField4MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(510, 557, 215, 28);
-
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Parcourir");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton8);
-        jButton8.setBounds(743, 557, 107, 29);
+        jButton8.setBounds(740, 550, 110, 27);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(0, 0, 1460, 680);
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Url" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(410, 550, 290, 90);
+
+        jButton9.setText("RetirerImgS");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9);
+        jButton9.setBounds(740, 600, 110, 30);
+
+        jButton10.setText("ViderListe");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton10);
+        jButton10.setBounds(870, 600, 110, 30);
+
+        jButton11.setText("Visualiser");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11);
+        jButton11.setBounds(870, 550, 110, 30);
+
+        jButton12.setText("Enregistrer");
+        jPanel1.add(jButton12);
+        jButton12.setBounds(1160, 570, 110, 40);
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(0, 0, 1380, 660);
 
         jTabbedPane1.addTab("Ajouter un examen", jPanel1);
+
+        jPanel2.setLayout(null);
+
+        jLabel14.setText("image à modifier");
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(210, 60, 100, 40);
+
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList3);
+
+        jPanel2.add(jScrollPane3);
+        jScrollPane3.setBounds(400, 60, 150, 210);
+
+        jButton13.setText("Modifier");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton13);
+        jButton13.setBounds(710, 70, 87, 25);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        jLabel12.setMaximumSize(new java.awt.Dimension(1800, 900));
+        jLabel12.setMinimumSize(new java.awt.Dimension(1800, 900));
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(0, 0, 1800, 770);
+
+        jTabbedPane1.addTab("Modifier une Image", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1505, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Accueil");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -297,7 +430,7 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         ConsulterDMRPH consultDMR = new ConsulterDMRPH();
-        setVisible(true);
+        consultDMR.setVisible(true);
         this.dispose();
         //BD
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -314,10 +447,6 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField3.setText("");
     }//GEN-LAST:event_jFormattedTextField3MouseClicked
 
-    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
-        jTextField4.setText("");
-    }//GEN-LAST:event_jTextField4MouseClicked
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ConnexionSIR deco = new ConnexionSIR();
         deco.setVisible(true);
@@ -328,6 +457,66 @@ public class PH extends javax.swing.JFrame {
         ChangerMdp changermdp = new ChangerMdp();
         changermdp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        JFileChooser fileOuvrir = new JFileChooser();
+
+        if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
+
+            this.jList2.setListData(dataUrlImg);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
+
+        if (jList2.getLastVisibleIndex() != -1) {
+
+            if ("Url".equals(jList2.getModel().getElementAt(0))) {
+
+                Vector<String> dataIni = new Vector();
+                this.jList2.setListData(dataIni);
+
+            }
+        }
+
+
+    }//GEN-LAST:event_jList2MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+
+        int elemASup = this.jList2.getSelectedIndex();
+        dataUrlImg.remove(elemASup);
+        jList2.setListData(dataUrlImg);
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        Vector<String> dataIni = new Vector();
+        jList2.setListData(dataIni);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        if (jList2.getLastVisibleIndex() != -1) {
+            if (!"Url".equals(jList2.getModel().getElementAt(0))) {
+                new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+     String  pathImg= this.jList3.getSelectedValue();
+     ModifImg modif=new ModifImg(pathImg);
+     modif.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,13 +549,17 @@ public class PH extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PH().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -374,6 +567,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -383,6 +577,8 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -392,14 +588,18 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

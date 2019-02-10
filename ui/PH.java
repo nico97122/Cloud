@@ -5,10 +5,16 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.*;
 import java.awt.Component;
 import java.io.File;
 import java.util.Vector;
 import javax.swing.JFileChooser;
+import java.lang.Package;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +22,12 @@ import javax.swing.JFileChooser;
  */
 public class PH extends javax.swing.JFrame {
 
+    ConnexionBD co = new ConnexionBD();
     Vector<String> dataUrlImg = new Vector();
+    Vector<String> ListeImgV = new Vector();
+    public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
+    public ArrayList<String> ListeImgR2 = new ArrayList<String>();
+
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
 
     /**
@@ -27,6 +38,20 @@ public class PH extends javax.swing.JFrame {
         setSize(1500, 700);
         jLabel3.setSize(1500, 700);
         jLabel4.setSize(1500, 700);
+        System.out.println(ListeImgR.toString());
+//        try {
+//            ListeImgR = co.requete("URL", "image", "aucune"); //a confirmer par leo
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.println(ListeImgR.toString());
+//
+//        for (int i = 0; i < ListeImgR.size(); i++) {
+//            ListeImgR2.add(ListeImgR.get(i).get(0));
+//        }
+//        Vector<String> ListeImgV = new Vector(ListeImgR2);
+//
+//        this.jList3.setListData(ListeImgV);
 
     }
 
@@ -80,6 +105,11 @@ public class PH extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        jButton13 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -340,20 +370,41 @@ public class PH extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(0, 40, 1380, 660);
+        jLabel13.setBounds(0, 0, 1380, 660);
 
         jTabbedPane1.addTab("Ajouter un examen", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1373, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(null);
+
+        jLabel14.setText("image à modifier");
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(210, 60, 100, 40);
+
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList3);
+
+        jPanel2.add(jScrollPane3);
+        jScrollPane3.setBounds(400, 60, 150, 210);
+
+        jButton13.setText("Modifier");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton13);
+        jButton13.setBounds(710, 70, 87, 25);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        jLabel12.setMaximumSize(new java.awt.Dimension(1800, 900));
+        jLabel12.setMinimumSize(new java.awt.Dimension(1800, 900));
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(0, 0, 1800, 770);
 
         jTabbedPane1.addTab("Modifier une Image", jPanel2);
 
@@ -418,12 +469,11 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
-        
-        if (jList2.getLastVisibleIndex()!=-1) {
-            
-            
-            if ("Url".equals(jList2.getModel().getElementAt(0)) ) {
-               
+
+        if (jList2.getLastVisibleIndex() != -1) {
+
+            if ("Url".equals(jList2.getModel().getElementAt(0))) {
+
                 Vector<String> dataIni = new Vector();
                 this.jList2.setListData(dataIni);
 
@@ -454,12 +504,19 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-           if (jList2.getLastVisibleIndex()!=-1) {
-                if (!"Url".equals(jList2.getModel().getElementAt(0)) ) {
-               new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
-                }
-           }
+        if (jList2.getLastVisibleIndex() != -1) {
+            if (!"Url".equals(jList2.getModel().getElementAt(0))) {
+                new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+     String  pathImg= this.jList3.getSelectedValue();
+     ModifImg modif=new ModifImg(pathImg);
+     modif.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,6 +559,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -518,7 +576,9 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -529,12 +589,14 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

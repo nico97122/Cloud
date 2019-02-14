@@ -113,26 +113,27 @@ public class ConnexionSIR extends javax.swing.JFrame {
         String password = jPasswordField1.getText();
         con.connexion();
         listeIdentifiants = con.requete("typepersonnel","personnel","where idpersonnel="+"'"+id+"' and mdp="+"'"+password+"' ;");
-
-        if(listeIdentifiants.get(0).get(0)=="PH"){
+        System.out.println(listeIdentifiants.toString());
+        System.out.println(listeIdentifiants.get(0).get(0));
+        if(listeIdentifiants.get(0).get(0).toString().equals("PH")){
             PH ph = new PH();
             ph.setVisible(true);
             this.dispose();
         }
 
-        if(listeIdentifiants.get(0).get(0)=="manip"){
+        if(listeIdentifiants.get(0).get(0).toString().equals("MR")){
             ManipRadio manipR= new ManipRadio();
             manipR.setVisible(true);
             this.dispose();
         }
 
-        if(listeIdentifiants.get(0).get(0)=="secretaire"){
+        if(listeIdentifiants.get(0).get(0).toString().equals("SM")){
             SecretaireMedicale secmed = new SecretaireMedicale();
             secmed.setVisible(true);
             this.dispose();
         }
         else {
-            JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.INFORMATION_MESSAGE);
         }
 
 

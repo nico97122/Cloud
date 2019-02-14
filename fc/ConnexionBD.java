@@ -26,8 +26,8 @@ public class ConnexionBD {
 
     public ConnexionBD() { // constructeur par défaut
         this.url = "jdbc:mysql://localhost:3306/dbSIR?useLegacyDatetimeCode=false&serverTimezone=UTC";
-        this.user = "cloudBD";
-        this.password = "cloudSIR";
+        this.user = "root";
+        this.password = "doublelolo";
     }
 
     public ConnexionBD(String url, String user, String password) {
@@ -38,7 +38,7 @@ public class ConnexionBD {
 
     public void connexion() throws Exception {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
+            Class.forName("com.mysql.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
         } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
         try {
             Connection con = DriverManager.getConnection(url,user,password);

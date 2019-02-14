@@ -38,9 +38,10 @@ public class PH extends javax.swing.JFrame {
         setSize(1500, 700);
         jLabel3.setSize(1500, 700);
         jLabel4.setSize(1500, 700);
-        System.out.println(ListeImgR.toString());
+//        System.out.println(ListeImgR.toString());
+//        
 //        try {
-//            ListeImgR = co.requete("URL", "image", "aucune"); //a confirmer par leo
+//            ListeImgR = co.requete("URL", "image", ""); //a confirmer par leo
 //        } catch (SQLException ex) {
 //            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -51,7 +52,7 @@ public class PH extends javax.swing.JFrame {
 //        }
 //        Vector<String> ListeImgV = new Vector(ListeImgR2);
 //
-//        this.jList3.setListData(ListeImgV);
+
 
     }
 
@@ -70,10 +71,11 @@ public class PH extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
         jComboBox1 = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -81,6 +83,9 @@ public class PH extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTree2 = new javax.swing.JTree();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -109,6 +114,8 @@ public class PH extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<String>();
         jButton13 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,6 +156,18 @@ public class PH extends javax.swing.JFrame {
         jPanel4.add(jButton2);
         jButton2.setBounds(1061, 590, 135, 38);
 
+        jButton15.setText("Déconnexion");
+        jPanel4.add(jButton15);
+        jButton15.setBounds(810, 565, 120, 50);
+
+        jLabel15.setText("jLabel15");
+        jPanel4.add(jLabel15);
+        jLabel15.setBounds(440, 110, 80, 30);
+
+        jLabel16.setText("jLabel16");
+        jPanel4.add(jLabel16);
+        jLabel16.setBounds(440, 250, 80, 30);
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel4.add(jLabel3);
         jLabel3.setBounds(0, 0, 1470, 680);
@@ -156,16 +175,6 @@ public class PH extends javax.swing.JFrame {
         jTabbedPane1.addTab("Accueil", jPanel4);
 
         jPanel3.setLayout(null);
-
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(261, 171, 661, 402);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par..." }));
@@ -216,6 +225,66 @@ public class PH extends javax.swing.JFrame {
         });
         jPanel3.add(jButton7);
         jButton7.setBounds(520, 600, 111, 29);
+
+        jButton14.setText("Editer un CR");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton14);
+        jButton14.setBounds(357, 600, 120, 30);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("ListePatient");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("nomPatient1");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prenom");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("id");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("addresse");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("examens");
+        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("typeExam1");
+        javax.swing.tree.DefaultMutableTreeNode treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("urlImg1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("idArchiveImg1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("urlImg2");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("idArchiveImg2");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("typeExam2");
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("nomPatient2");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prenom");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("id");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("addresse");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("examens");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("typeExam1");
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("urlImg1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("idArchiveImg1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("urlImg2");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("idArchiveImg2");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("typeExam2");
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree2.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane3.setViewportView(jTree2);
+
+        jPanel3.add(jScrollPane3);
+        jScrollPane3.setBounds(270, 190, 420, 322);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel4);
@@ -404,6 +473,35 @@ public class PH extends javax.swing.JFrame {
         jPanel2.add(jButton13);
         jButton13.setBounds(710, 70, 87, 29);
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des patients");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Nom du patient1");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prénom");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("adresse");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("id");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("examen");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type exam1");
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("numéro archivage1");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type examen 2");
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image 2");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("num archivage2");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(410, 110, 210, 322);
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jLabel12.setText("jLabel12");
         jLabel12.setMaximumSize(new java.awt.Dimension(1800, 900));
@@ -522,9 +620,9 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-     String  pathImg= this.jList3.getSelectedValue();
-     ModifImg modif=new ModifImg(pathImg);
-     modif.setVisible(true);
+    
+    // ModifImg modif=new ModifImg(pathImg);
+   //  modif.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -573,6 +671,8 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -592,6 +692,8 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -600,9 +702,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -614,5 +714,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTree jTree1;
+    private javax.swing.JTree jTree2;
     // End of variables declaration//GEN-END:variables
 }

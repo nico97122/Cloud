@@ -83,9 +83,9 @@ public class PH extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTree2 = new javax.swing.JTree();
+        jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -111,8 +111,6 @@ public class PH extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<String>();
         jButton13 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -226,15 +224,6 @@ public class PH extends javax.swing.JFrame {
         jPanel3.add(jButton7);
         jButton7.setBounds(520, 600, 111, 29);
 
-        jButton14.setText("Editer un CR");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton14);
-        jButton14.setBounds(357, 600, 120, 30);
-
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("ListePatient");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("nomPatient1");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prenom");
@@ -284,7 +273,11 @@ public class PH extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTree2);
 
         jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(270, 190, 420, 322);
+        jScrollPane3.setBounds(270, 190, 420, 384);
+
+        jButton14.setText("Editer un CR");
+        jPanel3.add(jButton14);
+        jButton14.setBounds(357, 600, 120, 30);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel4);
@@ -454,16 +447,6 @@ public class PH extends javax.swing.JFrame {
         jPanel2.add(jLabel14);
         jLabel14.setBounds(210, 60, 100, 40);
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
-
-        jPanel2.add(jScrollPane3);
-        jScrollPane3.setBounds(400, 60, 150, 210);
-
         jButton13.setText("Modifier");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -500,7 +483,7 @@ public class PH extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTree1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 110, 210, 322);
+        jScrollPane1.setBounds(410, 110, 210, 384);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jLabel12.setText("jLabel12");

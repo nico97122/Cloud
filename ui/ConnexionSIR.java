@@ -133,7 +133,8 @@ public class ConnexionSIR extends javax.swing.JFrame {
             this.dispose();
         }
         else {
-            JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
+            this.setVisible(true);
         }
 
 

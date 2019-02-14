@@ -26,8 +26,8 @@ public class ConnexionBD {
 
     public ConnexionBD() { // constructeur par défaut
         this.url = "jdbc:mysql://localhost:3306/dbSIR?useLegacyDatetimeCode=false&serverTimezone=UTC";
-        this.user = "root";
-        this.password = "doublelolo";
+        this.user = "cloudBD";
+        this.password = "couldSIR";
     }
 
     public ConnexionBD(String url, String user, String password) {

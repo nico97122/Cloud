@@ -60,7 +60,7 @@ public class PH extends javax.swing.JFrame {
     }
     public PH(String nomPH,String prenomPH) {
         initComponents();
-        setSize(1500, 700);
+        setSize(1300, 700);
         jLabel3.setSize(1500, 700);
         jLabel4.setSize(1500, 700);
         jLabel15.setText(nomPH);

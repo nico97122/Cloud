@@ -114,6 +114,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         ConnexionBD con = new ConnexionBD();
         ArrayList<ArrayList<String>> listeIdentifiants = new ArrayList<>();
         ArrayList<ArrayList<String>> listeNomPrenom = new ArrayList<>();
+        ArrayList<String> test = new ArrayList<>();
         String nom;
         String prenom;
         String id = jTextField1.getText();
@@ -125,6 +126,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         }
 
         try {
+            
             listeIdentifiants = con.requete("typepersonnel", "personnel", "where idpersonnel=" + "'" + id + "' and mdp=" + "'" + password + "' ;");
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);

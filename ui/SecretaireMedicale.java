@@ -239,6 +239,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jTextField2.setBounds(440, 170, 250, 22);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField1.setText("jj/mm/aaaa");
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
@@ -302,7 +303,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2MouseClicked
 
     private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
-        jFormattedTextField1.setText("");
+        jFormattedTextField1.selectAll();
     }//GEN-LAST:event_jFormattedTextField1MouseClicked
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked

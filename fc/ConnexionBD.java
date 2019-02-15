@@ -27,7 +27,7 @@ public class ConnexionBD {
     public ConnexionBD() { // constructeur par défaut
         this.url = "jdbc:mysql://localhost:3306/dbSIR?useLegacyDatetimeCode=false&serverTimezone=UTC";
         this.user = "cloudBD";
-        this.password = "couldSIR";
+        this.password = "cloudSIR";
     }
 
     public ConnexionBD(String url, String user, String password) {
@@ -53,10 +53,16 @@ public class ConnexionBD {
     public ResultSet result(String query){
         this.query = query;
         try {
+            
+        
             res = stmt.executeQuery(query);
+          
             this.res=res;
+            
             resMeta = res.getMetaData();
+            
             this.resMeta = resMeta;
+            
             return res;
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionBD.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,9 +81,10 @@ public class ConnexionBD {
         int nbChamps = 0;
         tempArray = stringToSplit.split(delimiter);// les champs sont séparés et stocké dans un Array
         nbChamps = tempArray.length;
+        
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
+        
         resultatRequete = result(compositionRequete);
-
 
         ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);
 
@@ -88,7 +95,7 @@ public class ConnexionBD {
         try{
 
             while(resultatRequete.next()){
-
+              
                 for(int i = 0; i<nbChamps; i++){
 
                     listResultat.get(i).add(resultatRequete.getString(tempArray[i]));
@@ -102,8 +109,10 @@ public class ConnexionBD {
         return listResultat;
     }
 
-    public int insererBD(String s) {
+    public int insererBD(String table,String attributs,String valeursAttributs ) {
         int i = 0;
+        String s;
+        s="INSERT INTO "+table+" ("+attributs+") "+"VALUES ("+valeursAttributs+" );" ;
         try {
             i = stmt.executeUpdate(s);
         } catch (SQLException ex) {

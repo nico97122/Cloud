@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package  Cloud.ui;
+package Cloud.ui;
+
 import Cloud.fc.ConnexionBD;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +24,8 @@ public class ConnexionSIR extends javax.swing.JFrame {
     public ConnexionSIR() {
         initComponents();
         setResizable(false);
-        jLabel4.setSize(1500,700);
-        setSize(1500,700);
+        // jLabel4.setSize(1500,700);
+        setSize(1500, 700);
     }
 
     /**
@@ -79,10 +83,9 @@ public class ConnexionSIR extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jButton1.setText("Connexion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) { // Léo: try/catch ajouté pour la gestion de Exception
-                try{jButton1ActionPerformed(evt);}
-                catch(Exception e){};
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
         jPanel2.add(jButton1);
@@ -106,61 +109,70 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
         ConnexionBD con = new ConnexionBD();
         ArrayList<ArrayList<String>> listeIdentifiants = new ArrayList<>();
+        ArrayList<ArrayList<String>> listeNomPrenom = new ArrayList<>();
+        String nom;
+        String prenom;
         String id = jTextField1.getText();
         String password = jPasswordField1.getText();
-        con.connexion();
-        listeIdentifiants = con.requete("typepersonnel","personnel","where idpersonnel="+"'"+id+"' and mdp="+"'"+password+"' ;");
-        System.out.println(listeIdentifiants.toString());
-        System.out.println(listeIdentifiants.get(0).get(0));
-        if(listeIdentifiants.get(0).get(0).toString().equals("PH")){
-            PH ph = new PH();
-            ph.setVisible(true);
-            this.dispose();
+        try {
+            con.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if(listeIdentifiants.get(0).get(0).toString().equals("MR")){
-            ManipRadio manipR= new ManipRadio();
+        try {
+            listeIdentifiants = con.requete("typepersonnel", "personnel", "where idpersonnel=" + "'" + id + "' and mdp=" + "'" + password + "' ;");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            listeNomPrenom=con.requete("nom,prenom", "personnel", "where idpersonnel ="+"'"+id+"' and mdp="+"'"+password+"' ;");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(listeIdentifiants.get(0).size());
+        System.out.println(listeIdentifiants.toString());
+        
+        if (listeIdentifiants.get(0).toString().equals("[PH]")) {
+            nom=listeNomPrenom.get(0).get(0);
+            prenom=listeNomPrenom.get(1).get(0);
+          
+            PH ph = new PH(nom,prenom);
+            System.out.println(listeNomPrenom.toString());
+            
+           ph.setVisible(true);
+           this.dispose();
+           
+           
+           
+        }
+
+        if (listeIdentifiants.get(0).toString().equals("[MR]")) {
+             nom=listeNomPrenom.get(0).get(0);
+            prenom=listeNomPrenom.get(1).get(0);
+            
+            ManipRadio manipR = new ManipRadio(nom,prenom);
             manipR.setVisible(true);
             this.dispose();
         }
 
-        if(listeIdentifiants.get(0).get(0).toString().equals("SM")){
-            SecretaireMedicale secmed = new SecretaireMedicale();
+        if (listeIdentifiants.get(0).toString().equals("[SM]")) {
+             nom=listeNomPrenom.get(0).get(0);
+            prenom=listeNomPrenom.get(1).get(0);
+            SecretaireMedicale secmed = new SecretaireMedicale(nom,prenom);
             secmed.setVisible(true);
             this.dispose();
         }
-        else {
+        if (listeIdentifiants.get(0).isEmpty()) {
+
             JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
-            this.setVisible(true);
+
         }
-
-
-
-
-//GEN-FIRST:event_jButton1ActionPerformed
-//BASE DE DONNEE 
-//        if(PH){
-//              PH ph = new PH();
-//              ph.setVisible(true);
-//              this.dispose();
-//        }
-//        if(ManipRadio){
-//            ManipRadio manipR= new ManipRadio();
-//            manipR.setVisible(true);
-//            this.dispose();
-//        }
-//        if(SM){
-//            SecretaireMed secmed = new SecretaireMed();
-//            secmed.setVisible(true);
-//            this.dispose();
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-
-
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -193,7 +205,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ConnexionSIR().setVisible(true);
-                
+
             }
         });
     }

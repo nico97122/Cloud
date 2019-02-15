@@ -36,10 +36,12 @@ public class PH extends javax.swing.JFrame {
      */
     public PH() {
         initComponents();
-        setSize(1500, 700);
-        jLabel3.setSize(1500, 700);
-        jLabel4.setSize(1500, 700);
-       
+        setSize(1400, 700);
+        jLabel3.setSize(1380, 660);
+        jLabel4.setSize(1300, 660);
+        jLabel13.setSize(1380,660);
+        jLabel12.setSize(1380,660);
+         System.out.println(jLabel13.getSize());
        
 //        System.out.println(ListeImgR.toString());
 //        
@@ -60,11 +62,12 @@ public class PH extends javax.swing.JFrame {
     }
     public PH(String nomPH,String prenomPH) {
         initComponents();
-        setSize(1300, 700);
-        jLabel3.setSize(1500, 700);
-        jLabel4.setSize(1500, 700);
+        setSize(1500, 700);
+        jLabel3.setSize(1300, 700);
+        jLabel4.setSize(1300, 700);
         jLabel1.setText(nomPH);
         jLabel2.setText(prenomPH);
+      
     }
 
     /**
@@ -81,7 +84,6 @@ public class PH extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -96,6 +98,12 @@ public class PH extends javax.swing.JFrame {
         jTree2 = new javax.swing.JTree();
         jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jLabel12 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -112,18 +120,12 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jButton8 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        jList2 = new javax.swing.JList<>();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,13 +138,13 @@ public class PH extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom ");
         jPanel4.add(jLabel1);
-        jLabel1.setBounds(111, 90, 430, 58);
+        jLabel1.setBounds(111, 90, 430, 62);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom ");
         jPanel4.add(jLabel2);
-        jLabel2.setBounds(110, 230, 440, 58);
+        jLabel2.setBounds(110, 230, 440, 62);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,16 +154,6 @@ public class PH extends javax.swing.JFrame {
         });
         jPanel4.add(jButton1);
         jButton1.setBounds(84, 581, 44, 30);
-
-        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton2.setText("Déconnexion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton2);
-        jButton2.setBounds(1061, 590, 135, 38);
 
         jButton15.setText("Déconnexion");
         jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -174,7 +166,7 @@ public class PH extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel4.add(jLabel3);
-        jLabel3.setBounds(0, 0, 1470, 680);
+        jLabel3.setBounds(0, 0, 1310, 740);
 
         jTabbedPane1.addTab("Accueil", jPanel4);
 
@@ -183,17 +175,17 @@ public class PH extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par..." }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(261, 125, 128, 27);
+        jComboBox1.setBounds(261, 125, 97, 25);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Trier");
         jPanel3.add(jButton3);
-        jButton3.setBounds(401, 124, 77, 29);
+        jButton3.setBounds(401, 124, 63, 27);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("OK");
         jPanel3.add(jButton4);
-        jButton4.setBounds(847, 124, 75, 29);
+        jButton4.setBounds(847, 124, 53, 27);
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField1.setText("Rechercher ...");
@@ -203,12 +195,12 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(728, 123, 107, 29);
+        jTextField1.setBounds(728, 123, 96, 25);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Imprimer");
         jPanel3.add(jButton5);
-        jButton5.setBounds(815, 599, 107, 29);
+        jButton5.setBounds(815, 599, 87, 27);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
@@ -218,7 +210,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton6);
-        jButton6.setBounds(648, 599, 155, 29);
+        jButton6.setBounds(648, 599, 137, 27);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Consulter");
@@ -228,7 +220,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton7);
-        jButton7.setBounds(520, 600, 111, 29);
+        jButton7.setBounds(520, 600, 93, 27);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("ListePatient");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("nomPatient1");
@@ -279,7 +271,7 @@ public class PH extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTree2);
 
         jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(270, 190, 420, 384);
+        jScrollPane3.setBounds(270, 190, 420, 322);
 
         jButton14.setText("Editer un CR");
         jPanel3.add(jButton14);
@@ -287,9 +279,62 @@ public class PH extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(0, 0, 1460, 690);
+        jLabel4.setBounds(0, 0, 1310, 740);
 
         jTabbedPane1.addTab("DMR", jPanel3);
+
+        jPanel2.setLayout(null);
+
+        jLabel14.setText("image à modifier");
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(210, 60, 100, 40);
+
+        jButton13.setText("Modifier");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton13);
+        jButton13.setBounds(710, 70, 87, 25);
+
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des patients");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Nom du patient1");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prénom");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("adresse");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("id");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("examen");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type exam1");
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image1");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("numéro archivage1");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type examen 2");
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image 2");
+        treeNode4.add(treeNode5);
+        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("num archivage2");
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
+        jPanel2.add(jScrollPane1);
+        jScrollPane1.setBounds(410, 110, 210, 322);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        jLabel12.setMaximumSize(new java.awt.Dimension(1800, 900));
+        jLabel12.setMinimumSize(new java.awt.Dimension(1800, 900));
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(0, 0, 1800, 770);
+
+        jTabbedPane1.addTab("Modifier une Image", jPanel2);
 
         jPanel1.setLayout(null);
 
@@ -297,48 +342,48 @@ public class PH extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nom : ");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(213, 156, 59, 22);
+        jLabel5.setBounds(213, 156, 52, 24);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Type d'examen");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(451, 53, 131, 22);
+        jLabel6.setBounds(451, 53, 121, 24);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Prénom : ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(188, 299, 84, 22);
+        jLabel7.setBounds(188, 299, 77, 24);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Date de Naissance : ");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(95, 446, 177, 22);
+        jLabel8.setBounds(95, 446, 167, 24);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Date : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(687, 207, 58, 22);
+        jLabel9.setBounds(687, 207, 53, 24);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Heure : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(676, 358, 69, 22);
+        jLabel10.setBounds(676, 358, 64, 24);
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Sélectionner une image :");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(180, 550, 215, 40);
+        jLabel11.setBounds(180, 550, 198, 40);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radio", "Scanner", "IRM", "..." }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(600, 53, 180, 27);
+        jComboBox2.setBounds(600, 53, 180, 25);
         jPanel1.add(jTextField2);
         jTextField2.setBounds(290, 151, 238, 36);
 
@@ -353,7 +398,7 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setText("jj/mm/aaaa");
         jPanel1.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(290, 445, 220, 28);
+        jFormattedTextField1.setBounds(290, 445, 220, 22);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField2.setText("jj/mm/aaaa");
@@ -383,12 +428,12 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8);
-        jButton8.setBounds(740, 550, 110, 29);
+        jButton8.setBounds(740, 550, 110, 27);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Url" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -439,73 +484,20 @@ public class PH extends javax.swing.JFrame {
 
         jButton12.setText("Enregistrer");
         jPanel1.add(jButton12);
-        jButton12.setBounds(1160, 570, 110, 40);
+        jButton12.setBounds(1100, 580, 110, 40);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(0, 0, 1380, 660);
+        jLabel13.setBounds(0, 0, 1310, 740);
 
         jTabbedPane1.addTab("Ajouter un examen", jPanel1);
-
-        jPanel2.setLayout(null);
-
-        jLabel14.setText("image à modifier");
-        jPanel2.add(jLabel14);
-        jLabel14.setBounds(210, 60, 100, 40);
-
-        jButton13.setText("Modifier");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton13);
-        jButton13.setBounds(710, 70, 87, 29);
-
-        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des patients");
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Nom du patient1");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("prénom");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("adresse");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("id");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("examen");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type exam1");
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image1");
-        treeNode4.add(treeNode5);
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("numéro archivage1");
-        treeNode4.add(treeNode5);
-        treeNode3.add(treeNode4);
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("type examen 2");
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("url image 2");
-        treeNode4.add(treeNode5);
-        treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("num archivage2");
-        treeNode4.add(treeNode5);
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
-
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 110, 210, 384);
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
-        jLabel12.setText("jLabel12");
-        jLabel12.setMaximumSize(new java.awt.Dimension(1800, 900));
-        jLabel12.setMinimumSize(new java.awt.Dimension(1800, 900));
-        jPanel2.add(jLabel12);
-        jLabel12.setBounds(0, 0, 1800, 770);
-
-        jTabbedPane1.addTab("Modifier une Image", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -542,12 +534,6 @@ public class PH extends javax.swing.JFrame {
     private void jFormattedTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField3MouseClicked
         jFormattedTextField3.setText("");
     }//GEN-LAST:event_jFormattedTextField3MouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ConnexionSIR deco = new ConnexionSIR();
-        deco.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ChangerMdp changermdp = new ChangerMdp();
@@ -669,7 +655,6 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

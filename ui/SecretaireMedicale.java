@@ -5,6 +5,12 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.ConnexionBD;
+import Cloud.fc.Date2;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Juliette-Trouillet
@@ -136,12 +142,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Date", "??" }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(290, 80, 130, 27);
+        jComboBox2.setBounds(290, 80, 130, 25);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Trier");
         jPanel1.add(jButton4);
-        jButton4.setBounds(460, 80, 77, 29);
+        jButton4.setBounds(460, 80, 63, 27);
 
         jTextField4.setText("Rechercher...");
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -150,12 +156,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(840, 80, 144, 28);
+        jTextField4.setBounds(840, 80, 144, 22);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("OK");
         jPanel1.add(jButton5);
-        jButton5.setBounds(990, 80, 75, 29);
+        jButton5.setBounds(990, 80, 53, 27);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
@@ -179,31 +185,31 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(310, 70, 90, 30);
+        jLabel2.setBounds(310, 70, 90, 32);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Prénom : ");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(280, 170, 130, 30);
+        jLabel3.setBounds(280, 170, 130, 32);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date de Naissance : ");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(150, 260, 260, 30);
+        jLabel4.setBounds(150, 260, 260, 32);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Identifiant : ");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(240, 350, 170, 30);
+        jLabel5.setBounds(240, 350, 170, 32);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sexe : ");
         jPanel3.add(jLabel6);
-        jLabel6.setBounds(310, 440, 90, 30);
+        jLabel6.setBounds(310, 440, 90, 32);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
@@ -217,7 +223,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(440, 70, 250, 28);
+        jTextField1.setBounds(440, 70, 250, 22);
 
         jTextField2.setText("                            ");
         jTextField2.setToolTipText("");
@@ -227,7 +233,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(440, 170, 250, 28);
+        jTextField2.setBounds(440, 170, 250, 22);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setText("jj/mm/aaaa");
@@ -237,7 +243,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(440, 260, 250, 28);
+        jFormattedTextField1.setBounds(440, 260, 250, 22);
 
         jTextField3.setText("                           ");
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -245,11 +251,21 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 jTextField3MouseClicked(evt);
             }
         });
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(440, 360, 250, 28);
+        jTextField3.setBounds(440, 360, 250, 22);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Ajouter ce patient");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton3);
         jButton3.setBounds(1090, 580, 180, 50);
 
@@ -310,6 +326,25 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         change.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        String nom =this.jTextField1.getText();
+       String prenom= this.jTextField2.getText();
+       Date2 date= new Date2(jFormattedTextField1.getText());
+       String id= this.jTextField3.getText();
+       ConnexionBD co=new ConnexionBD();
+       try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      // co.insererBD("patient", "iddbpersonnel,nom,prenom,mdp,typepersonnel,idpersonnel", id) a completer
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

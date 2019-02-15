@@ -25,6 +25,27 @@ public class Date2 {
    this.minute=0;
     
 }
+     public Date2(String date){
+        String[] dateTab=date.split("/");
+       if( dateTab[3].contains(":")){
+        String[] TabAnneeHeure=dateTab[3].split(" ");
+        this.année=Integer.parseInt(TabAnneeHeure[0]);
+           String[] TabHeure= TabAnneeHeure[1].split(":");
+         this.heure=Integer.parseInt(TabHeure[0]);
+         this.minute=Integer.parseInt(TabHeure[1]);
+         
+       }
+       else{
+            this.jour=Integer.parseInt(dateTab[0]);
+        this.mois=Integer.parseInt(dateTab[1]);
+        this.année=Integer.parseInt(dateTab[2]);
+        this.minute=0;
+        this.heure=0;
+           
+       }
+       
+      
+     }
     public Date2( int année ,int mois,int jour, int heure,int minute)
     {
      this.année=année;

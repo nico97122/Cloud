@@ -7,9 +7,14 @@ package Cloud.ui;
 
 import Cloud.fc.ConnexionBD;
 import Cloud.fc.Date2;
+import Cloud.fc.random;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +32,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel7.setSize(1500,700);
         jLabel10.setSize(1500,700);
         setSize(1500,700);
-        
+        jTextField3.setText("");
     }
  public SecretaireMedicale(String nom, String prenom) {
         initComponents();
@@ -38,7 +43,8 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         setSize(1500,700);
         jLabel8.setText(nom);
         jLabel9.setText(prenom);
-
+        jTextField3.setText("");
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +84,9 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,14 +216,14 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Sexe : ");
+        jLabel6.setText("adresse: ");
         jPanel3.add(jLabel6);
-        jLabel6.setBounds(310, 440, 90, 32);
+        jLabel6.setBounds(260, 450, 110, 32);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(440, 440, 150, 27);
+        jComboBox1.setBounds(430, 530, 150, 27);
 
         jTextField1.setText("                            ");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,8 +244,9 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel3.add(jTextField2);
         jTextField2.setBounds(440, 170, 250, 22);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField1.setText("jj/mm/aaaa");
+        jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
@@ -268,6 +278,35 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
         jButton3.setBounds(1090, 580, 180, 50);
+
+        jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Sexe : ");
+        jPanel3.add(jLabel13);
+        jLabel13.setBounds(300, 530, 90, 32);
+
+        jTextField5.setText("                           ");
+        jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField5MouseClicked(evt);
+            }
+        });
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jTextField5);
+        jTextField5.setBounds(440, 450, 250, 22);
+
+        jButton8.setText("Générer un id");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jButton8);
+        jButton8.setBounds(730, 360, 120, 25);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
@@ -329,22 +368,100 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
+          if(jTextField3.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Veuillez générer l'identifiant du patient", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+          else if (jFormattedTextField1.getText().equals("jj/mm/aaaa")){  //on regarde si l'utilisateur à bien completé la date
+             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+      
+        else{
         String nom =this.jTextField1.getText();
        String prenom= this.jTextField2.getText();
        Date2 date= new Date2(jFormattedTextField1.getText());
        String id= this.jTextField3.getText();
+       String adresse=this.jTextField5.getText();
+       ArrayList<ArrayList<String>> listeIddb = new ArrayList<>();
+       ArrayList<ArrayList<String>> liste = new ArrayList<>();
+       random r=new random();    
+        String iddbpatient;
        ConnexionBD co=new ConnexionBD();
+       int sexe=this.jComboBox1.getSelectedIndex();
+      
        try {
             co.connexion();
         } catch (Exception ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }
-      // co.insererBD("patient", "iddbpersonnel,nom,prenom,mdp,typepersonnel,idpersonnel", id) a completer
+        try {
+            listeIddb=co.requete("iddbpatient", "patient", "");           
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        iddbpatient=r.genererId(10);
+        while (listeIddb.get(0).contains(iddbpatient)){  //sert à eviter les doublons d'id dans la base de donnée.
+            iddbpatient=r.genererId(10);
+        }
+         int i=co.insererBD("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse", iddbpatient+","+date.toStringDateNaissDB()+","+nom+","+prenom+","+sexe+","+id+","+adresse) ;
+            System.out.println(i);
+            try {
+                liste=co.requete("nom","patient","");
+            } catch (SQLException ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(liste.toString());
+            JOptionPane.showMessageDialog(this, "Patient ajouté", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+           
+            try {
+                co.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+         
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5MouseClicked
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        // TODO add your handling code here:
+        random r=new random();
+        ConnexionBD co=new ConnexionBD();
+        ArrayList<ArrayList<String>> listeId = new ArrayList<>();
+        String id=r.genererId(10);
+         try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          try {
+            listeId=co.requete("idpatient", "patient", "");           
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          while (listeId.get(0).contains(id)){
+              id=r.genererId(10);
+          }
+          jTextField3.setText(id);
+        try {
+            co.deconnexion();
+        } catch (Exception ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -390,11 +507,13 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -413,5 +532,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,7 @@ public class Date2 {
 }
      public Date2(String date){
         String[] dateTab=date.split("/");
-       if( dateTab[3].contains(":")){
+       if( dateTab[2].contains(":")){
         String[] TabAnneeHeure=dateTab[3].split(" ");
         this.année=Integer.parseInt(TabAnneeHeure[0]);
            String[] TabHeure= TabAnneeHeure[1].split(":");
@@ -75,8 +75,8 @@ public class Date2 {
        d[4]=date.minute;
         return d;
     }
-    @Override
-    public String toString(){ //renvoie la date sous forme de texte
-        return "le "+this.jour+" "+this.mois+" "+this.année+" à "+this.heure+":"+this.minute;
+    
+    public String toStringDateNaissDB(){ //renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
+        return ""+this.jour+"-"+this.mois+"-"+this.année;
     }
 }

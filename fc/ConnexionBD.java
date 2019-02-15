@@ -113,9 +113,10 @@ public class ConnexionBD {
     public int insererBD(String table,String attributs,String valeursAttributs ) {
         int i = 0;
         String s;
-        s="INSERT INTO "+table+" ("+attributs+") "+"VALUES ("+valeursAttributs+" );" ;
+        s="INSERT INTO "+table+" ("+attributs+") "+"VALUES ("+valeursAttributs+" );" ; //élaboration de la requete
         try {
             i = stmt.executeUpdate(s);
+           
         } catch (SQLException ex) {
             return i;
         }

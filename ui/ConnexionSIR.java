@@ -147,9 +147,13 @@ public class ConnexionSIR extends javax.swing.JFrame {
             System.out.println(listeNomPrenom.toString());
             
            ph.setVisible(true);
-           this.dispose();
-           
-           
+        
+            try {
+                con.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);// on se deco de la base de données
+            }
+              this.dispose();
            
         }
 
@@ -159,6 +163,11 @@ public class ConnexionSIR extends javax.swing.JFrame {
             
             ManipRadio manipR = new ManipRadio(nom,prenom);
             manipR.setVisible(true);
+            try {
+                con.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);// on se deco de la base de données
+            }
             this.dispose();
         }
 
@@ -167,6 +176,11 @@ public class ConnexionSIR extends javax.swing.JFrame {
             prenom=listeNomPrenom.get(1).get(0);
             SecretaireMedicale secmed = new SecretaireMedicale(nom,prenom);
             secmed.setVisible(true);
+            try {
+                con.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);// on se deco de la base de données
+            }
             this.dispose();
         }
         if (listeIdentifiants.get(0).isEmpty()) {
@@ -174,6 +188,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Identifiant ou Mot de Passe incorrect", "Erreur", JOptionPane.WARNING_MESSAGE);
 
         }
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

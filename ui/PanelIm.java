@@ -185,16 +185,50 @@ public class PanelIm extends JPanel {
         return imginv;
     }
 
+    public BufferedImage contraste(BufferedImage img, float m) {
+        int ligne = img.getWidth();
+        Color pix;
+        int colonne = img.getHeight();
+        BufferedImage imgDest = new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
+        for (int i = 0; i < ligne; i++) {
+            for (int j = 0; j < colonne; j++) {
+                pix = new Color(img.getRGB(i, j));
+                int r = pix.getRed();
+                int g = pix.getGreen();
+                int b = pix.getBlue();
+                if (r > 127) {
+                    r += m;
+                    if (r > 255) { //on regarde si le pixel modifié ne depasse pas la limite autorisé (255)
+                        r = 255;
+                    }
+
+                } else {//on regarde si le pixel modifié ne depasse pas la limite autorisé (0)
+                    r = (int) (r - m);
+                    if (r < 0) {
+                        r = 0;
+
+                    }
+
+                }
+              Color  pix2=new Color(r,r,r);
+                int pixInt = pix2.getRGB();
+               imgDest.setRGB(i, j, pixInt);
+                
+
+            }
+        }
+        return imgDest;
+    }
+
     public BufferedImage eclairerAssombrir(BufferedImage img, float m) {
         int ligne = img.getWidth();
         int colonne = img.getHeight();
 
         BufferedImage imgDest = new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
-        RescaleOp imgeclair = new RescaleOp(1, (float)(m*2.56*2-256), null);
+        RescaleOp imgeclair = new RescaleOp(1, (float) (m * 2.56  - 128), null);
         imgeclair.filter(img, imgDest);
         return imgDest;
     }
-
 
     public void sauvegarderImg(BufferedImage img, String filePath) {//filePath est le chemin ou on enregistre l'img. pensez à faire new File("chemin\\nomNouvelleImg ex: new File("src\\Cloud\\image\\img.jpg")
         try {

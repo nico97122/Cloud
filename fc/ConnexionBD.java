@@ -131,6 +131,18 @@ public class ConnexionBD {
             con.close();
         }
     }
-
+public int insert(String table,String attributs, String attributsValeurs) {
+        int i = 0;
+        String requete = "INSERT INTO "+table+"("+attributs+")VALUES("+attributsValeurs+");";
+        System.out.println(requete);
+        try {
+            i = stmt.executeUpdate(requete);
+        } catch (SQLException ex) {
+            return i;
+        }
+        System.out.println(i +" lignes ajoutées");
+        
+        return i;
+    }
     // ajouter patient ajouter exam a faire
 }

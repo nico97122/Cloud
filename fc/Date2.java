@@ -77,6 +77,6 @@ public class Date2 {
     }
     
     public String toStringDateNaissDB(){ //renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
-        return ""+this.jour+"-"+this.mois+"-"+this.année;
+        return ""+this.année+"-"+this.mois+"-"+this.jour;
     }
 }

@@ -28,24 +28,26 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     public SecretaireMedicale() {
         initComponents();
         setResizable(false);
-        jLabel1.setSize(1500,700);
-        jLabel7.setSize(1500,700);
-        jLabel10.setSize(1500,700);
-        setSize(1500,700);
+        jLabel1.setSize(1500, 700);
+        jLabel7.setSize(1500, 700);
+        jLabel10.setSize(1500, 700);
+        setSize(1500, 700);
         jTextField3.setText("");
     }
- public SecretaireMedicale(String nom, String prenom) {
+
+    public SecretaireMedicale(String nom, String prenom) {
         initComponents();
         setResizable(false);
-        jLabel1.setSize(1500,700);
-        jLabel7.setSize(1500,700);
-        jLabel10.setSize(1500,700);
-        setSize(1500,700);
+        jLabel1.setSize(1500, 700);
+        jLabel7.setSize(1500, 700);
+        jLabel10.setSize(1500, 700);
+        setSize(1500, 700);
         jLabel8.setText(nom);
         jLabel9.setText(prenom);
         jTextField3.setText("");
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,7 +237,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel3.add(jComboBox1);
         jComboBox1.setBounds(430, 530, 150, 27);
 
-        jTextField1.setText("                            ");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField1MouseClicked(evt);
@@ -244,7 +245,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel3.add(jTextField1);
         jTextField1.setBounds(440, 70, 250, 22);
 
-        jTextField2.setText("                            ");
         jTextField2.setToolTipText("");
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,10 +262,15 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 jFormattedTextField1MouseClicked(evt);
             }
         });
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jFormattedTextField1);
         jFormattedTextField1.setBounds(440, 260, 250, 22);
 
-        jTextField3.setText("                           ");
+        jTextField3.setEditable(false);
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField3MouseClicked(evt);
@@ -286,6 +291,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3);
         jButton3.setBounds(1090, 580, 180, 50);
 
@@ -295,7 +305,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel3.add(jLabel13);
         jLabel13.setBounds(300, 530, 90, 32);
 
-        jTextField5.setText("                           ");
         jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField5MouseClicked(evt);
@@ -320,7 +329,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(0, 0, 1730, 830);
+        jLabel7.setBounds(10, 0, 1730, 830);
 
         jTabbedPane1.addTab("Ajouter un patient", jPanel3);
 
@@ -373,64 +382,64 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ChangerMdp change = new ChangerMdp();
         change.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-          if(jTextField3.getText().equals("")){
+        if (jTextField3.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Veuillez générer l'identifiant du patient", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
-          else if (jFormattedTextField1.getText().equals("jj/mm/aaaa")){  //on regarde si l'utilisateur à bien completé la date
-             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
-      
-        else{
-        String nom =this.jTextField1.getText();
-       String prenom= this.jTextField2.getText();
-       Date2 date= new Date2(jFormattedTextField1.getText());
-       String id= this.jTextField3.getText();
-       String adresse=this.jTextField5.getText();
-       ArrayList<ArrayList<String>> listeIddb = new ArrayList<>();
-       ArrayList<ArrayList<String>> liste = new ArrayList<>();
-       random r=new random();    
-        String iddbpatient;
-       ConnexionBD co=new ConnexionBD();
-       int sexe=this.jComboBox1.getSelectedIndex();
-      
-       try {
-            co.connexion();
-        } catch (Exception ex) {
-            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            listeIddb=co.requete("iddbpatient", "patient", "");           
-                
-        } catch (SQLException ex) {
-            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        iddbpatient=r.genererId(10);
-        while (listeIddb.get(0).contains(iddbpatient)){  //sert à eviter les doublons d'id dans la base de donnée.
-            iddbpatient=r.genererId(10);
-        }
-         int i=co.insererBD("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse", iddbpatient+","+date.toStringDateNaissDB()+","+nom+","+prenom+","+sexe+","+id+","+adresse) ;
-            System.out.println(i);
+        } else if (jFormattedTextField1.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
+            JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String nom = this.jTextField1.getText();
+            String prenom = this.jTextField2.getText();
+            Date2 date = new Date2(jFormattedTextField1.getText());
+            String id = this.jTextField3.getText();
+            String adresse = this.jTextField5.getText();
+            ArrayList<ArrayList<String>> listeIddb = new ArrayList<>();
+            ArrayList<ArrayList<String>> liste = new ArrayList<>();
+            random r = new random();
+            String iddbpatient;
+            ConnexionBD co = new ConnexionBD();
+            int sexe = this.jComboBox1.getSelectedIndex();
+
             try {
-                liste=co.requete("nom","patient","");
+                co.connexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                listeIddb = co.requete("iddbpatient", "patient", "");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            iddbpatient = r.genererId(9);  //generer un id pour la database
+            while (listeIddb.get(0).contains(iddbpatient)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                iddbpatient = r.genererId(9);
+            }
+           String attribut="'"+ iddbpatient +"'"+ "," +"'"+ date.toStringDateNaissDB() + "'"+"," + "'"+nom +"'"+ "," +"'"+ prenom + "'"+"," + "'"+sexe +"'"+ "," +"'"+ id + "'"+"," + "'"+adresse+"'";
+            System.out.println(attribut);
+           int i = co.insert("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse","'"+ iddbpatient +"'"+ "," +"'"+ date.toStringDateNaissDB() + "'"+"," + "'"+nom +"'"+ "," +"'"+ prenom + "'"+"," + "'"+sexe +"'"+ "," +"'"+ id + "'"+"," + "'"+adresse+"'");
+            System.out.println(i);
+           
+            try {
+                liste = co.requete("nom", "patient", "");
             } catch (SQLException ex) {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(liste.toString());
             JOptionPane.showMessageDialog(this, "Patient ajouté", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-           
+
             try {
                 co.deconnexion();
             } catch (Exception ex) {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-         
+
+
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -442,36 +451,44 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5MouseClicked
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         // TODO add your handling code here:
-        random r=new random();
-        ConnexionBD co=new ConnexionBD();
+        random r = new random();
+        ConnexionBD co = new ConnexionBD();
         ArrayList<ArrayList<String>> listeId = new ArrayList<>();
-        String id=r.genererId(10);
-         try {
+        String id = r.genererId(10);
+        try {
             co.connexion();
         } catch (Exception ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }
-          try {
-            listeId=co.requete("idpatient", "patient", "");           
-                
+        try {
+            listeId = co.requete("idpatient", "patient", "");
+
         } catch (SQLException ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
-          while (listeId.get(0).contains(id)){
-              id=r.genererId(10);
-          }
-          jTextField3.setText(id);
+        while (listeId.get(0).contains(id)) {
+            id = r.genererId(10);
+        }
+        jTextField3.setText(id);
         try {
             co.deconnexion();
         } catch (Exception ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -504,7 +521,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SecretaireMedicale().setVisible(true);
-                
+
             }
         });
     }

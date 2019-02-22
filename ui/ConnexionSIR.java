@@ -62,7 +62,6 @@ public class ConnexionSIR extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(800, 200, 290, 50);
 
-        jTextField1.setText("                                   ");
         jTextField1.setToolTipText("");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

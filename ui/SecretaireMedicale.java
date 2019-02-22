@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Juliette-Trouillet
  */
 public class SecretaireMedicale extends javax.swing.JFrame {
-
+   ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
     /**
      * Creates new form SecretaireMedicale
      */
@@ -33,6 +33,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel10.setSize(1500, 700);
         setSize(1500, 700);
         jTextField3.setText("");
+      
     }
 
     public SecretaireMedicale(String nom, String prenom) {
@@ -153,7 +154,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setBounds(90, 130, 770, 450);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Date", "??" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Patient", "date" }));
         jPanel1.add(jComboBox2);
         jComboBox2.setBounds(100, 90, 130, 25);
 

@@ -43,39 +43,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         co.connexion();
 
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
-        ArrayList<ArrayList<String>> listeDonneesDesPatients = co.requete("datenaissance,nom,prenom,sexe,idpatient,adresse,iddbexamen,iddbmedecin,dateexam", "patient natural join examen", "");
-        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
-        System.out.println(listeDonneesDesPatients.toString());
-        
-        System.out.println(listeDonneesExamens.get(0).get(2));
-        for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
-            Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
-            String IdPat = listeDonneesExamens.get(1).get(k);
-            String numArchiv = listeDonneesExamens.get(2).get(k);
-            String cr = listeDonneesExamens.get(3).get(k);
-            TypeExam e = TypeExam.valueOf(listeDonneesExamens.get(4).get(k).toLowerCase());
-            String IdMed = listeDonneesExamens.get(5).get(k);
-
-            Examen exam;
-            exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed);
-
-            listeExamen.add(exam);
-
-           
-        }
-
-        Sexe s;
-        for (int j = 0; j < listeDonneesDesPatients.get(0).size(); j++) {
-
-            if (listeDonneesDesPatients.get(3).get(j).equals(0)) {
-                s = Sexe.Femme;
-            } else {
-                s = Sexe.Homme;
-            }
-
-            listePatient.add(new Patient(listeDonneesDesPatients.get(0).get(j), listeDonneesDesPatients.get(2).get(j), new Date2(listeDonneesDesPatients.get(1).get(j)), listeDonneesDesPatients.get(4).get(j), s, null));
-        }
-
+        ListeExamenBD listeE=new ListeExamenBD();
+        listeExamen=listeE.getListeExamen();
+        ListePatientBD  listeP=new ListePatientBD(listeExamen);
+        listePatient=listeP.getListePatient();
     }
 
     public SecretaireMedicale(String nom, String prenom) {

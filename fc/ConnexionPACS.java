@@ -8,8 +8,7 @@ public class ConnexionPACS {
     private String user;
     private String password;
 
-    private Connection con = null;
-    private Statement stmt = null;
+    public void saveImage(String path,int id,String numero){
 
     public ConnexionPACS() { // constructeur par défaut
         this.url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -21,23 +20,15 @@ public class ConnexionPACS {
         //this.password = "cloudSIR";
     }
 
-    public ConnexionPACS(String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
-    }
+            PreparedStatement pre =
+                    con.prepareStatement("insert into PACS values(?,?,?,?)");
 
-    public void connexion() throws Exception {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
-        } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
-        try {
-            Connection con = DriverManager.getConnection(url,user,password);
-            this.con=con;
-            Statement stmt = con.createStatement();
-            this.stmt=stmt;
-        } catch (SQLException e) {
-        }
+            pre.setInt(1,id);
+            pre.setString(2,numero);
+            pre.setInt(3,4);
+            pre.setBinaryStream(4,(InputStream)fin,(int)imgfile.length());
+            pre.executeUpdate();
+            System.out.println("Successfully inserted the file into the database!");
 
     }
 
@@ -49,61 +40,20 @@ public class ConnexionPACS {
         }
     }
 
-    public void sauveIMG(String location, int id, String numero) throws Exception
-    {
-        File monImage = new File(location);
-        FileInputStream istreamImage = new FileInputStream(monImage);
-        try
-        {
-            PreparedStatement ps = con.prepareStatement("insert into PACS values (?,?,?,?)");
-            try
-            {
-                ps.setInt(1, id);
-                ps.setString(2, numero);
-                ps.setInt(3,4);
-                ps.setBinaryStream(4, (InputStream)istreamImage, (int) monImage.length());
-                ps.executeUpdate();
-            }
-            finally
-            {
-                ps.close();
-                con.close();
-            }
-        }
-        finally
-        {
-            istreamImage.close();
-        }
-    }
-
-    public void chargeIMG(String numero, String location) throws Exception
-    {
-        File monImage = new File(location);
-        FileOutputStream ostreamImage = new FileOutputStream(monImage);
-
-        try
-        {
-            PreparedStatement ps = con.prepareStatement("select image from PACS where numeroArchivage=?");
-
-            try
-            {
-                ps.setString(1,numero);
-                ResultSet rs = ps.executeQuery();
-
-                try
-                {
-                    if(rs.next())
-                    {
-                        InputStream istreamImage = rs.getBinaryStream("image");
-
-                        byte[] buffer = new byte[1024];
-                        int length = 0;
-
-                        while((length = istreamImage.read(buffer)) != -1)
-                        {
-                            ostreamImage.write(buffer, 0, length);
-                        }
-                    }
+    public void retrieveImage(String numero,String path){
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select image from PACS where numeroArchivage ="+numero+";" );
+            int i = 0;
+            while (rs.next()) {
+                InputStream in = rs.getBinaryStream(1);
+                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+".pgm"));
+                i++;
+                int c = 0;
+                while ((c = in.read()) > -1) {
+                    f.write(c);
                 }
                 finally
                 {
@@ -121,49 +71,26 @@ public class ConnexionPACS {
         }
     }
 
-
-    public void chargeIMGunique(String name, String location) throws Exception
-    {
-        File monImage = new File(location);
-        FileOutputStream ostreamImage = new FileOutputStream(monImage);
-
-        try
-        {
-            PreparedStatement ps = con.prepareStatement("select image from PACS where id=?");
-
-            try
-            {
-                ps.setString(1,name);
-                ResultSet rs = ps.executeQuery();
-
-                try
-                {
-                    if(rs.next())
-                    {
-                        InputStream istreamImage = rs.getBinaryStream("image");
-
-                        byte[] buffer = new byte[1024];
-                        int length = 0;
-
-                        while((length = istreamImage.read(buffer)) != -1)
-                        {
-                            ostreamImage.write(buffer, 0, length);
-                        }
-                    }
+    public void retrieveImageId(int id,String path){
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select image from PACS where id ="+id+";" );
+            int i = 0;
+            while (rs.next()) {
+                InputStream in = rs.getBinaryStream(1);
+                OutputStream f = new FileOutputStream(new File(path+id+"-"+i+".pgm"));
+                i++;
+                int c = 0;
+                while ((c = in.read()) > -1) {
+                    f.write(c);
                 }
-                finally
-                {
-                    rs.close();
-                }
+                f.close();
+                in.close();
             }
-            finally
-            {
-                ps.close();
-            }
-        }
-        finally
-        {
-            ostreamImage.close();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
         }
     }
 

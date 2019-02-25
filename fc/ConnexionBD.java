@@ -38,6 +38,7 @@ public class ConnexionBD {
     }
 
     public void connexion() throws Exception {
+        
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
         } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
@@ -107,6 +108,7 @@ public class ConnexionBD {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+        
         return listResultat;
     }
 

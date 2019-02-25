@@ -6,7 +6,7 @@
 package Cloud.ui;
 
 import Cloud.fc.ConnexionBD;
-import Cloud.fc.Date2;
+import Cloud.fc.*;
 import Cloud.fc.random;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,26 +14,68 @@ import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
  * @author Juliette-Trouillet
  */
 public class SecretaireMedicale extends javax.swing.JFrame {
-   ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+    private ArrayList<Examen> listeExamen = new ArrayList<>();
+    private ArrayList<Patient> listePatient = new ArrayList<>();
+
     /**
      * Creates new form SecretaireMedicale
      */
-    public SecretaireMedicale() {
+    public SecretaireMedicale() throws SQLException, Exception {
         initComponents();
+        ConnexionBD co = new ConnexionBD();
         setResizable(false);
         jLabel1.setSize(1500, 700);
         jLabel7.setSize(1500, 700);
         jLabel10.setSize(1500, 700);
         setSize(1500, 700);
         jTextField3.setText("");
-      
+
+        co.connexion();
+
+        //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
+        ArrayList<ArrayList<String>> listeDonneesDesPatients = co.requete("datenaissance,nom,prenom,sexe,idpatient,adresse,iddbexamen,iddbmedecin,dateexam", "patient natural join examen", "");
+        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
+        System.out.println(listeDonneesDesPatients.toString());
+        
+        System.out.println(listeDonneesExamens.get(0).get(2));
+        for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
+            Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
+            String IdPat = listeDonneesExamens.get(1).get(k);
+            String numArchiv = listeDonneesExamens.get(2).get(k);
+            String cr = listeDonneesExamens.get(3).get(k);
+            TypeExam e = TypeExam.valueOf(listeDonneesExamens.get(4).get(k).toLowerCase());
+            String IdMed = listeDonneesExamens.get(5).get(k);
+
+            Examen exam;
+            exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed);
+
+            listeExamen.add(exam);
+
+           
+        }
+
+        Sexe s;
+        for (int j = 0; j < listeDonneesDesPatients.get(0).size(); j++) {
+
+            if (listeDonneesDesPatients.get(3).get(j).equals(0)) {
+                s = Sexe.Femme;
+            } else {
+                s = Sexe.Homme;
+            }
+
+            listePatient.add(new Patient(listeDonneesDesPatients.get(0).get(j), listeDonneesDesPatients.get(2).get(j), new Date2(listeDonneesDesPatients.get(1).get(j)), listeDonneesDesPatients.get(4).get(j), s, null));
+        }
+
     }
 
     public SecretaireMedicale(String nom, String prenom) {
@@ -46,6 +88,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel8.setText(nom);
         jLabel9.setText(prenom);
         jTextField3.setText("");
+        ConnexionBD co = new ConnexionBD();
 
     }
 
@@ -95,6 +138,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -143,6 +191,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jList1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jList1ComponentShown(evt);
@@ -151,7 +204,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(90, 130, 770, 450);
+        jScrollPane1.setBounds(70, 130, 770, 450);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Patient", "date" }));
@@ -408,7 +461,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             try {
                 co.connexion();
             } catch (Exception ex) {
-                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
                 listeIddb = co.requete("iddbpatient", "patient", "");
@@ -420,11 +473,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             while (listeIddb.get(0).contains(iddbpatient)) {  //sert à eviter les doublons d'id dans la base de donnée.
                 iddbpatient = r.genererId(9);
             }
-           String attribut="'"+ iddbpatient +"'"+ "," +"'"+ date.toStringDateNaissDB() + "'"+"," + "'"+nom +"'"+ "," +"'"+ prenom + "'"+"," + "'"+sexe +"'"+ "," +"'"+ id + "'"+"," + "'"+adresse+"'";
+            String attribut = "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'";
             System.out.println(attribut);
-           int i = co.insert("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse","'"+ iddbpatient +"'"+ "," +"'"+ date.toStringDateNaissDB() + "'"+"," + "'"+nom +"'"+ "," +"'"+ prenom + "'"+"," + "'"+sexe +"'"+ "," +"'"+ id + "'"+"," + "'"+adresse+"'");
+            int i = co.insert("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse", "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'");
             System.out.println(i);
-           
+
             try {
                 liste = co.requete("nom", "patient", "");
             } catch (SQLException ex) {
@@ -452,7 +505,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5MouseClicked
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-   
+
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
@@ -468,6 +521,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         }
         try {
             listeId = co.requete("idpatient", "patient", "");
+            System.out.println(listeId.toString());
 
         } catch (SQLException ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
@@ -490,6 +544,50 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ConnexionBD co = new ConnexionBD();
+        DefaultListModel model = new DefaultListModel();
+        ArrayList<String> listNom = new ArrayList<>();
+        ArrayList<String> listPrenom = new ArrayList<>();
+        ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+
+            listepatient = co.requete("nom,prenom,idpatient", "patient", "");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        for (int i = 0; i < listepatient.size(); i++) {
+
+            model.addElement(listepatient.get(2).get(i) + "  " + listepatient.get(0).get(i) + "  " + listepatient.get(1).get(i));
+        }
+        jList1.setModel(model);
+
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        if (jList1.isSelectionEmpty() == false) {
+            String IdNomPrenom = jList1.getSelectedValue().toString();
+            String nom = IdNomPrenom.split("  ")[1];
+            String prenom = IdNomPrenom.split("  ")[2];
+            String Id = IdNomPrenom.split("  ")[0];
+
+            this.jTextArea1.setText("DO IT");
+
+        }
+
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -521,7 +619,13 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SecretaireMedicale().setVisible(true);
+                try {
+                    new SecretaireMedicale().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });

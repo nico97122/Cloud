@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author nicol
  */
 public class Patient {
+
     private String nom;
     private String prenom;
     private Date2 dateN;
@@ -27,5 +28,29 @@ public class Patient {
         this.sexe=sexe;
         this.id=id;
         this.ListeExam=ListeExam;
+    }
+    
+    /**
+     * @return the ListeExam
+     */
+    public ArrayList<Examen> getListeExam() {
+        return ListeExam;
+    }
+
+    /**
+     * @param ListeExam the ListeExam to set
+     */
+    public void setListeExam(ArrayList<Examen> ListeExam) {
+        this.ListeExam = ListeExam;
+    }
+      public void addExam(Examen Exam) {
+        this.ListeExam.add(Exam);
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
     }
 }

@@ -10,6 +10,7 @@ package Cloud.fc;
  * @author nicol
  */
 public enum TypeExam {
+    rx,
     echographie,
     scanner,
     irm,

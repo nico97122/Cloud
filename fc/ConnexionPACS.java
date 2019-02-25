@@ -12,7 +12,7 @@ public class ConnexionPACS {
     String password = "cloudSIR";
     Connection con = null;
 
-    public void saveImage(String path,String numero){
+    public void saveImage(String path,int id,String numero){
 
         try{
             Class.forName(driverName);
@@ -23,11 +23,12 @@ public class ConnexionPACS {
             FileInputStream fin = new FileInputStream(imgfile);
 
             PreparedStatement pre =
-                    con.prepareStatement("insert into PACS values(?,?,?)");
+                    con.prepareStatement("insert into PACS values(?,?,?,?)");
 
-            pre.setString(1,numero);
-            pre.setInt(2,3);
-            pre.setBinaryStream(3,(InputStream)fin,(int)imgfile.length());
+            pre.setInt(1,id);
+            pre.setString(2,numero);
+            pre.setInt(3,4);
+            pre.setBinaryStream(4,(InputStream)fin,(int)imgfile.length());
             pre.executeUpdate();
             System.out.println("Successfully inserted the file into the database!");
 
@@ -47,7 +48,30 @@ public class ConnexionPACS {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+".png"));
+                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+".pgm"));
+                i++;
+                int c = 0;
+                while ((c = in.read()) > -1) {
+                    f.write(c);
+                }
+                f.close();
+                in.close();
+            }
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void retrieveImageId(int id,String path){
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select image from PACS where id ="+id+";" );
+            int i = 0;
+            while (rs.next()) {
+                InputStream in = rs.getBinaryStream(1);
+                OutputStream f = new FileOutputStream(new File(path+id+"-"+i+".pgm"));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {

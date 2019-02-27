@@ -31,8 +31,9 @@ public class Cloud_Imagin {
         System.out.println(d.comparerDate(d2, d).toString());
         
         
-       // BufferedImage img=il.loadImg("src\\Cloud\\image\\img.jpg");
-      //  il.sauvegarderImg(img, "src\\Cloud\\image\\imagee.jpg");
+      
+        
+        
       //  TraitementImg tr= new TraitementImg(new File("src\\Cloud\\image\\cor494-i43.jpg"));
      //  BufferedImage img=tr.getImg();
    //   int[]tab= tr.getHauteurLargeur(img);

@@ -32,7 +32,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
      */
     public SecretaireMedicale() throws SQLException, Exception {
         initComponents();
-        ConnexionBD co = new ConnexionBD();
+        
         setResizable(false);
         jLabel1.setSize(1500, 700);
         jLabel7.setSize(1500, 700);
@@ -40,16 +40,16 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         setSize(1500, 700);
         jTextField3.setText("");
 
-        co.connexion();
 
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
         ListeExamenBD listeE=new ListeExamenBD();
         listeExamen=listeE.getListeExamen();
         ListePatientBD  listeP=new ListePatientBD(listeExamen);
         listePatient=listeP.getListePatient();
+
     }
 
-    public SecretaireMedicale(String nom, String prenom) {
+    public SecretaireMedicale(String nom, String prenom) throws Exception {
         initComponents();
         setResizable(false);
         jLabel1.setSize(1500, 700);
@@ -59,7 +59,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel8.setText(nom);
         jLabel9.setText(prenom);
         jTextField3.setText("");
-        ConnexionBD co = new ConnexionBD();
+      
+        //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
+        ListeExamenBD listeE=new ListeExamenBD();
+        listeExamen=listeE.getListeExamen();
+        ListePatientBD  listeP=new ListePatientBD(listeExamen);
+        listePatient=listeP.getListePatient();
 
     }
 

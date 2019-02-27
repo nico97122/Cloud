@@ -18,7 +18,7 @@ public class Patient {
     private Date2 dateN;
     private String id;
     private Sexe sexe;
-    private ArrayList<Examen> ListeExam;
+    private ArrayList<Examen> ListeExam=new ArrayList<>();
     
     
     public Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam){

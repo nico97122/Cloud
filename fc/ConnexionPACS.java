@@ -6,7 +6,8 @@ import java.io.*;
 public class ConnexionPACS {
 
     String driverName = "com.mysql.cj.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC";
+    //String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
+    String url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_pacs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String dbName = "PACS";
     String userName = "cloudBD";
     String password = "cloudSIR";

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Juliette-Trouillet
@@ -173,7 +174,12 @@ public class ConnexionSIR extends javax.swing.JFrame {
         if (listeIdentifiants.get(0).toString().equals("[SM]")) {
              nom=listeNomPrenom.get(0).get(0);
             prenom=listeNomPrenom.get(1).get(0);
-            SecretaireMedicale secmed = new SecretaireMedicale(nom,prenom);
+            SecretaireMedicale secmed = null;
+            try {
+                secmed = new SecretaireMedicale(nom,prenom);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             secmed.setVisible(true);
             try {
                 con.deconnexion();

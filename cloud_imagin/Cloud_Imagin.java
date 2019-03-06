@@ -22,16 +22,14 @@ public class Cloud_Imagin {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO codeint  application logic here
        
-        
-        Date2 d=new Date2(2007,10,25,13,51);
-        Date2 d2=new Date2(2006,10,25,13,51);
-        System.out.println(d.comparerDate(d2, d).toString());
-        
-        
-      
+//         ListeExamenBD listeE = new ListeExamenBD();
+//            
+//            
+//                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
+//      
         
         
       //  TraitementImg tr= new TraitementImg(new File("src\\Cloud\\image\\cor494-i43.jpg"));

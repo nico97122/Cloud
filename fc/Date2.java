@@ -93,6 +93,10 @@ public class Date2 {
 
     }
 
+    public String toString() {
+        return (année + "/" + mois + "/" + jour);
+    }
+
     public int[] modifFormat(Date2 date) { //renvoie la date dans un tableau de 5 éléments
         int[] d = new int[5];
         d[0] = date.année;

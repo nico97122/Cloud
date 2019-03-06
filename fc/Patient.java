@@ -13,6 +13,69 @@ import java.util.ArrayList;
  */
 public class Patient {
 
+    /**
+     * @return the nom
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * @param nom the nom to set
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
+     * @return the prenom
+     */
+    public String getPrenom() {
+        return prenom;
+    }
+
+    /**
+     * @param prenom the prenom to set
+     */
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    /**
+     * @return the dateN
+     */
+    public Date2 getDateN() {
+        return dateN;
+    }
+
+    /**
+     * @param dateN the dateN to set
+     */
+    public void setDateN(Date2 dateN) {
+        this.dateN = dateN;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the sexe
+     */
+    public Sexe getSexe() {
+        return sexe;
+    }
+
+    /**
+     * @param sexe the sexe to set
+     */
+    public void setSexe(Sexe sexe) {
+        this.sexe = sexe;
+    }
+
     private String nom;
     private String prenom;
     private Date2 dateN;
@@ -20,7 +83,9 @@ public class Patient {
     private Sexe sexe;
     private ArrayList<Examen> ListeExam=new ArrayList<>();
     
-    
+     public Patient(){
+         
+     }
     public Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam){
         this.dateN=dateN;
         this.nom=nom;
@@ -44,7 +109,7 @@ public class Patient {
         this.ListeExam = ListeExam;
     }
       public void addExam(Examen Exam) {
-        this.ListeExam.add(Exam);
+          this.getListeExam().add(Exam);
     }
 
     /**

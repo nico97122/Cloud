@@ -32,7 +32,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
      */
     public SecretaireMedicale() throws SQLException, Exception {
         initComponents();
-        
+
         setResizable(false);
         jLabel1.setSize(1500, 700);
         jLabel7.setSize(1500, 700);
@@ -40,12 +40,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         setSize(1500, 700);
         jTextField3.setText("");
 
-
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
-        ListeExamenBD listeE=new ListeExamenBD();
-        listeExamen=listeE.getListeExamen();
-        ListePatientBD  listeP=new ListePatientBD(listeExamen);
-        listePatient=listeP.getListePatient();
+        ListeExamenBD listeE = new ListeExamenBD();
+        listeExamen = listeE.getListeExamen();
+        ListePatientBD listeP = new ListePatientBD(listeExamen);
+        listePatient = listeP.getListePatient();
 
     }
 
@@ -59,12 +58,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jLabel8.setText(nom);
         jLabel9.setText(prenom);
         jTextField3.setText("");
-      
+
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
-        ListeExamenBD listeE=new ListeExamenBD();
-        listeExamen=listeE.getListeExamen();
-        ListePatientBD  listeP=new ListePatientBD(listeExamen);
-        listePatient=listeP.getListePatient();
+        ListeExamenBD listeE = new ListeExamenBD();
+        listeExamen = listeE.getListeExamen();
+        ListePatientBD listeP = new ListePatientBD(listeExamen);
+        listePatient = listeP.getListePatient();
 
     }
 
@@ -522,31 +521,39 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ConnexionBD co = new ConnexionBD();
-        DefaultListModel model = new DefaultListModel();
-        ArrayList<String> listNom = new ArrayList<>();
-        ArrayList<String> listPrenom = new ArrayList<>();
-        ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
-
         try {
-            co.connexion();
+            ConnexionBD co = new ConnexionBD();
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listNom = new ArrayList<>();
+            ArrayList<String> listPrenom = new ArrayList<>();
+            ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+            ListeExamenBD listeE = new ListeExamenBD();
+
+            ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
+
+//        try {
+//            co.connexion();
+//        } catch (Exception ex) {
+//            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//
+//            listepatient = co.requete("nom,prenom,idpatient", "patient", "");
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        }
+            for (int i = 0; i < listeP.getListePatient().size(); i++) {
+                model.addElement(listeP.getListePatient().get(i).getId() + "   " + listeP.getListePatient().get(i).getNom() + "   " + listeP.getListePatient().get(i).getPrenom());
+                //  model.addElement(listepatient.get(2).get(i) + "  " + listepatient.get(0).get(i) + "  " + listepatient.get(1).get(i));
+            }
+            jList1.setModel(model);
+
         } catch (Exception ex) {
-            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-
-            listepatient = co.requete("nom,prenom,idpatient", "patient", "");
-
-        } catch (SQLException ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
-
         }
-
-        for (int i = 0; i < listepatient.size(); i++) {
-
-            model.addElement(listepatient.get(2).get(i) + "  " + listepatient.get(0).get(i) + "  " + listepatient.get(1).get(i));
-        }
-        jList1.setModel(model);
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -554,12 +561,43 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
         if (jList1.isSelectionEmpty() == false) {
-            String IdNomPrenom = jList1.getSelectedValue().toString();
-            String nom = IdNomPrenom.split("  ")[1];
-            String prenom = IdNomPrenom.split("  ")[2];
-            String Id = IdNomPrenom.split("  ")[0];
-
-            this.jTextArea1.setText("DO IT");
+              
+         Patient p= new Patient();
+         
+            try {
+              
+                String IdNomPrenom = jList1.getSelectedValue().toString();
+                String nom = IdNomPrenom.split("   ")[1];
+                String prenom = IdNomPrenom.split("   ")[2];
+                String Id = IdNomPrenom.split("   ")[0];
+  
+                ListeExamenBD listeE = new ListeExamenBD();
+                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
+               
+                for (int i = 0; i < listeP.getListePatient().size(); i++) {
+                    if (listeP.getListePatient().get(i).getId().equals(Id)) {
+                        p.setDateN(listeP.getListePatient().get(i).getDateN());
+                        p.setId(Id);
+                        p.setListeExam(listeE.getListeExamen());
+                        p.setNom(nom);
+                        p.setPrenom(prenom);
+                        p.setSexe(listeP.getListePatient().get(i).getSexe());
+                      
+                    }
+                  
+                }
+                String AffichageLE="";
+                
+                for(int i=0;i<p.getListeExam().size();i++){
+                     AffichageLE+= "\n Type Examen :"+p.getListeExam().get(i).getTypeExamen().toString()+"\n"+"Date :"+p.getListeExam().get(i).getDate()+"\n"+"Praticien :"+"blabla"+"\n"+"Compte Rendu"+p.getListeExam().get(i).getCr();
+                }
+               
+                this.jTextArea1.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString()+"\n"+"Sexe :"+p.getSexe().toString()+"\n"+"Examens : \n"+AffichageLE);
+                
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 
         }
 

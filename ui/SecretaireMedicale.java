@@ -182,7 +182,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setBounds(70, 130, 770, 450);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Médecin", "Patient", "date" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "nom", "prenom", "identifiant" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2);
         jComboBox2.setBounds(100, 90, 130, 25);
 
@@ -532,22 +537,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
             ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
 
-//        try {
-//            co.connexion();
-//        } catch (Exception ex) {
-//            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try {
-//
-//            listepatient = co.requete("nom,prenom,idpatient", "patient", "");
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        }
+
             for (int i = 0; i < listeP.getListePatient().size(); i++) {
                 model.addElement(listeP.getListePatient().get(i).getId() + "   " + listeP.getListePatient().get(i).getNom() + "   " + listeP.getListePatient().get(i).getPrenom());
-                //  model.addElement(listepatient.get(2).get(i) + "  " + listepatient.get(0).get(i) + "  " + listepatient.get(1).get(i));
+                
             }
             jList1.setModel(model);
 
@@ -555,6 +548,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        System.out.println(this.jList1.getModel().toString());
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -578,7 +572,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                     if (listeP.getListePatient().get(i).getId().equals(Id)) {
                         p.setDateN(listeP.getListePatient().get(i).getDateN());
                         p.setId(Id);
-                        p.setListeExam(listeE.getListeExamen());
+                        p.setListeExam(listeP.getListePatient().get(i).getListeExam());
                         p.setNom(nom);
                         p.setPrenom(prenom);
                         p.setSexe(listeP.getListePatient().get(i).getSexe());
@@ -602,6 +596,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments

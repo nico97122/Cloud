@@ -5,7 +5,6 @@
  */
 package Cloud.cloud_imagin;
 
-
 import Cloud.fc.Date2;
 import Cloud.fc.*;
 import java.awt.image.BufferedImage;
@@ -24,20 +23,27 @@ public class Cloud_Imagin {
      */
     public static void main(String[] args) throws Exception {
         // TODO codeint  application logic here
-       
-//         ListeExamenBD listeE = new ListeExamenBD();
-//            
-//            
+
+        ArrayList<String> l = new ArrayList<>();
+        l.add("ni");
+        l.add("pi");
+        l.add("zri");
+        l.add("zi");
+        l.add("ai");
+        System.out.println(l.toString());
+        Fonctionnalite f = new Fonctionnalite();
+        System.out.println(f.tri(l).toString());
+        System.out.println(f.recherche("z", l));
+
 //                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
-//      
-        
-        
-      //  TraitementImg tr= new TraitementImg(new File("src\\Cloud\\image\\cor494-i43.jpg"));
-     //  BufferedImage img=tr.getImg();
-   //   int[]tab= tr.getHauteurLargeur(img);
-    //  tr.sauvegarderImg(img,new File("src\\Cloud\\image\\img.jpg"));
-        
-      //  System.out.println(tab[1]);
+//                System.out.println(listeE.getListeExamen().toString());
+//             System.out.println( listeP.getListePatient().get(0).getNom()+ listeP.getListePatient().get(0).getListeExam().size());
+//               
+        //  TraitementImg tr= new TraitementImg(new File("src\\Cloud\\image\\cor494-i43.jpg"));
+        //  BufferedImage img=tr.getImg();
+        //   int[]tab= tr.getHauteurLargeur(img);
+        //  tr.sauvegarderImg(img,new File("src\\Cloud\\image\\img.jpg"));
+        //  System.out.println(tab[1]);
     }
-    
+
 }

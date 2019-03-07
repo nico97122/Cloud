@@ -94,7 +94,20 @@ public class Date2 {
     }
 
     public String toString() {
-        return (année + "/" + mois + "/" + jour);
+        String s="";
+        if(jour<10){
+            s+="0"+jour+"/";
+        }
+        else s+=jour+"/";
+        
+        if (mois<10){
+            s+="0"+mois+"/";
+        }
+        else s+=mois+"/";
+        s+=année;
+        
+      
+        return (s);
     }
 
     public int[] modifFormat(Date2 date) { //renvoie la date dans un tableau de 5 éléments

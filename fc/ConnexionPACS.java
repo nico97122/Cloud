@@ -1,24 +1,27 @@
+package Cloud.fc;
 import java.sql.*;
 import java.util.*;
 import java.io.*;
 
 public class ConnexionPACS {
 
-    public String url;
-    private String user;
-    private String password;
+    String driverName = "com.mysql.cj.jdbc.Driver";
+    //String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
+    String url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_pacs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String dbName = "PACS";
+    String userName = "cloudBD";
+    String password = "cloudSIR";
+    Connection con = null;
 
     public void saveImage(String path,int id,String numero){
 
-    public ConnexionPACS() { // constructeur par défaut
-        this.url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC";
-        this.user = "cloudBD";
-        this.password = "cloudSIR";
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            Statement st = con.createStatement();
+            File imgfile = new File(path);
 
-        //this.url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_sir?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        //this.user = "cloudbd";
-        //this.password = "cloudSIR";
-    }
+            FileInputStream fin = new FileInputStream(imgfile);
 
             PreparedStatement pre =
                     con.prepareStatement("insert into PACS values(?,?,?,?)");
@@ -30,13 +33,10 @@ public class ConnexionPACS {
             pre.executeUpdate();
             System.out.println("Successfully inserted the file into the database!");
 
-    }
-
-    public void deconnexion() throws Exception
-    {
-        if(con != null)
-        {
+            pre.close();
             con.close();
+        }catch (Exception e1){
+            System.out.println(e1.getMessage());
         }
     }
 
@@ -55,19 +55,11 @@ public class ConnexionPACS {
                 while ((c = in.read()) > -1) {
                     f.write(c);
                 }
-                finally
-                {
-                    rs.close();
-                }
+                f.close();
+                in.close();
             }
-            finally
-            {
-                ps.close();
-            }
-        }
-        finally
-        {
-            ostreamImage.close();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -93,5 +85,4 @@ public class ConnexionPACS {
             System.out.println(ex.getMessage());
         }
     }
-
 }

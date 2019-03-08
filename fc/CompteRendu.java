@@ -13,13 +13,13 @@ public class CompteRendu {
     private Date2 date;
     private String contenu ;
     private Examen exam;
-    private PracticienH ph;
+    private String nomPH;
     
-    public CompteRendu(Date2 date, String contenu,Examen exam,PracticienH ph){
+    public CompteRendu(Date2 date, String contenu,Examen exam,String nomPH){
         this.contenu=contenu;
         this.date=date;
         this.exam=exam;
-        this.ph=ph;
+        this.nomPH=nomPH;
     }
     
     
@@ -74,18 +74,8 @@ public class CompteRendu {
         this.exam = exam;
     }
 
-    /**
-     * @return the ph
-     */
-    public PracticienH getPh() {
-        return ph;
-    }
 
-    /**
-     * @param ph the ph to set
-     */
-    public void setPh(PracticienH ph) {
-        this.ph = ph;
-    }
+
+
     
 }

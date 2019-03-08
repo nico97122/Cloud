@@ -26,6 +26,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
+    private DefaultListModel modelFromBD = new DefaultListModel();
 
     /**
      * Creates new form SecretaireMedicale
@@ -207,6 +208,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("OK");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton5);
         jButton5.setBounds(710, 90, 53, 27);
 
@@ -471,6 +477,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.jTextField1.setText("");
+              this.jTextField2.setText("");
+                this.jTextField3.setText("");
+                this.jFormattedTextField1.setText("jj/mm/aaaa");
+                  this.jTextField5.setText("");
         }
 
 
@@ -543,12 +554,13 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 
             }
             jList1.setModel(model);
+            modelFromBD=model;
 
         } catch (Exception ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println(this.jList1.getModel().toString());
+        
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -583,7 +595,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 String AffichageLE="";
                 
                 for(int i=0;i<p.getListeExam().size();i++){
-                     AffichageLE+= "\n Type Examen :"+p.getListeExam().get(i).getTypeExamen().toString()+"\n"+"Date :"+p.getListeExam().get(i).getDate()+"\n"+"Praticien :"+"blabla"+"\n"+"Compte Rendu"+p.getListeExam().get(i).getCr();
+                     AffichageLE+= "\n  Type Examen : "+p.getListeExam().get(i).getTypeExamen().toString()+"\n"+"  Date : "+p.getListeExam().get(i).getDate()+"\n"+"  Praticien : "+"blabla"+"\n"+"  Compte Rendu: :\n"+p.getListeExam().get(i).getCr()+"\n";
                 }
                
                 this.jTextArea1.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString()+"\n"+"Sexe :"+p.getSexe().toString()+"\n"+"Examens : \n"+AffichageLE);
@@ -600,6 +612,22 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+       ListModel l = this.jList1.getModel();
+       DefaultListModel model = new DefaultListModel();
+       
+       ArrayList<String> listePourRecherche = new ArrayList<>();
+        for (int i=0;i<modelFromBD.getSize();i++){
+            listePourRecherche.add((String) modelFromBD.getElementAt(i));
+        }
+        Fonctionnalite f = new Fonctionnalite();
+        ArrayList<String> listeElemTrouve=f.recherche(this.jTextField4.getText(), listePourRecherche);
+        for(int i=0;i<listeElemTrouve.size();i++){
+            model.addElement(listeElemTrouve.get(i));
+        }
+          jList1.setModel(model);
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments

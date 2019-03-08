@@ -12,12 +12,11 @@ package Cloud.fc;
 public class PersonneH {
     protected String id;
     protected String mdp;
-    
-    public PersonneH(String mdp, String id){
+    private TypePersonnel tp;
+    public PersonneH(String mdp, String id,TypePersonnel tp){
         this.id=id;
         this.mdp=mdp;
-         
-    
+        this.tp=tp;    
     }
    
 }

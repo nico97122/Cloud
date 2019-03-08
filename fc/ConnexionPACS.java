@@ -5,11 +5,11 @@ import java.io.*;
 
 public class ConnexionPACS {
 
-    String driverName = "com.mysql.cj.jdbc.Driver";
-    //String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
+    String driverName = "com.mysql.jdbc.Driver";
+   // String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
     String url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_pacs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String dbName = "PACS";
-    String userName = "cloudBD";
+    String userName = "cloudbd";
     String password = "cloudSIR";
     Connection con = null;
 
@@ -40,7 +40,7 @@ public class ConnexionPACS {
         }
     }
 
-    public void retrieveImage(String numero,String path){
+    public void retrieveImage(String numero,String path,String format){
         try{
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
@@ -49,7 +49,7 @@ public class ConnexionPACS {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+".pgm"));
+                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {
@@ -63,7 +63,7 @@ public class ConnexionPACS {
         }
     }
 
-    public void retrieveImageId(int id,String path){
+    public void retrieveImageId(int id,String path,String format){
         try{
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
@@ -72,7 +72,7 @@ public class ConnexionPACS {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File(path+id+"-"+i+".pgm"));
+                OutputStream f = new FileOutputStream(new File(path+id+"-"+i+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {

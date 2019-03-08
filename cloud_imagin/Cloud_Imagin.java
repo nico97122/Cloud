@@ -34,6 +34,12 @@ public class Cloud_Imagin {
         Fonctionnalite f = new Fonctionnalite();
         System.out.println(f.tri(l).toString());
         System.out.println(f.recherche("z", l));
+        String loc="src/Cloud/image/img.jpg";
+        String locR="src/Cloud/image/ ";
+        ConnexionPACS con=new ConnexionPACS();
+        //con.saveImage(loc, 11110, "99999");
+        con.retrieveImageId(11110,locR,"png");
+        
 
 //                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
 //                System.out.println(listeE.getListeExamen().toString());

@@ -283,7 +283,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(440, 70, 250, 22);
+        jTextField1.setBounds(440, 70, 250, 30);
 
         jTextField2.setToolTipText("");
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -292,7 +292,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(440, 170, 250, 22);
+        jTextField2.setBounds(440, 170, 250, 30);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField1.setText("jj/mm/aaaa");
@@ -308,7 +308,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(440, 260, 250, 22);
+        jFormattedTextField1.setBounds(440, 260, 250, 30);
 
         jTextField3.setEditable(false);
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -322,7 +322,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(440, 360, 250, 22);
+        jTextField3.setBounds(440, 360, 250, 30);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Ajouter ce patient");
@@ -356,7 +356,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField5);
-        jTextField5.setBounds(440, 450, 250, 22);
+        jTextField5.setBounds(440, 450, 250, 30);
 
         jButton8.setText("Générer un id");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -369,7 +369,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(10, 0, 1730, 830);
+        jLabel7.setBounds(10, 20, 1730, 830);
 
         jTabbedPane1.addTab("Ajouter un patient", jPanel3);
 

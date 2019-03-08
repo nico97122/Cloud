@@ -32,13 +32,13 @@ public class Cloud_Imagin {
         l.add("ai");
         System.out.println(l.toString());
         Fonctionnalite f = new Fonctionnalite();
-        System.out.println(f.tri(l).toString());
-        System.out.println(f.recherche("z", l));
-        String loc="src/Cloud/image/img.jpg";
-        String locR="src/Cloud/image/ ";
-        ConnexionPACS con=new ConnexionPACS();
-        //con.saveImage(loc, 11110, "99999");
-        con.retrieveImageId(11110,locR,"png");
+//        System.out.println(f.tri(l).toString());
+        System.out.println(f.recherche("zi", l));
+//        String loc="src/Cloud/image/img.jpg";
+//        String locR="src/Cloud/image/ ";
+//        ConnexionPACS con=new ConnexionPACS();
+//        //con.saveImage(loc, 11110, "99999");
+//        con.retrieveImageId(11110,locR,"png");
         
 
 //                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());

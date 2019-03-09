@@ -86,7 +86,7 @@ public class ConnexionBD {
         nbChamps = tempArray.length;
         
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
-        
+        System.out.println(compositionRequete);
         resultatRequete = result(compositionRequete);
 
         ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);

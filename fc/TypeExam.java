@@ -11,6 +11,7 @@ package Cloud.fc;
  */
 public enum TypeExam {
     rx,
+    radio,
     echographie,
     scanner,
     irm,

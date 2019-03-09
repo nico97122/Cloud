@@ -50,6 +50,8 @@ public class FonctionnaliteBD {
         return listePatient;
     }
      public ArrayList<PersonneH> ListePersonnelBD() throws SQLException {
+          ArrayList<PersonneH> listePersonnel = new ArrayList<>();
+         
         return null;
      //A faire
          

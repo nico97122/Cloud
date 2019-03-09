@@ -143,7 +143,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Camille");
+        jLabel15.setText("Prenom");
         jPanel5.add(jLabel15);
         jLabel15.setBounds(80, 190, 260, 60);
 
@@ -237,7 +237,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jTextField5.setBounds(350, 320, 260, 40);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.setText("jj/mm/aa");
+        jFormattedTextField2.setText("jj/mm/aaaa");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
@@ -247,10 +247,15 @@ public class ManipRadio extends javax.swing.JFrame {
         jFormattedTextField2.setBounds(350, 420, 260, 40);
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField3.setText("jj/mm/aa");
+        jFormattedTextField3.setText("jj/mm/aaaa");
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField3MouseClicked(evt);
+            }
+        });
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
             }
         });
         jPanel7.add(jFormattedTextField3);
@@ -560,7 +565,33 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        if (jTextField6.getText().equals("URL")) {
+       ArrayList<String>listenompatient=new ArrayList<>();
+        ConnexionBD co = new ConnexionBD();
+        boolean b=false;
+          try {
+                co.connexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        try {// verifie si la patient existe dans la bd            
+           
+                listenompatient= co.requete("nom", "patient", "").get(0);          
+            
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        for (int i=0;i<listenompatient.size();i++){
+            System.out.println( listenompatient.get(i).toLowerCase());
+        if(listenompatient.get(i).toLowerCase().equals(this.jTextField4.getText().toLowerCase())){
+            b=true;
+        }
+    }
+        
+        if(b==false){
+         JOptionPane.showMessageDialog(this, "Patient Inexistant", "Erreur", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (jTextField6.getText().equals("URL")) {
             JOptionPane.showMessageDialog(this, "Veuillez ajouter une image", "Erreur", JOptionPane.WARNING_MESSAGE);
         } else if (jFormattedTextField3.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
@@ -568,17 +599,20 @@ public class ManipRadio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Veuillez compléter l'heure de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
         } else if (jFormattedTextField2.getText().equals("jj/mm/aaaa")) {
             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
-        } else {
+            
+        }
+       
+                else {
            
                 ArrayList<ArrayList<String>> listeIdExamen = new ArrayList<>();
                 String nom = this.jTextField4.getText();
                 String prenom = this.jTextField5.getText();
                 Date2 date = new Date2(jFormattedTextField2.getText());
                 Date2 dateE = new Date2(jFormattedTextField3.getText());
-                //Récupérer l'heure aussi
+                
                 String url = this.jTextField6.getText();
                 String NomPerso = this.jLabel14.getText();
-                ConnexionBD co = new ConnexionBD();
+                
                 String iddbExamen="";
                 String iddbPersonnel="";
                 String idPatient="";
@@ -587,25 +621,22 @@ public class ManipRadio extends javax.swing.JFrame {
                 String typeE = (String) this.jComboBox2.getSelectedItem();
                 String NumArchivage= dateE.toString()+this.jFormattedTextField4.getText();
 
-            
-            try {
-                co.connexion();
-            } catch (Exception ex) {
-                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
+          
            
                 
             
             try {
                 listeIdExamen = co.requete("iddbexamen", "examen", "");
-                System.out.println("listeIdExamen"+listeIdExamen.toString());
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
             
-            try {
+           
+            try {//prend id ccorrespondant au patient dans la bd
                 idPatient=co.requete("idpatient","patient","where nom= '"+nom+"'").get(0).get(0);
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
@@ -624,9 +655,20 @@ public class ManipRadio extends javax.swing.JFrame {
             }
             
             int i = co.insert("examen","iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient","'" + iddbExamen + "'" + "," + "'" + iddbPersonnel +"'"+","+"'"+ dateE.toStringDateNaissDB() +"'"+","+"'"+ typeE +"'"+","+"'"+ NumArchivage +"'"+","+"'"+ idPatient +"'");
-            System.out.println(i);
+            
+            try {
+                co.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Examen ajouté", "comfirmation", JOptionPane.INFORMATION_MESSAGE);
         }
+        
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

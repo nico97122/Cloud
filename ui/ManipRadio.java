@@ -6,12 +6,16 @@
 package Cloud.ui;
 
 import Cloud.fc.ConnexionBD;
+import Cloud.fc.ConnexionPACS;
 import Cloud.fc.Date2;
 import Cloud.fc.random;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +23,10 @@ import javax.swing.JOptionPane;
  * @author Juliette-Trouillet
  */
 public class ManipRadio extends javax.swing.JFrame {
-
+    Vector<String> dataUrlImg = new Vector();
+    Vector<String> ListeImgV = new Vector();
+    public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
+    public ArrayList<String> ListeImgR2 = new ArrayList<String>();
     /**
      * Creates new form ManipRadio
      */
@@ -76,8 +83,12 @@ public class ManipRadio extends javax.swing.JFrame {
         jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jButton4 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -268,6 +279,11 @@ public class ManipRadio extends javax.swing.JFrame {
                 jFormattedTextField4MouseClicked(evt);
             }
         });
+        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField4ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField4);
         jFormattedTextField4.setBounds(910, 370, 200, 40);
 
@@ -287,19 +303,65 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel7.add(jLabel17);
         jLabel17.setBounds(210, 560, 230, 24);
 
-        jTextField6.setText("URL");
-        jPanel7.add(jTextField6);
-        jTextField6.setBounds(440, 560, 240, 22);
-
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Parcourir");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jPanel7.add(jButton5);
-        jButton5.setBounds(680, 560, 91, 27);
+        jButton5.setBounds(670, 560, 110, 27);
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "selectionnez une image..." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        jPanel7.add(jScrollPane2);
+        jScrollPane2.setBounds(410, 560, 250, 70);
+
+        jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton11.setText("Visualiser");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton11);
+        jButton11.setBounds(790, 560, 120, 30);
+
+        jButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton12.setText("RetirerImgS");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
+        jPanel7.add(jButton12);
+        jButton12.setBounds(670, 600, 110, 30);
+
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton13.setText("ViderListe");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton13);
+        jButton13.setBounds(790, 600, 120, 30);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel7.add(jLabel12);
@@ -385,6 +447,11 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Ajouter ce patient");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -514,7 +581,7 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // A toi de jouer nico 
+        // A toi de jouer nico  , non :<
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
@@ -552,7 +619,7 @@ public class ManipRadio extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(this, "Ce patient existe déjà", "Erreur", JOptionPane.WARNING_MESSAGE);
 //    }
 //       else{
-//        JOptionPane.showMessageDialog(this, "Le patient a bien été ajouté", "", JOptionPane.WARNING_MESSAGE);       
+//        JOptionPane.showMessageDialog(this, "Le patient a bien été ajouté", "Confirmation", JOptionPane.WARNING_MESSAGE);       
 //               }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -591,7 +658,7 @@ public class ManipRadio extends javax.swing.JFrame {
         if(b==false){
          JOptionPane.showMessageDialog(this, "Patient Inexistant", "Erreur", JOptionPane.WARNING_MESSAGE);
         }
-        else if (jTextField6.getText().equals("URL")) {
+        else if (this.jList2.getModel().getElementAt(0).equals("selectionnez une image...")||this.jList2.getModel().getElementAt(0).equals("")) {
             JOptionPane.showMessageDialog(this, "Veuillez ajouter une image", "Erreur", JOptionPane.WARNING_MESSAGE);
         } else if (jFormattedTextField3.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
@@ -608,9 +675,9 @@ public class ManipRadio extends javax.swing.JFrame {
                 String nom = this.jTextField4.getText();
                 String prenom = this.jTextField5.getText();
                 Date2 date = new Date2(jFormattedTextField2.getText());
-                Date2 dateE = new Date2(jFormattedTextField3.getText());
+                Date2 dateE = new Date2(jFormattedTextField3.getText()+" "+this.jFormattedTextField4.getText());
                 
-                String url = this.jTextField6.getText();
+                
                 String NomPerso = this.jLabel14.getText();
                 
                 String iddbExamen="";
@@ -646,7 +713,7 @@ public class ManipRadio extends javax.swing.JFrame {
                 while (listeIdExamen.get(0).contains(iddbExamen)) {  //sert à eviter les doublons d'id dans la base de donnée.
                     iddbExamen = r.genererId(9);
                 }
-                System.out.println("iddbExamen :" + iddbExamen);
+               // System.out.println("iddbExamen :" + iddbExamen);
             
             try {
                 iddbPersonnel = co.requete("iddbpersonnel", "personnel", "where nom=" +"'"+ NomPerso+"'").get(0).get(0);
@@ -660,8 +727,31 @@ public class ManipRadio extends javax.swing.JFrame {
                 co.deconnexion();
             } catch (Exception ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            ConnexionPACS con=new ConnexionPACS();//gestion de l'enregistrement des images
+           try {
+               con.connexion();
+           } catch (Exception ex) {
+               Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
+            
+            String  idImg = r.genererId(9);  //generer un id pour la database
+                        try {
+                listeIdImg = con.requetePACS("id", "");
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(this, "Examen ajouté", "comfirmation", JOptionPane.INFORMATION_MESSAGE);
+                while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                    iddbExamen = r.genererId(9);
+                }
+            for (int j=0;j<this.jList2.getModel().getSize();j++){
+                con.saveImage(this.jList2.getModel().getElementAt(i),Integer.parseInt(idImg), iddbExamen);
+                
+                
+            }
+            JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
         
     }//GEN-LAST:event_jButton4MouseClicked
@@ -669,6 +759,48 @@ public class ManipRadio extends javax.swing.JFrame {
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+           Vector<String> dataIni = new Vector();
+           dataIni.add("");
+        jList2.setListData(dataIni);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+          JFileChooser fileOuvrir = new JFileChooser();
+
+        if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
+
+            this.jList2.setListData(dataUrlImg);
+        }
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+         if (jList2.getLastVisibleIndex() != -1) {
+            if (!"selectionnez une image...".equals(jList2.getModel().getElementAt(0))) {
+                new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        int elemASup = this.jList2.getSelectedIndex();
+        dataUrlImg.remove(elemASup);
+        jList2.setListData(dataUrlImg);
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -708,6 +840,9 @@ public class ManipRadio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -742,6 +877,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -750,13 +886,13 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

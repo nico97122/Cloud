@@ -41,7 +41,7 @@ public class ConnexionBD {
     public void connexion() throws Exception {
         
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
         } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
         try {
             Connection con = DriverManager.getConnection(url,user,password);
@@ -56,8 +56,6 @@ public class ConnexionBD {
     public ResultSet result(String query){
         this.query = query;
         try {
-            
-        
             res = stmt.executeQuery(query);
           
             this.res=res;
@@ -134,7 +132,7 @@ public class ConnexionBD {
             con.close();
         }
     }
-public int insert(String table,String attributs, String attributsValeurs) {
+public int insert(String table,String attributs,String attributsValeurs) {
         int i = 0;
         String requete = "INSERT INTO "+table+"("+attributs+")VALUES("+attributsValeurs+");";
         System.out.println(requete);
@@ -148,4 +146,29 @@ public int insert(String table,String attributs, String attributsValeurs) {
         return i;
     }
     // ajouter patient ajouter exam a faire
+
+    public void update(String table, String set, String condition){
+        String requete = "UPDATE "+table+" SET "+set+" "+condition;
+        System.out.println(requete);
+        try{
+            stmt.executeUpdate(requete);
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean existInDB(String attribut, String table, String s)throws SQLException{
+        ArrayList<ArrayList<String>> liste = new ArrayList<ArrayList<String>>();
+
+        liste = requete(attribut,table,"where "+attribut+"= "+s);
+
+        if(liste.get(0).isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
 }

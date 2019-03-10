@@ -5,6 +5,15 @@
  */
 package  Cloud.ui;
 
+import Cloud.fc.ConnexionBD;
+
+import javax.swing.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author Juliette-Trouillet
@@ -138,8 +147,13 @@ public class ChangerMdp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try{
+            changePassword();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         this.dispose();
-        //BD
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
@@ -202,4 +216,29 @@ public class ChangerMdp extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+
+    public void changePassword() throws SQLException {
+      String id = jTextField1.getText();
+      String mdp = jPasswordField1.getText();
+      String nmdp = jPasswordField2.getText();
+      ConnexionBD con = new ConnexionBD();
+      ArrayList<ArrayList<String>> listeResultat = new ArrayList<>();
+
+        try{
+            con.connexion();
+             listeResultat = con.requete("mdp","personnel","where iddbpersonnel ="+id);
+
+             if(listeResultat.get(0).get(0).equals(mdp)){
+                 con.update("personnel","mdp='"+nmdp+"'","where iddbpersonnel ="+id);
+             }
+             else{
+
+                 JOptionPane.showMessageDialog(this, "Erreur identifiant ou mot de passe ", "Erreur", JOptionPane.WARNING_MESSAGE);
+             }
+      }catch(Exception ex){};
+
+    }
+
+
 }

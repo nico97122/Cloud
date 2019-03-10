@@ -20,18 +20,22 @@ public class FonctionnaliteBD {
 
     public FonctionnaliteBD() throws Exception {
 
-        co.connexion();
+     
     }
 
     public ArrayList<Patient> ListePatientBD(ArrayList<Examen> listeExamen) throws SQLException {
-
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ArrayList<Patient> listePatient = new ArrayList<>();
         ArrayList<ArrayList<String>> listeDonneesDesPatients = co.requete("datenaissance,nom,prenom,sexe,idpatient,adresse", "patient", "");
         Sexe s;
 
         for (int j = 0; j < listeDonneesDesPatients.get(0).size(); j++) {
-
-            if (listeDonneesDesPatients.get(3).get(j).equals(0)) {
+            
+            if (listeDonneesDesPatients.get(3).get(j).equals("0")) {
                 s = Sexe.Femme;
             } else {
                 s = Sexe.Homme;
@@ -47,32 +51,61 @@ public class FonctionnaliteBD {
                 }
             }
         }
+         try {
+            co.deconnexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return listePatient;
     }
      public ArrayList<PersonneH> ListePersonnelBD() throws SQLException {
+          try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
           ArrayList<PersonneH> listePersonnel = new ArrayList<>();
-         
-        return null;
+         ArrayList<ArrayList<String>> listeDonneesPersonnel = co.requete("iddbpersonnel,nom,prenom,typepersonnel,iddbpersonnel,idpersonnel,mdp", " personnel ", "");
+         for (int k = 0; k < listeDonneesPersonnel.get(1).size(); k++) {
+             listePersonnel.add(new PersonneH(listeDonneesPersonnel.get(1).get(k),listeDonneesPersonnel.get(2).get(k),listeDonneesPersonnel.get(6).get(k),listeDonneesPersonnel.get(5).get(k),TypePersonnel.valueOf(listeDonneesPersonnel.get(3).get(k)),listeDonneesPersonnel.get(0).get(k)));
+           //  PersonneH(String nom,String prenom,String mdp, String idcon,TypePersonnel tp,String id
+         }
+        try {
+            co.deconnexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listePersonnel;
      //A faire
          
      }
 
     public ArrayList<Examen> ListeExamenBD() throws SQLException {
+         try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ArrayList<Examen> listeExamen = new ArrayList<>();
-        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
+        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel,iddbpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
         for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
             Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
             String IdPat = listeDonneesExamens.get(1).get(k);
             String numArchiv = listeDonneesExamens.get(2).get(k);
             String cr = listeDonneesExamens.get(3).get(k);
             TypeExam e = TypeExam.valueOf(listeDonneesExamens.get(4).get(k).toLowerCase());
-            String IdMed = listeDonneesExamens.get(5).get(k);
-
+            String IdMed = listeDonneesExamens.get(6).get(k);
+          
             Examen exam;
             exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed);
 
             listeExamen.add(exam);
 
+        }
+         try {
+            co.deconnexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeExamen;
     }

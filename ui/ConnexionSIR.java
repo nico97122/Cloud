@@ -127,12 +127,12 @@ public class ConnexionSIR extends javax.swing.JFrame {
 
         try {
             
-            listeIdentifiants = con.requete("typepersonnel", "personnel", "where idpersonnel=" + "'" + id + "' and mdp=" + "'" + password + "' ;");
+            listeIdentifiants = con.requete("typepersonnel", "personnel", "where idpersonnel=" + "'" + id + "' and mdp=" + "'" + password + "' ");
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            listeNomPrenom=con.requete("nom,prenom", "personnel", "where idpersonnel ="+"'"+id+"' and mdp="+"'"+password+"' ;");
+            listeNomPrenom=con.requete("nom,prenom", "personnel", "where idpersonnel ="+"'"+id+"' and mdp="+"'"+password+"' ");
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }

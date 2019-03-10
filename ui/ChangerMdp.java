@@ -227,10 +227,10 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         try{
             con.connexion();
-             listeResultat = con.requete("mdp","personnel","where iddbpersonnel ="+id);
+             listeResultat = con.requete("mdp","personnel","where idpersonnel ="+id);
 
              if(listeResultat.get(0).get(0).equals(mdp)){
-                 con.update("personnel","mdp='"+nmdp+"'","where iddbpersonnel ="+id);
+                 con.update("personnel","mdp='"+nmdp+"'","where idpersonnel ="+id);
              }
              else{
 

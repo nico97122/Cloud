@@ -153,7 +153,7 @@ public class ChangerMdp extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
@@ -227,10 +227,12 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         try{
             con.connexion();
-             listeResultat = con.requete("mdp","personnel","where idpersonnel ="+id);
+             listeResultat = con.requete("mdp","personnel","where idpersonnel ="+"'"+id+"'");
 
              if(listeResultat.get(0).get(0).equals(mdp)){
-                 con.update("personnel","mdp='"+nmdp+"'","where idpersonnel ="+id);
+                 con.update("personnel","mdp='"+nmdp+"'","where idpersonnel ="+"'"+id+"'");
+                  JOptionPane.showMessageDialog(this, "MDP modifié ", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                 this.dispose();
              }
              else{
 

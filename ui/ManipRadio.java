@@ -609,9 +609,13 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField4MouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        ConsulterDMRMR consultMR = new ConsulterDMRMR();
-        consultMR.setVisible(true);
-        this.dispose();
+        try {
+            ConsulterDMRMR consultMR = new ConsulterDMRMR();
+            consultMR.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -110,9 +110,10 @@ public class FonctionnaliteBD {
         return listeExamen;
     }
 
-    public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) {
+    public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) throws SQLException, Exception {
         ArrayList<Image> listeImage = new ArrayList<>();
         ConnexionPACS cop = new ConnexionPACS();
+        cop.connexion();
         ArrayList<String> listeNumArchiv = new ArrayList<>();
         for (int j = 0; j < listeExamen.size(); j++) {
             if (!listeNumArchiv.contains(listeExamen.get(j).getNumArchiv())) {
@@ -120,10 +121,13 @@ public class FonctionnaliteBD {
             }
         }
         for (int i = 0; i < listeNumArchiv.size(); i++) {
-          cop.retrieveImage(listeNumArchiv.get(i), , format)
-            
-            listeImage.add()
+          cop.retrieveImage(listeNumArchiv.get(i),"src/Cloud/imageBD/","png");
+            ArrayList<String> listeIdImg=cop.requetePACS("id", "PACS", "where numeroArchivage="+"'"+listeNumArchiv.get(i)+"'").get(0);
+            for (int x=0;x<listeIdImg.size();x++){
+                listeImage.add(new Image("src/Cloud/imageBD/"+listeIdImg.get(x)+".png",listeIdImg.get(x),listeNumArchiv.get(i)));
+            }
         } //Image(String pathIm, String id, String NumArchivage)
+       return listeImage;
     }
 
     public void decoBD() {

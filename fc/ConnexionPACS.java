@@ -52,12 +52,12 @@ public class ConnexionPACS {
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select image from PACS where numeroArchivage ="+numero+";" );
+            ResultSet rs = stmt.executeQuery("select image,id from PACS where numeroArchivage ="+numero+";" );
             int i = 0;
             while (rs.next()) {
                 String id= rs.getString("id");
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("src/"+id+"."+format));
+                OutputStream f = new FileOutputStream(new File("src/Cloud/imageBD/"+id+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {
@@ -130,6 +130,7 @@ public class ConnexionPACS {
         tempArray = stringToSplit.split(delimiter);// les champs sont séparés et stocké dans un Array
         nbChamps = tempArray.length;
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
+        System.out.println(compositionRequete);
         resultatRequete = result(compositionRequete);
 
 
@@ -173,7 +174,7 @@ public class ConnexionPACS {
 
     public void connexion() throws Exception {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
+            Class.forName("com.mysql.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
         } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
         try {
             Connection con = DriverManager.getConnection(url,userName,password);

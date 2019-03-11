@@ -21,7 +21,7 @@ public class Cloud_Imagin {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         // TODO codeint  application logic here
 
 //        ArrayList<String> l = new ArrayList<>();
@@ -31,8 +31,12 @@ public class Cloud_Imagin {
 //        l.add("zi");
 //        l.add("ai");
 //        System.out.println(l.toString());
-//        FonctionnaliteBD f = new FonctionnaliteBD();
-// 
+      FonctionnaliteBD f = new FonctionnaliteBD();
+      
+      
+        System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
+        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getId());
+        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getImg().getHeight());
 //        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
          String locR="src/Cloud/imageBD/ ";
         String locRes = "src/ResultImages/";
@@ -43,7 +47,7 @@ public class Cloud_Imagin {
         //con.saveImage(loc,1234,"15022019");
         //con.saveImage(loc2,2345,"15022019");
 
-        con.retrieveImage("15022019", locRes, "png");
+      //  con.retrieveImage("15022019", locR, "png");
     }
         
        // String loc="src/Cloud/image/img.jpg";

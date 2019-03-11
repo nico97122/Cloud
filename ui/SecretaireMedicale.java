@@ -428,9 +428,25 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1ComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ChangerMdp change = new ChangerMdp();
-        change.setVisible(true);
-
+        try {
+             String iddbPerso="";
+             
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
+            for (int i=0;i<listePerso.size();i++){
+                
+               
+                
+                if(listePerso.get(i).getNom().equals(this.jLabel8.getText()+"")){
+                    iddbPerso=listePerso.get(i).getId();
+                   
+                }
+            }
+            ChangerMdp changemanip = new ChangerMdp(iddbPerso);
+            changemanip.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked

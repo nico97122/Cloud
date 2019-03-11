@@ -62,27 +62,26 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
 
     public DefaultTreeModel buildTree() {
         id = jLabel7.getText();
+        int k=0;
         System.out.println("id2" + id);
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
         for (int i = 0; i < listeExamen.size(); i++) {
-            System.out.println("liste :" + listeExamen.get(i).getIdPat());
-            System.out.println(id);
             if (listeExamen.get(i).getIdPat().equals(id)) {
-                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + i);
+                k+=1;
+                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + k);
                 DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
                 DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
                 DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
-                DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
             //DefaultMutableTreeNode images = new DefaultMutableTreeNode(listeExamen.get(i)???);
                 //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
                 //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
                 examens.add(type);
                 examens.add(date);
-                //examens.add(heure);
+                examens.add(heure);
                 examens.add(nomPH);
-                examens.add(CR);
+               
 //            examens.add(images);
 //            images.add(image);
 //            images.add(image);

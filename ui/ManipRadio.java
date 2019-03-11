@@ -8,6 +8,8 @@ package Cloud.ui;
 import Cloud.fc.ConnexionBD;
 import Cloud.fc.ConnexionPACS;
 import Cloud.fc.Date2;
+import Cloud.fc.Examen;
+import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Patient;
 import Cloud.fc.random;
 import java.io.File;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -24,33 +27,36 @@ import javax.swing.JOptionPane;
  * @author Juliette-Trouillet
  */
 public class ManipRadio extends javax.swing.JFrame {
+
     Vector<String> dataUrlImg = new Vector();
     Vector<String> ListeImgV = new Vector();
     public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
+    private DefaultListModel modelFromBD = new DefaultListModel();
     String idPatient;
+
     /**
      * Creates new form ManipRadio
      */
     public ManipRadio() {
         initComponents();
         setResizable(false);
-        setSize(1500,700);
-        jLabel12.setSize(1400,700);
-        jLabel16.setSize(1400,700);
-        jLabel13.setSize(1400,700);
+        setSize(1500, 700);
+        jLabel12.setSize(1400, 700);
+        jLabel16.setSize(1400, 700);
+        jLabel13.setSize(1400, 700);
     }
-     public ManipRadio(String nom,String prenom) {
+
+    public ManipRadio(String nom, String prenom) {
         initComponents();
         setResizable(false);
-        setSize(1500,700);
-        jLabel12.setSize(1400,700);
-        jLabel16.setSize(1400,700);
-        jLabel13.setSize(1400,700);
+        setSize(1500, 700);
+        jLabel12.setSize(1400, 700);
+        jLabel16.setSize(1400, 700);
+        jLabel13.setSize(1400, 700);
         jLabel14.setText(nom);
         jLabel15.setText(prenom);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +111,9 @@ public class ManipRadio extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,6 +128,11 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -150,7 +164,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Onette");
+        jLabel14.setText("Onette ");
         jPanel5.add(jLabel14);
         jLabel14.setBounds(70, 70, 270, 80);
 
@@ -249,17 +263,22 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel7.add(jTextField5);
         jTextField5.setBounds(350, 320, 260, 40);
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField2.setText("jj/mm/aaaa");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
             }
         });
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField2);
         jFormattedTextField2.setBounds(350, 420, 260, 40);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField3.setText("jj/mm/aaaa");
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -312,11 +331,6 @@ public class ManipRadio extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jButton5);
         jButton5.setBounds(670, 560, 110, 29);
 
@@ -366,6 +380,8 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton13.setBounds(790, 600, 120, 30);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jLabel12.setText("jj/mm/aaaa");
+        jLabel12.setToolTipText("");
         jPanel7.add(jLabel12);
         jLabel12.setBounds(0, 0, 1420, 650);
 
@@ -392,31 +408,31 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom : ");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(390, 70, 60, 22);
+        jLabel1.setBounds(360, 60, 90, 30);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(360, 170, 100, 22);
+        jLabel2.setBounds(330, 140, 116, 30);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date de naissance : ");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(270, 260, 190, 20);
+        jLabel3.setBounds(200, 220, 250, 20);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Identifiant : ");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(340, 350, 140, 30);
+        jLabel4.setBounds(290, 290, 170, 30);
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexe : ");
         jPanel3.add(jLabel5);
@@ -428,7 +444,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(470, 60, 310, 40);
+        jTextField1.setBounds(460, 60, 310, 40);
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,11 +452,11 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(470, 158, 310, 40);
+        jTextField2.setBounds(460, 130, 310, 40);
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(470, 250, 160, 40);
+        jFormattedTextField1.setBounds(460, 210, 160, 40);
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(470, 338, 310, 40);
+        jTextField3.setBounds(460, 280, 310, 40);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
@@ -461,6 +477,23 @@ public class ManipRadio extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1);
         jButton1.setBounds(1021, 560, 177, 48);
+
+        jButton14.setText("Générer un id");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jButton14);
+        jButton14.setBounds(800, 290, 140, 29);
+
+        jLabel19.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Adresse :");
+        jPanel3.add(jLabel19);
+        jLabel19.setBounds(310, 370, 120, 30);
+        jPanel3.add(jTextField6);
+        jTextField6.setBounds(460, 360, 310, 40);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel13);
@@ -579,17 +612,30 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ChangerMdp changemanip = new ChangerMdp();
-        changemanip.setVisible(true);
+        try {
+             String iddbPerso="";
+             
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
+            for (int i=0;i<listePerso.size();i++){
+                
+               
+                
+                if(listePerso.get(i).getNom().equals(this.jLabel14.getText()+"")){
+                    iddbPerso=listePerso.get(i).getId();
+                   
+                }
+            }
+            ChangerMdp changemanip = new ChangerMdp(iddbPerso);
+            changemanip.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // A toi de jouer nico  , non :<
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
         jTextField4.setText("");
@@ -617,7 +663,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         try {
-            ConsulterDMRMR consultMR = new ConsulterDMRMR(NomPat);
+            ConsulterDMRMR consultMR = new ConsulterDMRMR(idPatient);
             consultMR.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
@@ -636,40 +682,38 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-         ConnexionSIR co=new ConnexionSIR();
+        ConnexionSIR co = new ConnexionSIR();
         this.dispose();
         co.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-       ArrayList<String>listenompatient=new ArrayList<>();
+        ArrayList<String> listenompatient = new ArrayList<>();
         ConnexionBD co = new ConnexionBD();
-        boolean b=false;
-          try {
-                co.connexion();
-            } catch (Exception ex) {
-                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        boolean b = false;
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {// verifie si la patient existe dans la bd            
-           
-                listenompatient= co.requete("nom", "patient", "").get(0);          
-            
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+
+            listenompatient = co.requete("nom", "patient", "").get(0);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < listenompatient.size(); i++) {
+            System.out.println(listenompatient.get(i).toLowerCase());
+            if (listenompatient.get(i).toLowerCase().equals(this.jTextField4.getText().toLowerCase())) {
+                b = true;
             }
-        for (int i=0;i<listenompatient.size();i++){
-            System.out.println( listenompatient.get(i).toLowerCase());
-        if(listenompatient.get(i).toLowerCase().equals(this.jTextField4.getText().toLowerCase())){
-            b=true;
         }
-    }
-        
-        if(b==false){
-         JOptionPane.showMessageDialog(this, "Patient Inexistant", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
-        else if (this.jList2.getModel().getElementAt(0).equals("selectionnez une image...")||this.jList2.getModel().getElementAt(0).equals("")) {
+
+        if (b == false) {
+            JOptionPane.showMessageDialog(this, "Patient Inexistant", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (this.jList2.getModel().getElementAt(0).equals("selectionnez une image...") || this.jList2.getModel().getElementAt(0).equals("")) {
             JOptionPane.showMessageDialog(this, "Veuillez ajouter une image", "Erreur", JOptionPane.WARNING_MESSAGE);
         } else if (jFormattedTextField3.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
@@ -677,94 +721,82 @@ public class ManipRadio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Veuillez compléter l'heure de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
         } else if (jFormattedTextField2.getText().equals("jj/mm/aaaa")) {
             JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
-            
-        }
-       
-                else {
-           
-                ArrayList<ArrayList<String>> listeIdExamen = new ArrayList<>();
-                String nom = this.jTextField4.getText();
-                String prenom = this.jTextField5.getText();
-                Date2 date = new Date2(jFormattedTextField2.getText());
-                Date2 dateE = new Date2(jFormattedTextField3.getText()+" "+this.jFormattedTextField4.getText());
-                
-                
-                String NomPerso = this.jLabel14.getText();
-                
-                String iddbExamen="";
-                String iddbPersonnel="";
-                String idPatient="";
-                random r = new random();
-                int sexe = this.jComboBox1.getSelectedIndex();
-                String typeE = (String) this.jComboBox2.getSelectedItem();
-                String NumArchivage= dateE.toString()+this.jFormattedTextField4.getText();
 
-           
-          
-           
-                
-            
+        } else {
+
+            ArrayList<ArrayList<String>> listeIdExamen = new ArrayList<>();
+            String nom = this.jTextField4.getText();
+            String prenom = this.jTextField5.getText();
+            Date2 date = new Date2(jFormattedTextField2.getText());
+            Date2 dateE = new Date2(jFormattedTextField3.getText() + " " + this.jFormattedTextField4.getText());
+
+            String NomPerso = this.jLabel14.getText();
+
+            String iddbExamen = "";
+            String iddbPersonnel = "";
+            String idPatient = "";
+            random r = new random();
+            int sexe = this.jComboBox1.getSelectedIndex();
+            String typeE = (String) this.jComboBox2.getSelectedItem();
+            String NumArchivage = dateE.toString() + this.jFormattedTextField4.getText();
+
             try {
                 listeIdExamen = co.requete("iddbexamen", "examen", "");
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
-           
+
             try {//prend id ccorrespondant au patient dans la bd
-                idPatient=co.requete("idpatient","patient","where nom= '"+nom+"'").get(0).get(0);
+                idPatient = co.requete("idpatient", "patient", "where nom= '" + nom + "'").get(0).get(0);
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-                iddbExamen = r.genererId(9);  //generer un id pour la database
-                while (listeIdExamen.get(0).contains(iddbExamen)) {  //sert à eviter les doublons d'id dans la base de donnée.
-                    iddbExamen = r.genererId(9);
-                }
+
+            iddbExamen = r.genererId(9);  //generer un id pour la database
+            while (listeIdExamen.get(0).contains(iddbExamen)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                iddbExamen = r.genererId(9);
+            }
                // System.out.println("iddbExamen :" + iddbExamen);
-            
+
             try {
-                iddbPersonnel = co.requete("iddbpersonnel", "personnel", "where nom=" +"'"+ NomPerso+"'").get(0).get(0);
+                iddbPersonnel = co.requete("iddbpersonnel", "personnel", "where nom=" + "'" + NomPerso + "'").get(0).get(0);
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            int i = co.insert("examen","iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient","'" + iddbExamen + "'" + "," + "'" + iddbPersonnel +"'"+","+"'"+ dateE.toStringDateNaissDB() +"'"+","+"'"+ typeE +"'"+","+"'"+ NumArchivage +"'"+","+"'"+ idPatient +"'");
-            
+
+            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'");
+
             try {
                 co.deconnexion();
             } catch (Exception ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            ConnexionPACS con=new ConnexionPACS();//gestion de l'enregistrement des images
-           try {
-               con.connexion();
-           } catch (Exception ex) {
-               Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            }
+            ConnexionPACS con = new ConnexionPACS();//gestion de l'enregistrement des images
+            try {
+                con.connexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
-            
-            String  idImg = r.genererId(9);  //generer un id pour la database
-                        try {
+
+            String idImg = r.genererId(9);  //generer un id pour la database
+            try {
                 listeIdImg = con.requetePACS("id", "PACS", "");
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-                while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
-                    iddbExamen = r.genererId(9);
-                }
-            for (int j=0;j<this.jList2.getModel().getSize();j++){
-                con.saveImage(this.jList2.getModel().getElementAt(i),Integer.parseInt(idImg), iddbExamen);
-                
-                
+            while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                iddbExamen = r.genererId(9);
+            }
+            for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
+                con.saveImage(this.jList2.getModel().getElementAt(i), Integer.parseInt(idImg), iddbExamen);
+
             }
             JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
@@ -772,7 +804,62 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+        if (jTextField3.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Veuillez générer l'identifiant du patient", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (jFormattedTextField1.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
+            JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String nom = this.jTextField1.getText();
+            String prenom = this.jTextField2.getText();
+            Date2 date = new Date2(jFormattedTextField1.getText());
+            String id = this.jTextField3.getText();
+            String adresse = this.jTextField6.getText();
+            ArrayList<ArrayList<String>> listeIddb = new ArrayList<>();
+            ArrayList<ArrayList<String>> liste = new ArrayList<>();
+            random r = new random();
+            String iddbpatient;
+            ConnexionBD co = new ConnexionBD();
+            int sexe = this.jComboBox1.getSelectedIndex();
+
+            try {
+                co.connexion();
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                listeIddb = co.requete("iddbpatient", "patient", "");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            iddbpatient = r.genererId(9);  //generer un id pour la database
+            while (listeIddb.get(0).contains(iddbpatient)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                iddbpatient = r.genererId(9);
+            }
+            String attribut = "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'";
+            System.out.println(attribut);
+            int i = co.insert("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse", "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'");
+            System.out.println(i);
+
+            try {
+                liste = co.requete("nom", "patient", "");
+            } catch (SQLException ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(liste.toString());
+            JOptionPane.showMessageDialog(this, "Patient ajouté", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+
+            try {
+                co.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.jTextField1.setText("");
+            this.jTextField2.setText("");
+            this.jTextField3.setText("");
+            this.jFormattedTextField1.setText("jj/mm/aaaa");
+            this.jTextField5.setText("");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -780,23 +867,23 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-           Vector<String> dataIni = new Vector();
-           dataIni.add("");
+        Vector<String> dataIni = new Vector();
+        dataIni.add("");
         jList2.setListData(dataIni);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-          JFileChooser fileOuvrir = new JFileChooser();
+        JFileChooser fileOuvrir = new JFileChooser();
 
         if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
-
+            
+this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
             this.jList2.setListData(dataUrlImg);
         }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-         if (jList2.getLastVisibleIndex() != -1) {
+        if (jList2.getLastVisibleIndex() != -1) {
             if (!"selectionnez une image...".equals(jList2.getModel().getElementAt(0))) {
                 new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
             }
@@ -814,8 +901,60 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        idPatient = jList1.getSelectedValue().toString().split(" ")[0]
+        idPatient = jList1.getSelectedValue().toString().split(" ")[0];
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listNom = new ArrayList<>();
+            ArrayList<String> listPrenom = new ArrayList<>();
+            ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+            ArrayList<Examen> listeE = f.ListeExamenBD();
+
+            ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+
+            for (int i = 0; i < listeP.size(); i++) {
+                model.addElement(listeP.get(i).getId() + "   " + listeP.get(i).getNom() + "   " + listeP.get(i).getPrenom());
+
+            }
+            jList1.setModel(model);
+            modelFromBD = model;
+
+        } catch (Exception ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        random r = new random();
+        ConnexionBD co = new ConnexionBD();
+        ArrayList<ArrayList<String>> listeId = new ArrayList<>();
+        String id = r.genererId(10);
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            listeId = co.requete("idpatient", "patient", "");
+            System.out.println(listeId.toString());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        while (listeId.get(0).contains(id)) {
+            id = r.genererId(10);
+        }
+        jTextField3.setText(id);
+        try {
+            co.deconnexion();
+        } catch (Exception ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton14MouseClicked
 
     /**
      * @param args the command line arguments
@@ -858,6 +997,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -883,6 +1023,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -908,6 +1049,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

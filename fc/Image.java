@@ -6,6 +6,11 @@
 package Cloud.fc;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -21,5 +26,53 @@ public class Image {
         this.id=id;
         this.img=img;
         this.NumArchivage=NumArchivage;
+    }
+
+    /**
+     * @return the img
+     */
+    public BufferedImage getImg() {
+        return img;
+    }
+
+    /**
+     * @param img the img to set
+     */
+    public void setImg(BufferedImage img) {
+        this.img = img;
+    }
+public void setImg(String path) {
+        try {
+            this.img = ImageIO.read(new File(path));
+        } catch (IOException ex) {
+            Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the NumArchivage
+     */
+    public String getNumArchivage() {
+        return NumArchivage;
+    }
+
+    /**
+     * @param NumArchivage the NumArchivage to set
+     */
+    public void setNumArchivage(String NumArchivage) {
+        this.NumArchivage = NumArchivage;
     }
 }

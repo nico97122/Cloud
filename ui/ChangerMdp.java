@@ -19,15 +19,20 @@ import java.util.logging.Logger;
  * @author Juliette-Trouillet
  */
 public class ChangerMdp extends javax.swing.JFrame {
+private String iddbpersonnel;
 
     /**
      * Creates new form ChangerMdp
+     * @param iddbpersonnel
      */
-    public ChangerMdp() {
+    public ChangerMdp(String iddbpersonnel) {
         initComponents();
         setResizable(false);
         jLabel4.setSize(1500,700);
         setSize(1500,700);
+        this.iddbpersonnel=iddbpersonnel;
+       
+        
     }
 
     /**
@@ -41,10 +46,8 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
@@ -57,12 +60,6 @@ public class ChangerMdp extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Identifiant : ");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(470, 150, 130, 22);
-
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ancien mot de passe : ");
@@ -74,15 +71,6 @@ public class ChangerMdp extends javax.swing.JFrame {
         jLabel3.setText("Nouve mot de passe :");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(390, 360, 220, 30);
-
-        jTextField1.setText("                            ");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(650, 140, 270, 40);
 
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,16 +137,14 @@ public class ChangerMdp extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try{
-            changePassword();
+            changePassword(iddbpersonnel);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } catch (Exception ex) {
+        Logger.getLogger(ChangerMdp.class.getName()).log(Level.SEVERE, null, ex);
+    }
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
         jPasswordField1.setText("");
@@ -198,7 +184,7 @@ public class ChangerMdp extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangerMdp().setVisible(true);
+                new ChangerMdp("123454321").setVisible(true);
             }
         });
     }
@@ -206,39 +192,40 @@ public class ChangerMdp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
 
-    public void changePassword() throws SQLException {
-      String id = jTextField1.getText();
+    public void changePassword(String iddbpersonnel) throws SQLException, Exception {
+      String id = iddbpersonnel;
       String mdp = jPasswordField1.getText();
       String nmdp = jPasswordField2.getText();
       ConnexionBD con = new ConnexionBD();
       ArrayList<ArrayList<String>> listeResultat = new ArrayList<>();
 
-        try{
-            con.connexion();
-             listeResultat = con.requete("mdp","personnel","where idpersonnel ="+"'"+id+"'");
 
+            con.connexion();
+            
+             listeResultat = con.requete("mdp","personnel","where iddbpersonnel ="+"'"+id+"'");
+                          
              if(listeResultat.get(0).get(0).equals(mdp)){
-                 con.update("personnel","mdp='"+nmdp+"'","where idpersonnel ="+"'"+id+"'");
+                 System.out.println("je suis la 1");
+                 con.update("personnel","mdp='"+nmdp+"'","where iddbpersonnel ="+"'"+id+"'");
+                 
                   JOptionPane.showMessageDialog(this, "MDP modifié ", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
                  this.dispose();
              }
              else{
-
+                
                  JOptionPane.showMessageDialog(this, "Erreur identifiant ou mot de passe ", "Erreur", JOptionPane.WARNING_MESSAGE);
              }
-      }catch(Exception ex){};
+      
 
     }
 

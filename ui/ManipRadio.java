@@ -11,6 +11,7 @@ import Cloud.fc.Date2;
 import Cloud.fc.Examen;
 import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Patient;
+import Cloud.fc.PersonneH;
 import Cloud.fc.random;
 import java.io.File;
 import java.sql.SQLException;
@@ -268,11 +269,6 @@ public class ManipRadio extends javax.swing.JFrame {
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
-            }
-        });
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
             }
         });
         jPanel7.add(jFormattedTextField2);

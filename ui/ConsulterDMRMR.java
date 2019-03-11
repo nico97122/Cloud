@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -63,7 +63,6 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
     public DefaultTreeModel buildTree() {
         id = jLabel7.getText();
         int k=0;
-        System.out.println("id2" + id);
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
         for (int i = 0; i < listeExamen.size(); i++) {

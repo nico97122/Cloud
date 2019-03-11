@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -31,13 +33,14 @@ public class PH extends javax.swing.JFrame {
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
     String idPatient;
     private DefaultListModel modelFromBD = new DefaultListModel();
-
+    private ArrayList<Examen> listeExamen = new ArrayList<>();
+    private ArrayList<Patient> listePatient = new ArrayList<>();
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
 
     /**
      * Creates new form PH
      */
-    public PH() {
+    public PH() throws SQLException, Exception {
         initComponents();
         setSize(1400, 700);
         jLabel3.setSize(1380, 660);
@@ -46,6 +49,10 @@ public class PH extends javax.swing.JFrame {
         jLabel12.setSize(1380, 660);
         System.out.println(jLabel13.getSize());
 
+        FonctionnaliteBD f = new FonctionnaliteBD();
+        listeExamen = f.ListeExamenBD();
+        listePatient = f.ListePatientBD(listeExamen);
+        jTree1.setModel(this.buildTree());
 //        System.out.println(ListeImgR.toString());
 //        
 //        try {
@@ -70,6 +77,49 @@ public class PH extends javax.swing.JFrame {
         jLabel1.setText(nomPH);
         jLabel2.setText(prenomPH);
 
+    }
+
+    public DefaultTreeModel buildTree() {
+        DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des Patients :");
+        DefaultTreeModel myModel2 = new DefaultTreeModel(racine);
+        int k = 0;
+        for (int i = 0; i < listePatient.size(); i++) {
+            System.out.println("coucou");
+            DefaultMutableTreeNode patients = new DefaultMutableTreeNode(listePatient.get(i).getNom());
+            DefaultMutableTreeNode prenomPat = new DefaultMutableTreeNode(listePatient.get(i).getPrenom());
+            DefaultMutableTreeNode idPat = new DefaultMutableTreeNode(listePatient.get(i).getId());
+            DefaultMutableTreeNode sexePat = new DefaultMutableTreeNode(listePatient.get(i).getSexe());
+            DefaultMutableTreeNode dateNPat = new DefaultMutableTreeNode(listePatient.get(i).getDateN()); 
+            DefaultMutableTreeNode Examens = new DefaultMutableTreeNode("Liste de ses examens");
+            k=0;
+            for (int j = 0; j < listeExamen.size(); j++) {
+                
+                if(listeExamen.get(j).getIdPat().equals(listePatient.get(i).getId())){                
+                k+=1;
+                DefaultMutableTreeNode exam = new DefaultMutableTreeNode("Examen n°" + k);
+                DefaultMutableTreeNode typeE = new DefaultMutableTreeNode(listeExamen.get(j).getTypeExamen());
+                DefaultMutableTreeNode dateE = new DefaultMutableTreeNode(listeExamen.get(j).getDate());
+                DefaultMutableTreeNode heureE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().getheure());
+                DefaultMutableTreeNode CRE = new DefaultMutableTreeNode(listeExamen.get(j).getCr());
+                DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                //              DefaultMutableTreeNode image= blablabla
+                Examens.add(exam);
+                exam.add(typeE);
+                exam.add(dateE);
+                exam.add(heureE);
+                exam.add(CRE);
+                exam.add(images);
+            }
+            }
+            racine.add(patients);
+            patients.add(prenomPat);
+            patients.add(idPat);
+            patients.add(sexePat);
+            patients.add(dateNPat);
+            patients.add(Examens);
+
+        }
+        return myModel2;
     }
 
     /**
@@ -296,7 +346,7 @@ public class PH extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTree1);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 110, 210, 384);
+        jScrollPane1.setBounds(240, 110, 520, 490);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jLabel12.setText("jLabel12");
@@ -520,18 +570,16 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           try {
-             String iddbPerso="";
-             
+        try {
+            String iddbPerso = "";
+
             FonctionnaliteBD f = new FonctionnaliteBD();
-            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
-            for (int i=0;i<listePerso.size();i++){
-                
-               
-                
-                if(listePerso.get(i).getNom().equals(this.jLabel1.getText()+"")){
-                    iddbPerso=listePerso.get(i).getId();
-                   
+            ArrayList<PersonneH> listePerso = f.ListePersonnelBD();
+            for (int i = 0; i < listePerso.size(); i++) {
+
+                if (listePerso.get(i).getNom().equals(this.jLabel1.getText() + "")) {
+                    iddbPerso = listePerso.get(i).getId();
+
                 }
             }
             ChangerMdp changemanip = new ChangerMdp(iddbPerso);
@@ -597,7 +645,7 @@ public class PH extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
 
-    // ModifImg modif=new ModifImg(pathImg);
+        // ModifImg modif=new ModifImg(pathImg);
         //  modif.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -686,7 +734,7 @@ public class PH extends javax.swing.JFrame {
             String iddbExamen = "";
             String iddbPersonnel = "";
             String idPatient = "";
-            random r = new random();          
+            random r = new random();
             String typeE = (String) this.jComboBox2.getSelectedItem();
             String NumArchivage = dateE.toString() + this.jFormattedTextField3.getText();
 
@@ -782,7 +830,11 @@ public class PH extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PH().setVisible(true);
+                try {
+                    new PH().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });

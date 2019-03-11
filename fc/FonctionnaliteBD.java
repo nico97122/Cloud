@@ -110,21 +110,21 @@ public class FonctionnaliteBD {
         return listeExamen;
     }
 
-    public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) {
-        ArrayList<Image> listeImage = new ArrayList<>();
-        ConnexionPACS cop = new ConnexionPACS();
-        ArrayList<String> listeNumArchiv = new ArrayList<>();
-        for (int j = 0; j < listeExamen.size(); j++) {
-            if (!listeNumArchiv.contains(listeExamen.get(j).getNumArchiv())) {
-                listeNumArchiv.add(listeExamen.get(j).getNumArchiv());
-            }
-        }
-        for (int i = 0; i < listeNumArchiv.size(); i++) {
-          cop.retrieveImage(listeNumArchiv.get(i), , format)
-            
-            listeImage.add()
-        } //Image(String pathIm, String id, String NumArchivage)
-    }
+//    public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) {
+//        ArrayList<Image> listeImage = new ArrayList<>();
+//        ConnexionPACS cop = new ConnexionPACS();
+//        ArrayList<String> listeNumArchiv = new ArrayList<>();
+//        for (int j = 0; j < listeExamen.size(); j++) {
+//            if (!listeNumArchiv.contains(listeExamen.get(j).getNumArchiv())) {
+//                listeNumArchiv.add(listeExamen.get(j).getNumArchiv());
+//            }
+//        }
+//        for (int i = 0; i < listeNumArchiv.size(); i++) {
+//          cop.retrieveImage(listeNumArchiv.get(i), , format)
+//            
+//            listeImage.add()
+//        } //Image(String pathIm, String id, String NumArchivage)
+//    }
 
     public void decoBD() {
         try {

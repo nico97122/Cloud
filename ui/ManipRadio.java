@@ -738,7 +738,7 @@ public class ManipRadio extends javax.swing.JFrame {
             
             String  idImg = r.genererId(9);  //generer un id pour la database
                         try {
-                listeIdImg = con.requetePACS("id", "");
+                listeIdImg = con.requetePACS("id", "PACS", "");
                 
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);

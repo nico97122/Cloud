@@ -6,6 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnexionPACS {
+    private Connection con = null;
+    private Statement stmt = null;
+    private ResultSet res = null;
+    private ResultSetMetaData resMeta = null;
+    private String query = null;
 
     String driverName = "com.mysql.cj.jdbc.Driver";
    // String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
@@ -13,7 +18,7 @@ public class ConnexionPACS {
     String dbName = "PACS";
     String userName = "cloudbd";
     String password = "cloudSIR";
-    Connection con = null;
+
 
     public void saveImage(String path,int id,String numero){
 
@@ -89,20 +94,31 @@ public class ConnexionPACS {
     }
 
 
-    public ResultSet result(String query){
-        Statement stmt = null;
-        ResultSet res = null;
+    public boolean existInPACS(String attribut, String table, String s)throws SQLException{
+
+        ArrayList<ArrayList<String>> liste = new ArrayList<ArrayList<String>>();
+
         try {
-            res = stmt.executeQuery(query);
-            return res;
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnexionBD.class.getName()).log(Level.SEVERE, null, ex);
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url, userName, password);
+            Statement stmt = con.createStatement();
+            //ResultSet rs = stmt.executeQuery("select image from PACS where "+attribut+" = " + s + ";");
+            liste = requetePACS(attribut,table,"where "+attribut+"= "+s);
+
+
+        }catch(Exception ex){};
+
+        if(liste.get(0).isEmpty()){
+            return false;
         }
-        return null;
+        else{
+            return true;
+        }
+
     }
 
 
-    public ArrayList<ArrayList<String>> requetePACS(String champs,String condition)throws SQLException{
+    public ArrayList<ArrayList<String>> requetePACS(String champs, String table, String condition)throws SQLException{ //gestion des resultats de requetes vides a implementer, tester avec éléments nulls
 
         String stringToSplit = new String(champs);
         String[] tempArray;
@@ -112,10 +128,9 @@ public class ConnexionPACS {
         int nbChamps = 0;
         tempArray = stringToSplit.split(delimiter);// les champs sont séparés et stocké dans un Array
         nbChamps = tempArray.length;
-
-        compositionRequete = "SELECT "+ champs +" FROM PACS where "+ condition + ";" ; //élaboration de la requete à partir des paramètres
-
+        compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
         resultatRequete = result(compositionRequete);
+
 
         ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);
 
@@ -137,8 +152,41 @@ public class ConnexionPACS {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
         return listResultat;
+    }
+
+
+    public ResultSet result(String query){
+        this.query = query;
+        try {
+            res = stmt.executeQuery(query);
+            this.res=res;
+            resMeta = res.getMetaData();
+            this.resMeta = resMeta;
+            return res;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void connexion() throws Exception {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); //Chargement du pilote MySQL.
+        } catch (ClassNotFoundException e) {System.out.println ("Problème au chargement"+e.toString());}//Gestion erreur de connexion
+        try {
+            Connection con = DriverManager.getConnection(url,userName,password);
+            this.con=con;
+            Statement stmt = con.createStatement();
+            this.stmt=stmt;
+        } catch (SQLException e) {
+        }
+
+        if(con!=null) {
+            System.out.println("connecté");
+        }else{
+            System.out.println("pas connecté");}
+
     }
     
 }

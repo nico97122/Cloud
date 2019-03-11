@@ -416,7 +416,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2MouseClicked
 
     private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
-        jFormattedTextField1.selectAll();
+        jFormattedTextField1.setText("");
     }//GEN-LAST:event_jFormattedTextField1MouseClicked
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked

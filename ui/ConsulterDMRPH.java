@@ -223,9 +223,13 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PH ph = new PH();
-        ph.setVisible(true);
-        this.dispose();
+        try {
+            PH ph = new PH();
+            ph.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

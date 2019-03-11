@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,7 +31,6 @@ public class PH extends javax.swing.JFrame {
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
     String idPatient;
     private DefaultListModel modelFromBD = new DefaultListModel();
-    
 
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
 
@@ -42,10 +42,10 @@ public class PH extends javax.swing.JFrame {
         setSize(1400, 700);
         jLabel3.setSize(1380, 660);
         jLabel4.setSize(1300, 660);
-        jLabel13.setSize(1380,660);
-        jLabel12.setSize(1380,660);
-         System.out.println(jLabel13.getSize());
-       
+        jLabel13.setSize(1380, 660);
+        jLabel12.setSize(1380, 660);
+        System.out.println(jLabel13.getSize());
+
 //        System.out.println(ListeImgR.toString());
 //        
 //        try {
@@ -60,17 +60,16 @@ public class PH extends javax.swing.JFrame {
 //        }
 //        Vector<String> ListeImgV = new Vector(ListeImgR2);
 //
-
-
     }
-    public PH(String nomPH,String prenomPH) {
+
+    public PH(String nomPH, String prenomPH) {
         initComponents();
         setSize(1500, 700);
         jLabel3.setSize(1300, 700);
         jLabel4.setSize(1300, 700);
         jLabel1.setText(nomPH);
         jLabel2.setText(prenomPH);
-      
+
     }
 
     /**
@@ -144,7 +143,7 @@ public class PH extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nom ");
+        jLabel1.setText("House");
         jPanel4.add(jLabel1);
         jLabel1.setBounds(111, 90, 430, 58);
 
@@ -369,6 +368,11 @@ public class PH extends javax.swing.JFrame {
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField1.setText("jj/mm/aaaa");
+        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jFormattedTextField1);
         jFormattedTextField1.setBounds(290, 445, 220, 28);
 
@@ -403,7 +407,7 @@ public class PH extends javax.swing.JFrame {
         jButton8.setBounds(740, 550, 110, 29);
 
         jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Url" };
+            String[] strings = { "selectionnez une image..." };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -455,6 +459,11 @@ public class PH extends javax.swing.JFrame {
         jButton11.setBounds(870, 550, 110, 30);
 
         jButton12.setText("Enregistrer");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton12);
         jButton12.setBounds(1100, 580, 110, 40);
 
@@ -587,9 +596,9 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-    
+
     // ModifImg modif=new ModifImg(pathImg);
-   //  modif.setVisible(true);
+        //  modif.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -598,7 +607,7 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
         // TODO add your handling code here:
-        ConnexionSIR co=new ConnexionSIR();
+        ConnexionSIR co = new ConnexionSIR();
         this.dispose();
         co.setVisible(true);
     }//GEN-LAST:event_jButton15MouseClicked
@@ -608,7 +617,7 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                try {
+        try {
             FonctionnaliteBD f = new FonctionnaliteBD();
             DefaultListModel model = new DefaultListModel();
             ArrayList<String> listNom = new ArrayList<>();
@@ -630,6 +639,118 @@ public class PH extends javax.swing.JFrame {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        ArrayList<String> listenompatient = new ArrayList<>();
+        ConnexionBD co = new ConnexionBD();
+        boolean b = false;
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {// verifie si la patient existe dans la bd            
+
+            listenompatient = co.requete("nom", "patient", "").get(0);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < listenompatient.size(); i++) {
+            if (listenompatient.get(i).toLowerCase().equals(this.jTextField2.getText().toLowerCase())) {
+                b = true;
+            }
+        }
+
+        if (b == false) {
+            JOptionPane.showMessageDialog(this, "Patient Inexistant", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (this.jList2.getModel().getElementAt(0).equals("selectionnez une image...") || this.jList2.getModel().getElementAt(0).equals("")) {
+            JOptionPane.showMessageDialog(this, "Veuillez ajouter une image", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (jFormattedTextField2.getText().equals("jj/mm/aaaa")) {  //on regarde si l'utilisateur à bien completé la date
+            JOptionPane.showMessageDialog(this, "Veuillez compléter la date de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (jFormattedTextField3.getText().equals("hh:mm")) {
+            JOptionPane.showMessageDialog(this, "Veuillez compléter l'heure de l'examen", "Erreur", JOptionPane.WARNING_MESSAGE);
+        } else if (jFormattedTextField1.getText().equals("jj/mm/aaaa")) {
+            JOptionPane.showMessageDialog(this, "Veuillez compléter la date de naissance", "Erreur", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            ArrayList<ArrayList<String>> listeIdExamen = new ArrayList<>();
+            String nom = this.jTextField2.getText();
+            String prenom = this.jTextField3.getText();
+            Date2 date = new Date2(jFormattedTextField1.getText());
+            Date2 dateE = new Date2(jFormattedTextField2.getText() + " " + this.jFormattedTextField3.getText());
+
+            String NomPerso = this.jLabel1.getText();
+
+            String iddbExamen = "";
+            String iddbPersonnel = "";
+            String idPatient = "";
+            random r = new random();          
+            String typeE = (String) this.jComboBox2.getSelectedItem();
+            String NumArchivage = dateE.toString() + this.jFormattedTextField3.getText();
+
+            try {
+                listeIdExamen = co.requete("iddbexamen", "examen", "");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {//prend id ccorrespondant au patient dans la bd
+                idPatient = co.requete("idpatient", "patient", "where nom= '" + nom + "'").get(0).get(0);
+            } catch (SQLException ex) {
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            iddbExamen = r.genererId(9);  //generer un id pour la database
+            while (listeIdExamen.get(0).contains(iddbExamen)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                iddbExamen = r.genererId(9);
+            }
+            // System.out.println("iddbExamen :" + iddbExamen);
+
+            try {
+                iddbPersonnel = co.requete("iddbpersonnel", "personnel", "where nom=" + "'" + NomPerso + "'").get(0).get(0);
+            } catch (SQLException ex) {
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'");
+
+            try {
+                co.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//            ConnexionPACS con = new ConnexionPACS();//gestion de l'enregistrement des images
+//            try {
+//                con.connexion();
+//            } catch (Exception ex) {
+//                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
+
+//            String idImg = r.genererId(9);  //generer un id pour la database
+//            try {
+//                listeIdImg = con.requetePACS("id", "PACS", "");
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
+//                iddbExamen = r.genererId(9);
+//            }
+//            for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
+//                con.saveImage(this.jList2.getModel().getElementAt(i), Integer.parseInt(idImg), iddbExamen);
+//
+//            }
+            JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
+        jFormattedTextField1.setText("");
+    }//GEN-LAST:event_jFormattedTextField1MouseClicked
 
     /**
      * @param args the command line arguments

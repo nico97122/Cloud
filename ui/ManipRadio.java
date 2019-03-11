@@ -736,7 +736,7 @@ public class ManipRadio extends javax.swing.JFrame {
             String iddbPersonnel = "";
             String idPatient = "";
             random r = new random();
-            int sexe = this.jComboBox1.getSelectedIndex();
+//            int sexe = this.jComboBox1.getSelectedIndex();
             String typeE = (String) this.jComboBox2.getSelectedItem();
             String NumArchivage = dateE.toString() + this.jFormattedTextField4.getText();
 

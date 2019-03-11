@@ -24,6 +24,7 @@ public class Fonctionnalite {
                listeElement.add(liste.get(i));
                
            }
+          
            
 
        }
@@ -50,4 +51,5 @@ public class Fonctionnalite {
             return  o1.compareTo(o2);
         }
     }
+    
 }

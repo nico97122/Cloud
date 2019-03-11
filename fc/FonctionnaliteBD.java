@@ -37,7 +37,7 @@ public class FonctionnaliteBD {
                 s = Sexe.Homme;
             }
 
-            listePatient.add(new Patient(listeDonneesDesPatients.get(1).get(j), listeDonneesDesPatients.get(2).get(j), new Date2(listeDonneesDesPatients.get(0).get(j)), listeDonneesDesPatients.get(4).get(j), s, new ArrayList<>()));
+            listePatient.add(new Patient(listeDonneesDesPatients.get(1).get(j), listeDonneesDesPatients.get(2).get(j), new Date2(listeDonneesDesPatients.get(0).get(j)), listeDonneesDesPatients.get(4).get(j), s, new ArrayList<Examen>()));
         }// Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam)
         for (int i = 0; i < listePatient.size(); i++) {
             for (int k = 0; k < listeExamen.size(); k++) {

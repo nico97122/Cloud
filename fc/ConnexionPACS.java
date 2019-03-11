@@ -2,10 +2,12 @@ package Cloud.fc;
 import java.sql.*;
 import java.util.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnexionPACS {
 
-    String driverName = "com.mysql.jdbc.Driver";
+    String driverName = "com.mysql.cj.jdbc.Driver";
    // String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
     String url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_pacs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String dbName = "PACS";
@@ -85,4 +87,58 @@ public class ConnexionPACS {
             System.out.println(ex.getMessage());
         }
     }
+
+
+    public ResultSet result(String query){
+        Statement stmt = null;
+        ResultSet res = null;
+        try {
+            res = stmt.executeQuery(query);
+            return res;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+
+    public ArrayList<ArrayList<String>> requetePACS(String champs,String condition)throws SQLException{
+
+        String stringToSplit = new String(champs);
+        String[] tempArray;
+        String delimiter = ",";
+        String compositionRequete = "";
+        ResultSet resultatRequete;
+        int nbChamps = 0;
+        tempArray = stringToSplit.split(delimiter);// les champs sont séparés et stocké dans un Array
+        nbChamps = tempArray.length;
+
+        compositionRequete = "SELECT "+ champs +" FROM PACS where "+ condition + ";" ; //élaboration de la requete à partir des paramètres
+
+        resultatRequete = result(compositionRequete);
+
+        ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);
+
+        for(int i = 0; i<nbChamps; i++){
+            listResultat.add(new ArrayList<String>());
+        }
+
+        try{
+
+            while(resultatRequete.next()){
+
+                for(int i = 0; i<nbChamps; i++){
+
+                    listResultat.get(i).add(resultatRequete.getString(tempArray[i]));
+
+                }
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listResultat;
+    }
+    
 }

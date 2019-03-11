@@ -42,10 +42,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jTextField3.setText("");
 
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
-        ListeExamenBD listeE = new ListeExamenBD();
-        listeExamen = listeE.getListeExamen();
-        ListePatientBD listeP = new ListePatientBD(listeExamen);
-        listePatient = listeP.getListePatient();
+        FonctionnaliteBD f = new FonctionnaliteBD();
+        ArrayList<Examen> listeE = f.ListeExamenBD();
+        listeExamen = listeE;
+        ArrayList<Patient> listeP = f.ListePatientBD(listeExamen);
+        listePatient = listeP;
 
     }
 
@@ -61,10 +62,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jTextField3.setText("");
 
         //on recolte toutes les info sur le patient pour creer notre liste patient et notre liste examen
-        ListeExamenBD listeE = new ListeExamenBD();
-        listeExamen = listeE.getListeExamen();
-        ListePatientBD listeP = new ListePatientBD(listeExamen);
-        listePatient = listeP.getListePatient();
+        FonctionnaliteBD f = new FonctionnaliteBD();
+        ArrayList<Examen> listeE = f.ListeExamenBD();
+        listeExamen = listeE;
+        ArrayList<Patient> listeP = f.ListePatientBD(listeExamen);
+        listePatient = listeP;
 
     }
 
@@ -194,6 +196,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Trier");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton4);
         jButton4.setBounds(270, 90, 63, 27);
 
@@ -226,6 +233,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel1.add(jButton7);
         jButton7.setBounds(950, 610, 110, 40);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Selectionnez un patient...");
@@ -478,10 +486,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.jTextField1.setText("");
-              this.jTextField2.setText("");
-                this.jTextField3.setText("");
-                this.jFormattedTextField1.setText("jj/mm/aaaa");
-                  this.jTextField5.setText("");
+            this.jTextField2.setText("");
+            this.jTextField3.setText("");
+            this.jFormattedTextField1.setText("jj/mm/aaaa");
+            this.jTextField5.setText("");
         }
 
 
@@ -538,72 +546,82 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            ConnexionBD co = new ConnexionBD();
+            FonctionnaliteBD f = new FonctionnaliteBD();
             DefaultListModel model = new DefaultListModel();
             ArrayList<String> listNom = new ArrayList<>();
             ArrayList<String> listPrenom = new ArrayList<>();
             ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
 
-            ListeExamenBD listeE = new ListeExamenBD();
+            ArrayList<Examen> listeE = f.ListeExamenBD();
 
-            ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
+            ArrayList<Patient> listeP = f.ListePatientBD(listeE);
 
+            for (int i = 0; i < listeP.size(); i++) {
+                model.addElement(listeP.get(i).getId() + "   " + listeP.get(i).getNom() + "   " + listeP.get(i).getPrenom());
 
-            for (int i = 0; i < listeP.getListePatient().size(); i++) {
-                model.addElement(listeP.getListePatient().get(i).getId() + "   " + listeP.getListePatient().get(i).getNom() + "   " + listeP.getListePatient().get(i).getPrenom());
-                
             }
             jList1.setModel(model);
-            modelFromBD=model;
+            modelFromBD = model;
 
         } catch (Exception ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
 
     }//GEN-LAST:event_formWindowOpened
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
         if (jList1.isSelectionEmpty() == false) {
-              
-         Patient p= new Patient();
-         
+
+            Patient p = new Patient();
+
             try {
-              
+
                 String IdNomPrenom = jList1.getSelectedValue().toString();
                 String nom = IdNomPrenom.split("   ")[1];
                 String prenom = IdNomPrenom.split("   ")[2];
                 String Id = IdNomPrenom.split("   ")[0];
-  
-                ListeExamenBD listeE = new ListeExamenBD();
-                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
-               
-                for (int i = 0; i < listeP.getListePatient().size(); i++) {
-                    if (listeP.getListePatient().get(i).getId().equals(Id)) {
-                        p.setDateN(listeP.getListePatient().get(i).getDateN());
+                FonctionnaliteBD f = new FonctionnaliteBD();
+                ArrayList<Examen> listeE = f.ListeExamenBD();
+                ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+                ArrayList<PersonneH> listePersonnel = f.ListePersonnelBD();
+                for (int i = 0; i < listeP.size(); i++) {
+                    if (listeP.get(i).getId().equals(Id)) {
+                        p.setDateN(listeP.get(i).getDateN());
                         p.setId(Id);
-                        p.setListeExam(listeP.getListePatient().get(i).getListeExam());
+                        p.setListeExam(listeP.get(i).getListeExam());
                         p.setNom(nom);
                         p.setPrenom(prenom);
-                        p.setSexe(listeP.getListePatient().get(i).getSexe());
-                      
+                        p.setSexe(listeP.get(i).getSexe());
+
                     }
-                  
+
                 }
-                String AffichageLE="";
-                
-                for(int i=0;i<p.getListeExam().size();i++){
-                     AffichageLE+= "\n  Type Examen : "+p.getListeExam().get(i).getTypeExamen().toString()+"\n"+"  Date : "+p.getListeExam().get(i).getDate()+"\n"+"  Praticien : "+"blabla"+"\n"+"  Compte Rendu: :\n"+p.getListeExam().get(i).getCr()+"\n";
+                String AffichageLE = "";
+                String nomPracticien = "";
+
+                for (int j = 0; j < p.getListeExam().size(); j++) {
+                    for (int x = 0; x < listePersonnel.size(); x++) {
+                        //System.out.println("idmed"+p.getListeExam().get(j).);
+                        //  System.out.println("idmed"+listePersonnel.get(x).getId());
+                        if (p.getListeExam().get(j).getIdMed().equals(listePersonnel.get(x).getId())) {
+
+                            nomPracticien = listePersonnel.get(x).getNom() + listePersonnel.get(x).getPrenom();
+                        }
+                    }
+
                 }
-               
-                this.jTextArea1.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString()+"\n"+"Sexe :"+p.getSexe().toString()+"\n"+"Examens : \n"+AffichageLE);
-                
+                for (int i = 0; i < p.getListeExam().size(); i++) {
+                    AffichageLE += "\n  Type Examen : " + p.getListeExam().get(i).getTypeExamen().toString() + "\n" + "  Date : " + p.getListeExam().get(i).getDate() + "\n" + "  Praticien : " + nomPracticien + "\n" + "  Compte Rendu: :\n" + p.getListeExam().get(i).getCr() + "\n";
+
+                }
+
+                this.jTextArea1.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString() + "\n" + "Sexe :" + p.getSexe().toString() + "\n" + "Examens : \n" + AffichageLE);
+
             } catch (Exception ex) {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
 
         }
 
@@ -614,20 +632,90 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-       ListModel l = this.jList1.getModel();
-       DefaultListModel model = new DefaultListModel();
-       
-       ArrayList<String> listePourRecherche = new ArrayList<>();
-        for (int i=0;i<modelFromBD.getSize();i++){
+        ListModel l = this.jList1.getModel();
+        DefaultListModel model = new DefaultListModel();
+
+        ArrayList<String> listePourRecherche = new ArrayList<>();
+        for (int i = 0; i < modelFromBD.getSize(); i++) {
             listePourRecherche.add((String) modelFromBD.getElementAt(i));
         }
         Fonctionnalite f = new Fonctionnalite();
-        ArrayList<String> listeElemTrouve=f.recherche(this.jTextField4.getText(), listePourRecherche);
-        for(int i=0;i<listeElemTrouve.size();i++){
+        ArrayList<String> listeElemTrouve = f.recherche(this.jTextField4.getText(), listePourRecherche);
+        for (int i = 0; i < listeElemTrouve.size(); i++) {
             model.addElement(listeElemTrouve.get(i));
         }
-          jList1.setModel(model);
+        jList1.setModel(model);
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+
+        if (this.jComboBox2.getSelectedIndex() == 3) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                model.addElement(listeTrie.get(j));
+            }
+            this.jList1.setModel(model);
+        }
+
+        if (this.jComboBox2.getSelectedIndex() == 1) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[1]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[1].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+        if (this.jComboBox2.getSelectedIndex() == 2) {
+            ArrayList<String> listeTrie = new ArrayList<>();
+            DefaultListModel model = new DefaultListModel();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[2]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[2].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

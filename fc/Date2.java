@@ -80,6 +80,9 @@ public class Date2 {
         this.minute = minute;
 
     }
+    public String getheure(){
+        return this.heure+":"+this.minute;
+    }
 
     public Date2 comparerDate(Date2 d1, Date2 d2) {  // renvoie la date la plus récente
         Date da1 = new Date(d1.modifFormat(d1)[0], d1.modifFormat(d1)[1], d1.modifFormat(d1)[2], d1.modifFormat(d1)[3], d1.modifFormat(d1)[4]);

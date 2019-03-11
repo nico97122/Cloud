@@ -31,12 +31,13 @@ public class Fonctionnalite {
                   for (int j=0;j<listeElement.size();j++){
                String replace = listeElement.get(j).replace(listeElement.get(j).charAt(0), listeElement.get(j).toUpperCase().charAt(0));
                listeElement.set(j, replace);
-               System.out.println(listeElement.get(j).replace(listeElement.get(j).charAt(0), listeElement.get(j).toUpperCase().charAt(0)));
+              
            }
-       System.out.println(listeElement.toString());
+       
        return listeElement;
    }
-    public ArrayList<String> tri(ArrayList<String> liste){
+   
+   public ArrayList<String> tri(ArrayList<String> liste){
         liste.sort(new ComparatorImpl());
         return liste;
     }
@@ -48,7 +49,7 @@ public class Fonctionnalite {
 
         @Override
         public int compare(String o1, String o2) {
-            return  o1.compareTo(o2);
+            return  o1.compareToIgnoreCase(o2);
         }
     }
     

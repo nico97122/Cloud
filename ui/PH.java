@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -28,6 +29,7 @@ public class PH extends javax.swing.JFrame {
     public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
     String idPatient;
+    private DefaultListModel modelFromBD = new DefaultListModel();
     
 
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
@@ -129,6 +131,11 @@ public class PH extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -252,7 +259,7 @@ public class PH extends javax.swing.JFrame {
 
         jLabel14.setText("image à modifier");
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(210, 60, 100, 40);
+        jLabel14.setBounds(210, 60, 140, 40);
 
         jButton13.setText("Modifier");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -485,7 +492,6 @@ public class PH extends javax.swing.JFrame {
         try {
             ConsulterDMRPH consultDMR = new ConsulterDMRPH(idPatient);
             consultDMR.setVisible(true);
-            this.dispose();
             //BD
         } catch (Exception ex) {
             Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
@@ -583,6 +589,30 @@ public class PH extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         idPatient = jList1.getSelectedValue().toString().split(" ")[0];
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                try {
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listNom = new ArrayList<>();
+            ArrayList<String> listPrenom = new ArrayList<>();
+            ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+            ArrayList<Examen> listeE = f.ListeExamenBD();
+
+            ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+
+            for (int i = 0; i < listeP.size(); i++) {
+                model.addElement(listeP.get(i).getId() + "   " + listeP.get(i).getNom() + "   " + listeP.get(i).getPrenom());
+
+            }
+            jList1.setModel(model);
+            modelFromBD = model;
+
+        } catch (Exception ex) {
+            Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

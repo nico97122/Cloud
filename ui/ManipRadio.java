@@ -8,6 +8,8 @@ package Cloud.ui;
 import Cloud.fc.ConnexionBD;
 import Cloud.fc.ConnexionPACS;
 import Cloud.fc.Date2;
+import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.PersonneH;
 import Cloud.fc.random;
 import java.io.File;
 import java.sql.SQLException;
@@ -148,7 +150,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Onette");
+        jLabel14.setText("Onette ");
         jPanel5.add(jLabel14);
         jLabel14.setBounds(70, 70, 270, 80);
 
@@ -247,17 +249,22 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel7.add(jTextField5);
         jTextField5.setBounds(350, 320, 260, 40);
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField2.setText("jj/mm/aaaa");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
             }
         });
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(jFormattedTextField2);
         jFormattedTextField2.setBounds(350, 420, 260, 40);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField3.setText("jj/mm/aaaa");
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -310,11 +317,6 @@ public class ManipRadio extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
         jPanel7.add(jButton5);
         jButton5.setBounds(670, 560, 110, 27);
 
@@ -364,6 +366,8 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton13.setBounds(790, 600, 120, 30);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jLabel12.setText("jj/mm/aaaa");
+        jLabel12.setToolTipText("");
         jPanel7.add(jLabel12);
         jLabel12.setBounds(0, 0, 1420, 650);
 
@@ -572,17 +576,30 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ChangerMdp changemanip = new ChangerMdp();
-        changemanip.setVisible(true);
+        try {
+             String iddbPerso="";
+             
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
+            for (int i=0;i<listePerso.size();i++){
+                
+               
+                
+                if(listePerso.get(i).getNom().equals(this.jLabel14.getText()+"")){
+                    iddbPerso=listePerso.get(i).getId();
+                   
+                }
+            }
+            ChangerMdp changemanip = new ChangerMdp(iddbPerso);
+            changemanip.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // A toi de jouer nico  , non :<
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
         jTextField4.setText("");
@@ -729,11 +746,7 @@ public class ManipRadio extends javax.swing.JFrame {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             } 
             ConnexionPACS con=new ConnexionPACS();//gestion de l'enregistrement des images
-           try {
-               con.connexion();
-           } catch (Exception ex) {
-               Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-           }
+          
             ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
             
             String  idImg = r.genererId(9);  //generer un id pour la database
@@ -778,8 +791,8 @@ public class ManipRadio extends javax.swing.JFrame {
           JFileChooser fileOuvrir = new JFileChooser();
 
         if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
-
+            
+this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
             this.jList2.setListData(dataUrlImg);
         }
     }//GEN-LAST:event_jButton5MouseClicked
@@ -801,6 +814,10 @@ public class ManipRadio extends javax.swing.JFrame {
     private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

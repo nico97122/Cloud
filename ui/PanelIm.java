@@ -10,6 +10,7 @@ package Cloud.ui;
  * @author nicol
  */
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -251,6 +252,34 @@ public class PanelIm extends JPanel {
                 panneauImage.getPreferredSize().height);
         panneauImage.paint(g);
         ImageIO.write(tamponSauvegarde, "JPG", new File(racineFichier + nomFichier));
+    }
+    protected BufferedImage annoterImg(BufferedImage image,int x, int y,  String text) {
+        int ligne = image.getWidth();
+        int colonne = image.getHeight();
+        Color pix;
+
+        BufferedImage imgDest =new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
+        for (int i = 0; i < ligne; i++) {
+            for (int j = 0; j < colonne; j++) {
+        pix = new Color(image.getRGB(i, j));
+                int r = pix.getRed();
+                int g = pix.getGreen();
+                int b = pix.getBlue();
+                Color pix2 = new Color(r, g, b);
+                int pixInt = pix2.getRGB();
+                imgDest.setRGB(i, j, pixInt);
+            }
+
+        }
+        Graphics2D gO = imgDest.createGraphics();
+
+       
+        gO.setColor(Color.red);
+        gO.setFont(new Font("SansSerif", Font.BOLD, 12));
+        gO.drawString(text, x, y);
+        System.err.println(text + x + y);
+        return imgDest;
+
     }
 
 }

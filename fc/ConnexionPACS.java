@@ -55,8 +55,9 @@ public class ConnexionPACS {
             ResultSet rs = stmt.executeQuery("select image from PACS where numeroArchivage ="+numero+";" );
             int i = 0;
             while (rs.next()) {
+                String id= rs.getString("id");
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("src/"+numero+"."+format));
+                OutputStream f = new FileOutputStream(new File("src/"+id+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {

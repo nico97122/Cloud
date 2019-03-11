@@ -6,8 +6,11 @@
 package Cloud.ui;
 
 import Cloud.fc.ConnexionBD;
+import Cloud.fc.Date2;
 import Cloud.fc.Examen;
-import Cloud.fc.ListeExamenBD;
+import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.Patient;
+import Cloud.fc.Sexe;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,57 +20,78 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Juliette-Trouillet
  */
-public class ConsulterDMRMR extends javax.swing.JFrame  {
+public class ConsulterDMRMR extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsulterDMRMR
      */
     private ArrayList<Examen> listeExamen = new ArrayList<>();
-    
-    public ConsulterDMRMR() throws SQLException, Exception {
+    private ArrayList<Patient> listePatient = new ArrayList<>();
+    private String id = "";
+    private Patient p = new Patient();
+
+    public ConsulterDMRMR(String idPat) throws SQLException, Exception {
         initComponents();
-        setSize(1500,700);
-        jLabel6.setSize(1500,700);
-        ListeExamenBD listeE = new ListeExamenBD();
-        listeExamen = listeE.getListeExamen();
+        setSize(1500, 700);
+        jLabel6.setSize(1500, 700);
+        FonctionnaliteBD f = new FonctionnaliteBD();
+        listeExamen = f.ListeExamenBD();
+        listePatient = f.ListePatientBD(listeExamen);
+        id = idPat;
+        jLabel7.setText(id);
+
+        for (int i = 0; i < listePatient.size(); i++) {
+            if (listePatient.get(i).getId().equals(id)) {
+                jLabel1.setText(listePatient.get(i).getNom());
+                jLabel2.setText(listePatient.get(i).getPrenom());
+                jLabel3.setText(listePatient.get(i).getDateN().toString());
+                jLabel4.setText(listePatient.get(i).getSexe().toString());            
+            }
+        }
+
         jTree1.setModel(this.buildTree());
+
     }
-       
+
     ConnexionBD co = new ConnexionBD();
 
-    DefaultMutableTreeNode ListeE = new DefaultMutableTreeNode("Liste des examens"); // C'est ma racine
-
-    
-    public DefaultTreeModel buildTree(){
+    public DefaultTreeModel buildTree() {
+        id = jLabel7.getText();
+        System.out.println("id2" + id);
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
-        
-        for(int i=0;i<listeExamen.size();i++){
-            DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + i);
-            DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
-            DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
-            //DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).???);
-            DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
-            DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
+        for (int i = 0; i < listeExamen.size(); i++) {
+            System.out.println("liste :" + listeExamen.get(i).getIdPat());
+            System.out.println(id);
+            if (listeExamen.get(i).getIdPat().equals(id)) {
+                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + i);
+                DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
+                DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
+                DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());
+                DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
+                DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
             //DefaultMutableTreeNode images = new DefaultMutableTreeNode(listeExamen.get(i)???);
-            //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
-            //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
-            examens.add(type);
-            examens.add(date);
-            //examens.add(heure);
-            examens.add(nomPH);
-            examens.add(CR);
+                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                examens.add(type);
+                examens.add(date);
+                //examens.add(heure);
+                examens.add(nomPH);
+                examens.add(CR);
 //            examens.add(images);
 //            images.add(image);
 //            images.add(image);
-            racine.add(examens);
+                racine.add(examens);
+            }
         }
         return myModel;
-}
+
+    }
 
 //      public void TreeDemo() {
 //
@@ -84,7 +108,6 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
 //    category = new DefaultMutableTreeNode();
 //    top.add(category);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +127,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
         jTree1 = new javax.swing.JTree();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,25 +139,25 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(363, 119, 41, 22);
+        jLabel1.setBounds(360, 80, 160, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(422, 119, 66, 22);
+        jLabel2.setBounds(360, 120, 170, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date de naissance");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(696, 119, 157, 22);
+        jLabel3.setBounds(767, 90, 160, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sexe");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(931, 119, 41, 22);
+        jLabel4.setBounds(820, 130, 100, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,6 +225,12 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
         jPanel1.add(jButton2);
         jButton2.setBounds(0, -10, 50, 40);
 
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("id");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(360, 150, 130, 22);
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 0, 1440, 670);
@@ -232,7 +262,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ModifImg modif = new ModifImg();
         modif.setVisible(true);
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTree1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTree1ComponentShown
@@ -270,7 +300,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ConsulterDMRMR().setVisible(true);
+                    new ConsulterDMRMR("67322946").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(ConsulterDMRMR.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -287,6 +317,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame  {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;

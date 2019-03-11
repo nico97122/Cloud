@@ -617,7 +617,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         try {
-            ConsulterDMRMR consultMR = new ConsulterDMRMR(NomPat);
+            ConsulterDMRMR consultMR = new ConsulterDMRMR(idPatient);
             consultMR.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
@@ -814,7 +814,7 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField4ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        idPatient = jList1.getSelectedValue().toString().split(" ")[0]
+        idPatient = jList1.getSelectedValue().toString().split(" ")[0];
     }//GEN-LAST:event_jList1MouseClicked
 
     /**

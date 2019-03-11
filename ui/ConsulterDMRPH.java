@@ -5,6 +5,16 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.Examen;
+import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.Patient;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author Juliette-Trouillet
@@ -14,10 +24,61 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     /**
      * Creates new form ConsulterDMR
      */
-    public ConsulterDMRPH() {
+    private ArrayList<Examen> listeExamen = new ArrayList<>();
+    private ArrayList<Patient> listePatient = new ArrayList<>();
+    private String id = "";
+    private Patient p = new Patient();
+
+    public ConsulterDMRPH(String idPat) throws SQLException, Exception {
         initComponents();
-        setSize(1500,700);
-        jLabel6.setSize(1500,700);
+        setSize(1500, 700);
+        jLabel6.setSize(1500, 700);
+        FonctionnaliteBD f = new FonctionnaliteBD();
+        listeExamen = f.ListeExamenBD();
+        listePatient = f.ListePatientBD(listeExamen);
+        id = idPat;
+        jLabel7.setText(id);
+
+        for (int i = 0; i < listePatient.size(); i++) {
+            if (listePatient.get(i).getId().equals(id)) {
+                jLabel2.setText(listePatient.get(i).getNom());
+                jLabel3.setText(listePatient.get(i).getPrenom());
+                jLabel4.setText(listePatient.get(i).getDateN().toString());
+                jLabel5.setText(listePatient.get(i).getSexe().toString());
+            }
+        }
+
+        jTree1.setModel(this.buildTree());
+    }
+
+    public DefaultTreeModel buildTree() {
+        id = jLabel7.getText();
+        DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
+        DefaultTreeModel myModel = new DefaultTreeModel(racine);
+        for (int i = 0; i < listeExamen.size(); i++) {
+            if (listeExamen.get(i).getIdPat().equals(id)) {
+                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + i);
+                DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
+                DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
+                DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());
+                DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
+                DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
+                //DefaultMutableTreeNode images = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                examens.add(type);
+                examens.add(date);
+                examens.add(heure);
+                examens.add(nomPH);
+                examens.add(CR);
+//            examens.add(images);
+//            images.add(image);
+//            images.add(image);
+                racine.add(examens);
+            }
+        }
+        return myModel;
+
     }
 
     /**
@@ -40,6 +101,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,31 +112,31 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Dossier Médical Radiologique");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(79, 26, 344, 32);
+        jLabel1.setBounds(79, 26, 369, 30);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nom");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(356, 122, 37, 24);
+        jLabel2.setBounds(360, 70, 130, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Prénom");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(415, 122, 62, 24);
+        jLabel3.setBounds(360, 100, 150, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date de naissance");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(612, 122, 149, 24);
+        jLabel4.setBounds(780, 80, 157, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexe");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(911, 122, 40, 24);
+        jLabel5.setBounds(840, 120, 100, 22);
 
         jTree1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des examens");
@@ -120,12 +182,12 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(805, 593, 125, 27);
+        jButton1.setBounds(805, 593, 147, 29);
 
         jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("Ajouter Compte Rendu ");
         jPanel1.add(jButton2);
-        jButton2.setBounds(594, 593, 181, 27);
+        jButton2.setBounds(594, 593, 205, 29);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +196,13 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(6, 6, 53, 29);
+        jButton3.setBounds(6, 6, 36, 32);
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("id");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(360, 130, 110, 22);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel6);
@@ -155,13 +223,13 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PH ph= new PH();
+        PH ph = new PH();
         ph.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ModifImg modif= new ModifImg();
+        ModifImg modif = new ModifImg();
         modif.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -197,7 +265,11 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsulterDMRPH().setVisible(true);
+                try {
+                    new ConsulterDMRPH("67322946").setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -212,6 +284,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;

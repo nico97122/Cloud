@@ -20,7 +20,6 @@ public class FonctionnaliteBD {
 
     public FonctionnaliteBD() throws Exception {
 
-     
     }
 
     public ArrayList<Patient> ListePatientBD(ArrayList<Examen> listeExamen) throws SQLException {
@@ -34,7 +33,7 @@ public class FonctionnaliteBD {
         Sexe s;
 
         for (int j = 0; j < listeDonneesDesPatients.get(0).size(); j++) {
-            
+
             if (listeDonneesDesPatients.get(3).get(j).equals("0")) {
                 s = Sexe.Femme;
             } else {
@@ -51,37 +50,38 @@ public class FonctionnaliteBD {
                 }
             }
         }
-         try {
+        try {
             co.deconnexion();
         } catch (Exception ex) {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listePatient;
     }
-     public ArrayList<PersonneH> ListePersonnelBD() throws SQLException {
-          try {
+
+    public ArrayList<PersonneH> ListePersonnelBD() throws SQLException {
+        try {
             co.connexion();
         } catch (Exception ex) {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-          ArrayList<PersonneH> listePersonnel = new ArrayList<>();
-         ArrayList<ArrayList<String>> listeDonneesPersonnel = co.requete("iddbpersonnel,nom,prenom,typepersonnel,iddbpersonnel,idpersonnel,mdp", " personnel ", "");
-         for (int k = 0; k < listeDonneesPersonnel.get(1).size(); k++) {
-             listePersonnel.add(new PersonneH(listeDonneesPersonnel.get(1).get(k),listeDonneesPersonnel.get(2).get(k),listeDonneesPersonnel.get(6).get(k),listeDonneesPersonnel.get(5).get(k),TypePersonnel.valueOf(listeDonneesPersonnel.get(3).get(k)),listeDonneesPersonnel.get(0).get(k)));
-           //  PersonneH(String nom,String prenom,String mdp, String idcon,TypePersonnel tp,String id
-         }
+        ArrayList<PersonneH> listePersonnel = new ArrayList<>();
+        ArrayList<ArrayList<String>> listeDonneesPersonnel = co.requete("iddbpersonnel,nom,prenom,typepersonnel,iddbpersonnel,idpersonnel,mdp", " personnel ", "");
+        for (int k = 0; k < listeDonneesPersonnel.get(1).size(); k++) {
+            listePersonnel.add(new PersonneH(listeDonneesPersonnel.get(1).get(k), listeDonneesPersonnel.get(2).get(k), listeDonneesPersonnel.get(6).get(k), listeDonneesPersonnel.get(5).get(k), TypePersonnel.valueOf(listeDonneesPersonnel.get(3).get(k)), listeDonneesPersonnel.get(0).get(k)));
+            //  PersonneH(String nom,String prenom,String mdp, String idcon,TypePersonnel tp,String id
+        }
         try {
             co.deconnexion();
         } catch (Exception ex) {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listePersonnel;
-     //A faire
-         
-     }
+        //A faire
+
+    }
 
     public ArrayList<Examen> ListeExamenBD() throws SQLException {
-         try {
+        try {
             co.connexion();
         } catch (Exception ex) {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,28 +95,36 @@ public class FonctionnaliteBD {
             String cr = listeDonneesExamens.get(3).get(k);
             TypeExam e = TypeExam.valueOf(listeDonneesExamens.get(4).get(k).toLowerCase());
             String IdMed = listeDonneesExamens.get(6).get(k);
-          
+
             Examen exam;
             exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed);
 
             listeExamen.add(exam);
 
         }
-         try {
+        try {
             co.deconnexion();
         } catch (Exception ex) {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeExamen;
     }
-//    public ArrayList<Image> ListeImageBD( ArrayList<Examen> listeExamen ){
-//        ArrayList<Image> listeImage=new ArrayList<>(); 
-//        ConnexionPACS cop=new ConnexionPACS();
-//        for(int i=0;i<listeExamen.size();i++){
-//            
-//            listeImage.add(new Image());
-//        }
-//    }
+
+    public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) {
+        ArrayList<Image> listeImage = new ArrayList<>();
+        ConnexionPACS cop = new ConnexionPACS();
+        ArrayList<String> listeNumArchiv = new ArrayList<>();
+        for (int j = 0; j < listeExamen.size(); j++) {
+            if (!listeNumArchiv.contains(listeExamen.get(j).getNumArchiv())) {
+                listeNumArchiv.add(listeExamen.get(j).getNumArchiv());
+            }
+        }
+        for (int i = 0; i < listeNumArchiv.size(); i++) {
+          cop.retrieveImage(listeNumArchiv.get(i), , format)
+            
+            listeImage.add()
+        } //Image(String pathIm, String id, String NumArchivage)
+    }
 
     public void decoBD() {
         try {

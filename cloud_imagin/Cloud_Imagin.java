@@ -21,29 +21,39 @@ public class Cloud_Imagin {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         // TODO codeint  application logic here
 
-        ArrayList<String> l = new ArrayList<>();
-        l.add("ni");
-        l.add("pi");
-        l.add("zri");
-        l.add("zi");
-        l.add("ai");
-        System.out.println(l.toString());
-        FonctionnaliteBD f = new FonctionnaliteBD();
- 
-        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
-        
-        
-        
-//        String loc="src/Cloud/image/img.jpg";
-//        String locR="src/Cloud/image/ ";
-//        ConnexionPACS con=new ConnexionPACS();
-//        //con.saveImage(loc, 11110, "99999");
-//        con.retrieveImageId(11110,locR,"png");
+//        ArrayList<String> l = new ArrayList<>();
+//        l.add("ni");
+//        l.add("pi");
+//        l.add("zri");
+//        l.add("zi");
+//        l.add("ai");
+//        System.out.println(l.toString());
+//        FonctionnaliteBD f = new FonctionnaliteBD();
+// 
+//        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
+         String locR="src/Cloud/imageBD/ ";
+        String locRes = "src/ResultImages/";
+        String loc = "src/jpg.png";
+        String loc2 = "src/pic.png";
+        String loc3 = "src/testpgm.pgm";
+        ConnexionPACS con = new ConnexionPACS();
+        //con.saveImage(loc,1234,"15022019");
+        //con.saveImage(loc2,2345,"15022019");
 
+        con.retrieveImage("15022019", locRes, "png");
+    }
         
+       // String loc="src/Cloud/image/img.jpg";
+       
+        String idImg="99999";
+        ConnexionPACS con=new ConnexionPACS();
+       // con.saveImage(loc, 11110, "99999");
+        
+        // con.retrieveImage("15022019", locR, "png");
+   
 
 //                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
 //                System.out.println(listeE.getListeExamen().toString());
@@ -56,4 +66,4 @@ public class Cloud_Imagin {
         //  System.out.println(tab[1]);
     }
 
-}
+

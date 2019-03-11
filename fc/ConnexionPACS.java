@@ -12,7 +12,7 @@ public class ConnexionPACS {
     private ResultSetMetaData resMeta = null;
     private String query = null;
 
-    String driverName = "com.mysql.cj.jdbc.Driver";
+    String driverName = "com.mysql.jdbc.Driver";
    // String url = "jdbc:mysql://localhost:3306/PACS?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
     String url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_pacs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     String dbName = "PACS";
@@ -56,7 +56,7 @@ public class ConnexionPACS {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File("src/"+numero+"-"+i+"."+format));
+                OutputStream f = new FileOutputStream(new File("src/"+numero+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {

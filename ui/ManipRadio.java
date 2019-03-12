@@ -787,7 +787,7 @@ public class ManipRadio extends javax.swing.JFrame {
                 iddbExamen = r.genererId(9);
             }
             for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
-                con.saveImage(this.jList2.getModel().getElementAt(i), Integer.parseInt(idImg), iddbExamen);
+                con.saveImage(this.jList2.getModel().getElementAt(i), idImg, iddbExamen);
 
             }
             JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);

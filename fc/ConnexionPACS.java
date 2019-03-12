@@ -20,7 +20,7 @@ public class ConnexionPACS {
     String password = "cloudSIR";
 
 
-    public void saveImage(String path,int id,String numero){
+    public void saveImage(String path,String id,String numero){
 
         try{
             Class.forName(driverName);
@@ -33,7 +33,7 @@ public class ConnexionPACS {
             PreparedStatement pre =
                     con.prepareStatement("insert into PACS values(?,?,?,?)");
 
-            pre.setInt(1,id);
+            pre.setString(1,id);
             pre.setString(2,numero);
             pre.setInt(3,4);
             pre.setBinaryStream(4,(InputStream)fin,(int)imgfile.length());

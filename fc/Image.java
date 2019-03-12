@@ -21,11 +21,12 @@ public class Image {
     private BufferedImage img;
     private String id;
     private String NumArchivage;
-
-    public Image(BufferedImage img, String id, String NumArchivage) {
+    private String path;
+    public Image(BufferedImage img, String id, String NumArchivage,String path) {
         this.id=id;
         this.img=img;
         this.NumArchivage=NumArchivage;
+        this.path=path;
     }
     
     public Image(String pathIm, String id, String NumArchivage) {
@@ -36,6 +37,7 @@ public class Image {
             Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.NumArchivage=NumArchivage;
+        this.path=path;
     }
 
     /**
@@ -43,6 +45,9 @@ public class Image {
      */
     public BufferedImage getImg() {
         return img;
+    }
+    public String getPath() {
+        return path;
     }
 
     /**

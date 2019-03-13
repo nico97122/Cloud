@@ -50,7 +50,7 @@ public class Date2 {
 
             }
         }
-        if (date.contains("/")) { /// traitement pour les dates venant du logiciel jj/mm/aaaa hh:mm
+        if (date.contains("/")) { // traitement pour les dates venant du logiciel jj/mm/aaaa hh:mm
             String[] dateTab = date.split("/");
             if (dateTab[2].contains(":")) {
                 String[] TabAnneeHeure = dateTab[2].split(" ");
@@ -60,7 +60,7 @@ public class Date2 {
                 this.minute = Integer.parseInt(TabHeure[1]);
                 this.année = Integer.parseInt(dateTab[0]);
                 this.mois = Integer.parseInt(dateTab[1]);
-                this.jour=Integer.parseInt(dateTab[0]);
+                this.jour = Integer.parseInt(dateTab[0]);
             } else {
                 this.jour = Integer.parseInt(dateTab[0]);
                 this.mois = Integer.parseInt(dateTab[1]);
@@ -97,7 +97,8 @@ public class Date2 {
         }
 
     }
- public String toString() {
+
+    public String toString() {
         String s = "";
         if (jour < 10) {
             s += "0" + jour + "/";
@@ -111,7 +112,9 @@ public class Date2 {
             s += mois + "/";
         }
         s += année;
- return s;}
+        return s;
+    }
+
     public String toStringDateHeure() {
         String s = "";
         if (jour < 10) {
@@ -129,7 +132,7 @@ public class Date2 {
         if (heure < 10) {
             s += "0" + heure + ":";
         } else {
-            s += heure+":";
+            s += heure + ":";
         }
         if (minute < 10) {
             s += "0" + minute;
@@ -152,6 +155,6 @@ public class Date2 {
     }
 
     public String toStringDateNaissDB() { //renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
-        return "" + this.année + "-" + this.mois + "-" + this.jour+" "+this.heure+":"+this.minute;
+        return "" + this.année + "-" + this.mois + "-" + this.jour + " " + this.heure + ":" + this.minute;
     }
 }

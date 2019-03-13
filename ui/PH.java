@@ -51,7 +51,7 @@ public class PH extends javax.swing.JFrame {
         jLabel13.setSize(1380, 660);
         jLabel12.setSize(1380, 660);
         System.out.println(jLabel13.getSize());
-
+       co.connexion();
         FonctionnaliteBD f = new FonctionnaliteBD();
         listeExamen = f.ListeExamenBD();
         listeImage = f.ListeImageBD(listeExamen);
@@ -680,6 +680,12 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             FonctionnaliteBD f = new FonctionnaliteBD();
             DefaultListModel model = new DefaultListModel();

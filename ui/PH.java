@@ -25,8 +25,10 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Juliette-Trouillet
  */
 public class PH extends javax.swing.JFrame {
+
     Vector<String> dataNomImg = new Vector();
     ConnexionBD co = new ConnexionBD();
+    ConnexionPACS con = new ConnexionPACS();
     Vector<String> dataUrlImg = new Vector();
     Vector<String> ListeImgV = new Vector();
     public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
@@ -35,6 +37,7 @@ public class PH extends javax.swing.JFrame {
     private DefaultListModel modelFromBD = new DefaultListModel();
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
+    private ArrayList<Image> listeImage = new ArrayList<>();
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
 
     /**
@@ -51,6 +54,7 @@ public class PH extends javax.swing.JFrame {
 
         FonctionnaliteBD f = new FonctionnaliteBD();
         listeExamen = f.ListeExamenBD();
+        listeImage = f.ListeImageBD(listeExamen);
         listePatient = f.ListePatientBD(listeExamen);
         jTree1.setModel(this.buildTree());
 //        System.out.println(ListeImgR.toString());
@@ -80,36 +84,44 @@ public class PH extends javax.swing.JFrame {
     }
 
     public DefaultTreeModel buildTree() {
+        try {
+            con.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des Patients :");
         DefaultTreeModel myModel2 = new DefaultTreeModel(racine);
         int k = 0;
         for (int i = 0; i < listePatient.size(); i++) {
-            
+
             DefaultMutableTreeNode patients = new DefaultMutableTreeNode(listePatient.get(i).getNom());
             DefaultMutableTreeNode prenomPat = new DefaultMutableTreeNode(listePatient.get(i).getPrenom());
             DefaultMutableTreeNode idPat = new DefaultMutableTreeNode(listePatient.get(i).getId());
             DefaultMutableTreeNode sexePat = new DefaultMutableTreeNode(listePatient.get(i).getSexe());
-            DefaultMutableTreeNode dateNPat = new DefaultMutableTreeNode(listePatient.get(i).getDateN()); 
+            DefaultMutableTreeNode dateNPat = new DefaultMutableTreeNode(listePatient.get(i).getDateN());
             DefaultMutableTreeNode Examens = new DefaultMutableTreeNode("Liste de ses examens");
-            k=0;
+            k = 0;
             for (int j = 0; j < listeExamen.size(); j++) {
-                
-                if(listeExamen.get(j).getIdPat().equals(listePatient.get(i).getId())){                
-                k+=1;
-                DefaultMutableTreeNode exam = new DefaultMutableTreeNode("Examen n°" + k);
-                DefaultMutableTreeNode typeE = new DefaultMutableTreeNode(listeExamen.get(j).getTypeExamen());
-                DefaultMutableTreeNode dateE = new DefaultMutableTreeNode(listeExamen.get(j).getDate());
-                DefaultMutableTreeNode heureE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().getheure());
-                DefaultMutableTreeNode CRE = new DefaultMutableTreeNode(listeExamen.get(j).getCr());
-                DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
-                //              DefaultMutableTreeNode image= blablabla
-                Examens.add(exam);
-                exam.add(typeE);
-                exam.add(dateE);
-                exam.add(heureE);
-                exam.add(CRE);
-                exam.add(images);
-            }
+
+                if (listeExamen.get(j).getIdPat().equals(listePatient.get(i).getId())) {
+                    k += 1;
+                    DefaultMutableTreeNode exam = new DefaultMutableTreeNode("Examen n°" + k);
+                    DefaultMutableTreeNode typeE = new DefaultMutableTreeNode(listeExamen.get(j).getTypeExamen());
+                    DefaultMutableTreeNode dateE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().toString());
+                    DefaultMutableTreeNode heureE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().getheure());
+                    DefaultMutableTreeNode CRE = new DefaultMutableTreeNode(listeExamen.get(j).getCr());
+                    DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                    for (int x = 0; x < listeImage.size(); x++) {
+                        DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeImage.get(x).getPath());
+                        images.add(image);
+                    }
+                    Examens.add(exam);
+                    exam.add(typeE);
+                    exam.add(dateE);
+                    exam.add(heureE);
+                    exam.add(CRE);
+                    exam.add(images);
+                }
             }
             racine.add(patients);
             patients.add(prenomPat);
@@ -591,7 +603,7 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         JFileChooser fileOuvrir = new JFileChooser();
- 
+
         if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
             dataNomImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
@@ -773,7 +785,7 @@ public class PH extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             ConnexionPACS con = new ConnexionPACS();//gestion de l'enregistrement des images
             try {
                 con.connexion();
@@ -782,20 +794,19 @@ public class PH extends javax.swing.JFrame {
             }
             ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
 
-            
             try {
                 listeIdImg = con.requetePACS("id", "PACS", "");
 
             } catch (SQLException ex) {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-            String numArchivage=this.jFormattedTextField2.getText()+this.jFormattedTextField3.getText();
+
+            String numArchivage = this.jFormattedTextField2.getText() + this.jFormattedTextField3.getText();
             for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
                 String idImg = r.genererId(9);  //generer un id pour la database
                 while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
-                iddbExamen = r.genererId(9);
-            }
+                    iddbExamen = r.genererId(9);
+                }
                 con.saveImage(this.dataUrlImg.elementAt(j), idImg, numArchivage);
 
             }

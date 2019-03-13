@@ -37,7 +37,7 @@ public class Image {
             Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.NumArchivage=NumArchivage;
-        this.path=path;
+        this.path=pathIm;
     }
 
     /**

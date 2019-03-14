@@ -227,7 +227,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel11.setBounds(120, 420, 190, 30);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radio", "Ecographie", "IRM", "Scanner", "..." }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "rx", "radio", "echographie", "scanner", "irm", "mammographie", "scintigraphie" }));
         jPanel7.add(jComboBox2);
         jComboBox2.setBounds(640, 70, 170, 27);
 
@@ -609,17 +609,15 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-             String iddbPerso="";
-             
+            String iddbPerso = "";
+
             FonctionnaliteBD f = new FonctionnaliteBD();
-            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
-            for (int i=0;i<listePerso.size();i++){
-                
-               
-                
-                if(listePerso.get(i).getNom().equals(this.jLabel14.getText()+"")){
-                    iddbPerso=listePerso.get(i).getId();
-                   
+            ArrayList<PersonneH> listePerso = f.ListePersonnelBD();
+            for (int i = 0; i < listePerso.size(); i++) {
+
+                if (listePerso.get(i).getNom().equals(this.jLabel14.getText() + "")) {
+                    iddbPerso = listePerso.get(i).getId();
+
                 }
             }
             ChangerMdp changemanip = new ChangerMdp(iddbPerso);
@@ -753,7 +751,7 @@ public class ManipRadio extends javax.swing.JFrame {
             while (listeIdExamen.get(0).contains(iddbExamen)) {  //sert à eviter les doublons d'id dans la base de donnée.
                 iddbExamen = r.genererId(9);
             }
-               // System.out.println("iddbExamen :" + iddbExamen);
+            // System.out.println("iddbExamen :" + iddbExamen);
 
             try {
                 iddbPersonnel = co.requete("iddbpersonnel", "personnel", "where nom=" + "'" + NomPerso + "'").get(0).get(0);
@@ -776,22 +774,26 @@ public class ManipRadio extends javax.swing.JFrame {
             }
             ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
 
-            String idImg = r.genererId(9);  //generer un id pour la database
             try {
                 listeIdImg = con.requetePACS("id", "PACS", "");
 
             } catch (SQLException ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
             }
-            while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
-                iddbExamen = r.genererId(9);
-            }
-            for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
-                con.saveImage(this.jList2.getModel().getElementAt(i), idImg, iddbExamen);
+            String numArchivage = this.jFormattedTextField3.getText() + " " + this.jFormattedTextField4.getText();
 
+            for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
+                String idImg = r.genererId(9); //générer un id pour la database
+
+                while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
+                    iddbExamen = r.genererId(9);
+                }
+                con.saveImage(this.jList2.getModel().getElementAt(j), idImg, iddbExamen);
             }
+
             JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
+
 
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -872,8 +874,8 @@ public class ManipRadio extends javax.swing.JFrame {
         JFileChooser fileOuvrir = new JFileChooser();
 
         if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            
-this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
+
+            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
             this.jList2.setListData(dataUrlImg);
         }
     }//GEN-LAST:event_jButton5MouseClicked

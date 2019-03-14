@@ -55,9 +55,11 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         id = jLabel7.getText();
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
+        int y =0;
         for (int i = 0; i < listeExamen.size(); i++) {
             if (listeExamen.get(i).getIdPat().equals(id)) {
-                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + i);
+                y+=1;
+                DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + y);
                 DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
                 DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
                 DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());

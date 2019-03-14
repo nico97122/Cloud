@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -194,7 +195,7 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jButton8 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jList2 = new javax.swing.JList<String>();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -225,13 +226,13 @@ public class PH extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("House");
         jPanel4.add(jLabel1);
-        jLabel1.setBounds(111, 90, 430, 62);
+        jLabel1.setBounds(111, 90, 430, 58);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom ");
         jPanel4.add(jLabel2);
-        jLabel2.setBounds(110, 230, 440, 62);
+        jLabel2.setBounds(110, 230, 440, 58);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/paramètre .png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -260,19 +261,29 @@ public class PH extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par..." }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Nom", "Prenom", "Id" }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(261, 125, 97, 25);
+        jComboBox1.setBounds(261, 125, 128, 27);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Trier");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton3);
-        jButton3.setBounds(401, 124, 63, 27);
+        jButton3.setBounds(401, 124, 77, 29);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("OK");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton4);
-        jButton4.setBounds(847, 124, 53, 27);
+        jButton4.setBounds(847, 124, 75, 29);
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField1.setText("Rechercher ...");
@@ -282,12 +293,12 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(728, 123, 96, 25);
+        jTextField1.setBounds(728, 123, 107, 29);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Imprimer");
         jPanel3.add(jButton5);
-        jButton5.setBounds(815, 599, 87, 27);
+        jButton5.setBounds(815, 599, 107, 29);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
@@ -297,7 +308,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton6);
-        jButton6.setBounds(648, 599, 137, 27);
+        jButton6.setBounds(648, 599, 155, 29);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Consulter");
@@ -307,7 +318,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton7);
-        jButton7.setBounds(520, 600, 93, 27);
+        jButton7.setBounds(520, 600, 111, 29);
 
         jButton14.setText("Editer un CR");
         jPanel3.add(jButton14);
@@ -341,13 +352,18 @@ public class PH extends javax.swing.JFrame {
         jLabel14.setBounds(210, 60, 140, 40);
 
         jButton13.setText("Modifier");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton13);
-        jButton13.setBounds(710, 70, 87, 25);
+        jButton13.setBounds(710, 70, 87, 29);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des patients");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Nom du patient1");
@@ -393,31 +409,31 @@ public class PH extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nom : ");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(213, 156, 52, 24);
+        jLabel5.setBounds(213, 156, 59, 22);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Type d'examen");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(451, 53, 121, 24);
+        jLabel6.setBounds(451, 53, 131, 22);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Prénom : ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(188, 299, 77, 24);
+        jLabel7.setBounds(188, 299, 84, 22);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Date de Naissance : ");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(95, 446, 167, 24);
+        jLabel8.setBounds(95, 446, 177, 22);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Date : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(680, 160, 53, 24);
+        jLabel9.setBounds(680, 160, 58, 22);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -429,39 +445,42 @@ public class PH extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Sélectionner une image :");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(180, 550, 198, 40);
+        jLabel11.setBounds(180, 550, 215, 40);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radio", "Scanner", "IRM", "..." }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(600, 53, 180, 25);
+        jComboBox2.setBounds(600, 53, 180, 27);
 
-        jTextField2.setText("Poitevin");
         jTextField2.setToolTipText("");
         jPanel1.add(jTextField2);
         jTextField2.setBounds(290, 151, 238, 36);
 
-        jTextField3.setText("Margaux");
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField3MouseClicked(evt);
+            }
+        });
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
             }
         });
         jPanel1.add(jTextField3);
         jTextField3.setBounds(290, 294, 226, 37);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField1.setText("11/08/1997");
+        jFormattedTextField1.setText("jj/mm/aaaa");
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
             }
         });
         jPanel1.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(290, 445, 220, 22);
+        jFormattedTextField1.setBounds(290, 445, 220, 28);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField2.setText("13/03/2019");
+        jFormattedTextField2.setText("jj/mm/aaaa");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
@@ -471,7 +490,7 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField2.setBounds(760, 150, 202, 36);
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField3.setText("22:20");
+        jFormattedTextField3.setText("hh:mm");
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField3MouseClicked(evt);
@@ -488,12 +507,12 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8);
-        jButton8.setBounds(740, 550, 110, 27);
+        jButton8.setBounds(740, 550, 110, 29);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "selectionnez une image..." };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -550,7 +569,7 @@ public class PH extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Heure : ");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(670, 240, 64, 24);
+        jLabel16.setBounds(670, 240, 69, 22);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -868,6 +887,104 @@ public class PH extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        ListModel l = this.jList1.getModel();
+        DefaultListModel model = new DefaultListModel();
+        
+        ArrayList<String> listepourrecherche = new ArrayList<>();
+        for(int i=0;i<modelFromBD.getSize();i++){
+            listepourrecherche.add((String)modelFromBD.getElementAt(i));
+        }
+        
+        Fonctionnalite f=new Fonctionnalite();
+        ArrayList<String> listeElementTrouve = f.recherche(this.jTextField1.getText(),listepourrecherche);
+        for(int i=0;i<listeElementTrouve.size();i++){
+            model.addElement(listeElementTrouve.get(i));
+        }
+        jList1.setModel(model);
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+       if (this.jComboBox1.getSelectedIndex() == 3) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                model.addElement(listeTrie.get(j));
+            }
+            this.jList1.setModel(model);
+        }
+
+        if (this.jComboBox1.getSelectedIndex() == 1) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[1]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[1].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+        if (this.jComboBox1.getSelectedIndex() == 2) {
+            ArrayList<String> listeTrie = new ArrayList<>();
+            DefaultListModel model = new DefaultListModel();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[2]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[2].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+
+        if(jTree1.getSelectionModel().getSelectionPath().getPathCount()==6){
+            System.out.println("je suis la");
+            String s = jTree1.getSelectionPath().getLastPathComponent().toString();
+            ModifImg modif = new ModifImg(s);
+            modif.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

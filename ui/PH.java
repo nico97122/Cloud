@@ -610,7 +610,7 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
-            ConsulterDMRPH consultDMR = new ConsulterDMRPH(idPatient);
+            ConsulterDMRPH consultDMR = new ConsulterDMRPH(idPatient,this.jLabel2.getText(), this.jLabel1.getText());
             consultDMR.setVisible(true);
             //BD
         } catch (Exception ex) {

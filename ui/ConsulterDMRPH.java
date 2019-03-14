@@ -7,6 +7,7 @@ package Cloud.ui;
 
 import Cloud.fc.Examen;
 import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.Image;
 import Cloud.fc.Patient;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,10 +27,13 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
      */
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
+    private ArrayList<Image> listeImage = new ArrayList<>();
     private String id = "";
     private Patient p = new Patient();
+    private String PrenomPH;
+    private String NomPH;
 
-    public ConsulterDMRPH(String idPat) throws SQLException, Exception {
+    public ConsulterDMRPH(String idPat, String PrenomPH, String NomPH) throws SQLException, Exception {
         initComponents();
         setSize(1500, 700);
         jLabel6.setSize(1500, 700);
@@ -38,6 +42,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         listePatient = f.ListePatientBD(listeExamen);
         id = idPat;
         jLabel7.setText(id);
+        listeImage = f.ListeImageBD(listeExamen);
 
         for (int i = 0; i < listePatient.size(); i++) {
             if (listePatient.get(i).getId().equals(id)) {
@@ -55,27 +60,32 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         id = jLabel7.getText();
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
-        int y =0;
+        int y = 0;
         for (int i = 0; i < listeExamen.size(); i++) {
             if (listeExamen.get(i).getIdPat().equals(id)) {
-                y+=1;
+                y += 1;
                 DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + y);
                 DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
                 DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
                 DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
                 DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
-                //DefaultMutableTreeNode images = new DefaultMutableTreeNode(listeExamen.get(i)???);
-                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
-                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                for (int x = 0; x < listeImage.size(); x++) {
+                    System.out.println(this.listeImage.get(x).getNumArchivage());
+                    System.out.println(listeExamen.get(i).getNumArchiv());
+                    if (this.listeImage.get(x).getNumArchivage().equals(listeExamen.get(i).getNumArchiv())) {
+                        DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeImage.get(x).getPath());
+                        images.add(image);
+                    }
+                }
                 examens.add(type);
                 examens.add(date);
                 examens.add(heure);
                 examens.add(nomPH);
                 examens.add(CR);
-//            examens.add(images);
-//            images.add(image);
-//            images.add(image);
+                examens.add(images);
+
                 racine.add(examens);
             }
         }
@@ -231,8 +241,6 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            PH ph = new PH();
-            ph.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
@@ -281,7 +289,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ConsulterDMRPH("67322946").setVisible(true);
+                    new ConsulterDMRPH("67322946","Gregory","House").setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
                 }

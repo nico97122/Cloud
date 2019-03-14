@@ -90,9 +90,9 @@ public class FonctionnaliteBD {
         ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel,iddbpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
         for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
             Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
-            System.out.println(listeDonneesExamens.get(0).get(0));
             
-            System.out.println(dateExam.getheure());
+            
+    
             
             String IdPat = listeDonneesExamens.get(1).get(k);
             String numArchiv = listeDonneesExamens.get(2).get(k);

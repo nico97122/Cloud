@@ -52,7 +52,8 @@ public class ConnexionPACS {
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select image,id from PACS where numeroArchivage ="+numero+";" );
+            System.out.println("select image,id from PACS where numeroArchivage ="+"'"+numero+"'"+";");
+            ResultSet rs = stmt.executeQuery("select image,id from PACS where numeroArchivage ="+"'"+numero+"'"+";" );
             int i = 0;
             while (rs.next()) {
                 String id= rs.getString("id");

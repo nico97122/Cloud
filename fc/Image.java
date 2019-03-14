@@ -32,6 +32,7 @@ public class Image {
     public Image(String pathIm, String id, String NumArchivage) {
         this.id=id;
         try {
+            
             this.img=ImageIO.read(new File(pathIm));
         } catch (IOException ex) {
             Logger.getLogger(Image.class.getName()).log(Level.SEVERE, null, ex);

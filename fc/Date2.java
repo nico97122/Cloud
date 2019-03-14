@@ -58,7 +58,7 @@ public class Date2 {
                 String[] TabHeure = TabAnneeHeure[1].split(":");
                 this.heure = Integer.parseInt(TabHeure[0]);
                 this.minute = Integer.parseInt(TabHeure[1]);
-                this.année = Integer.parseInt(dateTab[0]);
+
                 this.mois = Integer.parseInt(dateTab[1]);
                 this.jour = Integer.parseInt(dateTab[0]);
             } else {
@@ -83,7 +83,19 @@ public class Date2 {
     }
 
     public String getheure() {
-        return this.heure + ":" + this.minute;
+        String s = "";
+        if (heure < 10) {
+            s += "0" + heure + ":";
+        } else {
+            s += heure + ":";
+        }
+        if (minute < 10) {
+            s += "0" + minute;
+        } else {
+            s += minute;
+        }
+
+        return s;
     }
 
     public Date2 comparerDate(Date2 d1, Date2 d2) {  // renvoie la date la plus récente
@@ -128,7 +140,7 @@ public class Date2 {
         } else {
             s += mois + "/";
         }
-        s += année;
+        s += année+" ";
         if (heure < 10) {
             s += "0" + heure + ":";
         } else {

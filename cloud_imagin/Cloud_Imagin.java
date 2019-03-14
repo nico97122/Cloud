@@ -31,29 +31,42 @@ public class Cloud_Imagin {
 //        l.add("zi");
 //        l.add("ai");
 //        System.out.println(l.toString());
-      FonctionnaliteBD f = new FonctionnaliteBD();
-      
-      
-        System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
-        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getId());
-        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getImg().getHeight());
-//        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
-         String locR="src/Cloud/imageBD/ ";
-        String locRes = "src/ResultImages/";
-        String loc = "src/jpg.png";
-        String loc2 = "src/pic.png";
-        String loc3 = "src/testpgm.pgm";
-        ConnexionPACS con = new ConnexionPACS();
+//      FonctionnaliteBD f = new FonctionnaliteBD();
+//      
+//      
+//        System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
+//        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getId());
+//        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getImg().getHeight());
+////        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
+//         String locR="src/Cloud/imageBD/ ";
+//        String locRes = "src/ResultImages/";
+//        String loc = "src/jpg.png";
+//        String loc2 = "src/pic.png";
+//        String loc3 = "src/testpgm.pgm";
+//        ConnexionPACS con = new ConnexionPACS();
         //con.saveImage(loc,1234,"15022019");
         //con.saveImage(loc2,2345,"15022019");
+//FonctionnaliteBD f=new FonctionnaliteBD();
+//f.ListeExamenBD();
+ConnexionBD co=new ConnexionBD();
+co.connexion();
+//System.out.println(co.requete("dateexam", "examen ", "").get(0).get(0));
+System.out.println(co.requete("dateexam", "examen join personnel on iddbpersonnel=iddbmedecin", "").get(0).get(0));
 
+       // System.out.println(co.requete("dateexam,compterendu", "examen ", "").get(1).get(0));
+      //  ConnexionPACS con=new ConnexionPACS();
+       // con.connexion();
+        // System.out.println(con.requetePACS("numeroarchivage", "PACS", "where numeroarchivage='13/03/2019 22:20' ").get(0).get(0));
+       
+//System.out.println(f.ListeExamenBD().get(3).getDate().getheure()+f.ListeExamenBD().get(3).getCr());
+      //  System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
       //  con.retrieveImage("15022019", locR, "png");
     }
         
        // String loc="src/Cloud/image/img.jpg";
        
-        String idImg="99999";
-        ConnexionPACS con=new ConnexionPACS();
+        
+        
        // con.saveImage(loc, 11110, "99999");
         
         // con.retrieveImage("15022019", locR, "png");

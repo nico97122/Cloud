@@ -26,7 +26,7 @@ public class ConnexionBD {
 
     public ConnexionBD() { // constructeur par défaut
         //this.url = "jdbc:mysql://localhost:3306/dbSIR?useLegacyDatetimeCode=false&serverTimezone=UTC"; // BD locale
-       this.url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_sir?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+       this.url = "jdbc:mysql://mysql-cloudbd.alwaysdata.net/cloudbd_sir?useUnicode=true&useJDBCCompliantTimezoneShift=false&useLegacyDatetimeCode=true&serverTimezone=UTC";
         this.user = "cloudbd";
         this.password = "cloudSIR";
 
@@ -84,7 +84,7 @@ public class ConnexionBD {
         nbChamps = tempArray.length;
         
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
-        System.out.println(compositionRequete);
+        //System.out.println(compositionRequete);
         resultatRequete = result(compositionRequete);
 
         ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);

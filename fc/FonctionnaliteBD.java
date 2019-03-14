@@ -90,6 +90,10 @@ public class FonctionnaliteBD {
         ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel,iddbpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
         for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
             Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
+            System.out.println(listeDonneesExamens.get(0).get(0));
+            
+            System.out.println(dateExam.getheure());
+            
             String IdPat = listeDonneesExamens.get(1).get(k);
             String numArchiv = listeDonneesExamens.get(2).get(k);
             String cr = listeDonneesExamens.get(3).get(k);
@@ -124,12 +128,19 @@ public class FonctionnaliteBD {
           cop.retrieveImage(listeNumArchiv.get(i),"src/Cloud/imageBD/","png");
             ArrayList<String> listeIdImg=cop.requetePACS("id", "PACS", "where numeroArchivage="+"'"+listeNumArchiv.get(i)+"'").get(0);
             for (int x=0;x<listeIdImg.size();x++){
+                
                 listeImage.add(new Image("src/Cloud/imageBD/"+listeIdImg.get(x)+".png",listeIdImg.get(x),listeNumArchiv.get(i)));
             }
         } //Image(String pathIm, String id, String NumArchivage)
        return listeImage;
     }
-
+    public void connexion() {
+        try {
+            co.connexion();
+        } catch (Exception ex) {
+            Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void decoBD() {
         try {
             co.deconnexion();

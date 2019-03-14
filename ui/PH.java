@@ -50,13 +50,15 @@ public class PH extends javax.swing.JFrame {
         jLabel4.setSize(1300, 660);
         jLabel13.setSize(1380, 660);
         jLabel12.setSize(1380, 660);
-        System.out.println(jLabel13.getSize());
+       
        co.connexion();
         FonctionnaliteBD f = new FonctionnaliteBD();
+        
         listeExamen = f.ListeExamenBD();
         listeImage = f.ListeImageBD(listeExamen);
         listePatient = f.ListePatientBD(listeExamen);
         jTree1.setModel(this.buildTree());
+        System.out.println(this.listeImage.toString());
 //        System.out.println(ListeImgR.toString());
 //        
 //        try {
@@ -73,14 +75,20 @@ public class PH extends javax.swing.JFrame {
 //
     }
 
-    public PH(String nomPH, String prenomPH) {
+    public PH(String nomPH, String prenomPH) throws Exception {
         initComponents();
         setSize(1500, 700);
         jLabel3.setSize(1300, 700);
         jLabel4.setSize(1300, 700);
         jLabel1.setText(nomPH);
         jLabel2.setText(prenomPH);
-
+         co.connexion();
+         FonctionnaliteBD f = new FonctionnaliteBD();
+        listeExamen = f.ListeExamenBD();
+        listeImage = f.ListeImageBD(listeExamen);
+        listePatient = f.ListePatientBD(listeExamen);
+        jTree1.setModel(this.buildTree());
+        
     }
 
     public DefaultTreeModel buildTree() {
@@ -109,11 +117,13 @@ public class PH extends javax.swing.JFrame {
                     DefaultMutableTreeNode typeE = new DefaultMutableTreeNode(listeExamen.get(j).getTypeExamen());
                     DefaultMutableTreeNode dateE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().toString());
                     DefaultMutableTreeNode heureE = new DefaultMutableTreeNode(listeExamen.get(j).getDate().getheure());
+                    
                     DefaultMutableTreeNode CRE = new DefaultMutableTreeNode(listeExamen.get(j).getCr());
                     DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
                     for (int x = 0; x < listeImage.size(); x++) {
+                        if(this.listeImage.get(x).getNumArchivage().equals(listeExamen.get(j).getNumArchiv())){
                         DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeImage.get(x).getPath());
-                        images.add(image);
+                        images.add(image);}
                     }
                     Examens.add(exam);
                     exam.add(typeE);
@@ -189,6 +199,9 @@ public class PH extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -200,6 +213,11 @@ public class PH extends javax.swing.JFrame {
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel4.setLayout(null);
 
@@ -399,13 +417,13 @@ public class PH extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Date : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(687, 207, 53, 24);
+        jLabel9.setBounds(680, 160, 53, 24);
 
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Heure : ");
+        jLabel10.setText("Compte-rendu:");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(676, 358, 64, 24);
+        jLabel10.setBounds(670, 290, 140, 40);
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -417,9 +435,13 @@ public class PH extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radio", "Scanner", "IRM", "..." }));
         jPanel1.add(jComboBox2);
         jComboBox2.setBounds(600, 53, 180, 25);
+
+        jTextField2.setText("Poitevin");
+        jTextField2.setToolTipText("");
         jPanel1.add(jTextField2);
         jTextField2.setBounds(290, 151, 238, 36);
 
+        jTextField3.setText("Margaux");
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField3MouseClicked(evt);
@@ -429,7 +451,7 @@ public class PH extends javax.swing.JFrame {
         jTextField3.setBounds(290, 294, 226, 37);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField1.setText("jj/mm/yyyy");
+        jFormattedTextField1.setText("11/08/1997");
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
@@ -439,24 +461,24 @@ public class PH extends javax.swing.JFrame {
         jFormattedTextField1.setBounds(290, 445, 220, 22);
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField2.setText("jj/mm/aaaa");
+        jFormattedTextField2.setText("13/03/2019");
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
             }
         });
         jPanel1.add(jFormattedTextField2);
-        jFormattedTextField2.setBounds(763, 193, 202, 36);
+        jFormattedTextField2.setBounds(760, 150, 202, 36);
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField3.setText("hh:mm");
+        jFormattedTextField3.setText("22:20");
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField3MouseClicked(evt);
             }
         });
         jPanel1.add(jFormattedTextField3);
-        jFormattedTextField3.setBounds(763, 353, 202, 37);
+        jFormattedTextField3.setBounds(770, 230, 202, 37);
 
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Parcourir");
@@ -487,11 +509,6 @@ public class PH extends javax.swing.JFrame {
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton9MouseClicked(evt);
-            }
-        });
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton9);
@@ -528,6 +545,19 @@ public class PH extends javax.swing.JFrame {
         });
         jPanel1.add(jButton12);
         jButton12.setBounds(1100, 580, 110, 40);
+
+        jLabel16.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Heure : ");
+        jPanel1.add(jLabel16);
+        jLabel16.setBounds(670, 240, 64, 24);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane3);
+        jScrollPane3.setBounds(670, 330, 410, 180);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel13);
@@ -615,7 +645,7 @@ public class PH extends javax.swing.JFrame {
 
         if (jList2.getLastVisibleIndex() != -1) {
 
-            if ("Url".equals(jList2.getModel().getElementAt(0))) {
+            if ("selectionnez une image...".equals(jList2.getModel().getElementAt(0))) {
 
                 Vector<String> dataIni = new Vector();
                 this.jList2.setListData(dataIni);
@@ -627,16 +657,12 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jList2MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-
+   if(jList2.getSelectedIndex()!=-1){
         int elemASup = this.jList2.getSelectedIndex();
         dataUrlImg.remove(elemASup);
         dataNomImg.remove(elemASup);
-        jList2.setListData(dataNomImg);
+        jList2.setListData(dataNomImg);}
     }//GEN-LAST:event_jButton9MouseClicked
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         Vector<String> dataIni = new Vector();
@@ -651,7 +677,7 @@ public class PH extends javax.swing.JFrame {
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
         if (jList2.getLastVisibleIndex() != -1) {
-            if (!"Url".equals(jList2.getModel().getElementAt(0))) {
+            if (!"selectionnez une image...".equals(jList2.getModel().getElementAt(0))) {
                 new VisualisationImg(dataUrlImg.elementAt(jList2.getSelectedIndex())).setVisible(true);
             }
         }
@@ -749,9 +775,11 @@ public class PH extends javax.swing.JFrame {
             String prenom = this.jTextField3.getText();
             Date2 date = new Date2(jFormattedTextField1.getText());
             Date2 dateE = new Date2(jFormattedTextField2.getText() + " " + this.jFormattedTextField3.getText());
-
+            String cr=null;
             String NomPerso = this.jLabel1.getText();
-
+            if(!this.jTextArea1.getText().isEmpty()){
+                cr=this.jTextArea1.getText();
+            }
             String iddbExamen = "";
             String iddbPersonnel = "";
             String idPatient = "";
@@ -783,8 +811,8 @@ public class PH extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'");
+            System.out.println(NumArchivage);
+            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient,compterendu", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'"+","+"'"+cr+"'");
 
             try {
                 co.deconnexion();
@@ -807,7 +835,7 @@ public class PH extends javax.swing.JFrame {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            String numArchivage = this.jFormattedTextField2.getText() + this.jFormattedTextField3.getText();
+            String numArchivage = this.jFormattedTextField2.getText() +" "+ this.jFormattedTextField3.getText();
             for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
                 String idImg = r.genererId(9);  //generer un id pour la database
                 while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
@@ -823,6 +851,23 @@ public class PH extends javax.swing.JFrame {
     private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
         jFormattedTextField1.setText("");
     }//GEN-LAST:event_jFormattedTextField1MouseClicked
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        if(this.jTabbedPane1.getSelectedIndex()==2){
+            FonctionnaliteBD f;
+            try {
+                f = new FonctionnaliteBD();
+                 this.listeExamen=f.ListeExamenBD();
+                 this.listePatient=f.ListePatientBD(listeExamen);
+            } catch (Exception ex) {
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             jTree1.setModel(this.buildTree());
+            
+           
+            
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -890,6 +935,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -906,8 +952,10 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

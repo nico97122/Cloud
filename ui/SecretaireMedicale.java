@@ -235,6 +235,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Imprimer");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton7);
         jButton7.setBounds(950, 610, 110, 40);
 
@@ -737,6 +742,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+           Imprimer imp=new Imprimer(this.jTextArea1);
+         imp.print();
+    }//GEN-LAST:event_jButton7MouseClicked
 
     /**
      * @param args the command line arguments

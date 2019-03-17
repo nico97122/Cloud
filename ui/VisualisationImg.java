@@ -104,7 +104,7 @@ public class VisualisationImg extends javax.swing.JFrame {
         });//ajout d'un listenner si on clique sur  le bouton exit
         save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveMouseClicked(evt);
+                
             }
         });  //ajout d'un listenner si on clique sur  le bouton save                             
         b1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -213,7 +213,7 @@ public class VisualisationImg extends javax.swing.JFrame {
         });//ajout d'un listenner si on clique sur  le bouton exit
         save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveMouseClicked(evt);
+               
             }
         });  //ajout d'un listenner si on clique sur  le bouton save                             
         b1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,9 +274,7 @@ public class VisualisationImg extends javax.swing.JFrame {
         this.dispose();
     }
 
-    private void saveMouseClicked(java.awt.event.MouseEvent evt) {
-        new sauvegardeF(PanelImg.getImage()).setVisible(true);
-    }
+   
 
     private void b3MouseClicked(java.awt.event.MouseEvent evt) {
         BufferedImage img = PanelImg.getImage();

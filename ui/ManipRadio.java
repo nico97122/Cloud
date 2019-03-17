@@ -11,6 +11,7 @@ import Cloud.fc.Date2;
 import Cloud.fc.Examen;
 import Cloud.fc.Fonctionnalite;
 import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.Imprimer;
 import Cloud.fc.Patient;
 import Cloud.fc.PersonneH;
 import Cloud.fc.random;
@@ -129,6 +130,8 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -591,6 +594,11 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Imprimer");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
         jPanel6.add(jButton8);
         jButton8.setBounds(838, 602, 87, 27);
 
@@ -608,6 +616,15 @@ public class ManipRadio extends javax.swing.JFrame {
         });
         jPanel6.add(jButton10);
         jButton10.setBounds(536, 602, 93, 27);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("selectionnez un patient...");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel6.add(jScrollPane3);
+        jScrollPane3.setBounds(1000, 110, 320, 470);
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel6.add(jLabel18);
@@ -930,7 +947,58 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         idPatient = jList1.getSelectedValue().toString().split(" ")[0];
-       
+       if (jList1.isSelectionEmpty() == false) {
+
+            Patient p = new Patient();
+
+            try {
+
+                String IdNomPrenom = jList1.getSelectedValue().toString();
+                String nom = IdNomPrenom.split("   ")[1];
+                String prenom = IdNomPrenom.split("   ")[2];
+                String Id = IdNomPrenom.split("   ")[0];
+                FonctionnaliteBD f = new FonctionnaliteBD();
+                ArrayList<Examen> listeE = f.ListeExamenBD();
+                ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+                ArrayList<PersonneH> listePersonnel = f.ListePersonnelBD();
+                for (int i = 0; i < listeP.size(); i++) {
+                    if (listeP.get(i).getId().equals(Id)) {
+                        p.setDateN(listeP.get(i).getDateN());
+                        p.setId(Id);
+                        p.setListeExam(listeP.get(i).getListeExam());
+                        p.setNom(nom);
+                        p.setPrenom(prenom);
+                        p.setSexe(listeP.get(i).getSexe());
+
+                    }
+
+                }
+                String AffichageLE = "";
+                String nomPracticien = "";
+
+                for (int j = 0; j < p.getListeExam().size(); j++) {
+                    for (int x = 0; x < listePersonnel.size(); x++) {
+                        //System.out.println("idmed"+p.getListeExam().get(j).);
+                        //  System.out.println("idmed"+listePersonnel.get(x).getId());
+                        if (p.getListeExam().get(j).getIdMed().equals(listePersonnel.get(x).getId())) {
+
+                            nomPracticien = listePersonnel.get(x).getNom() + listePersonnel.get(x).getPrenom();
+                        }
+                    }
+
+                }
+                for (int i = 0; i < p.getListeExam().size(); i++) {
+                    AffichageLE += "\n  Type Examen : " + p.getListeExam().get(i).getTypeExamen().toString() + "\n" + "  Date : " + p.getListeExam().get(i).getDate() + "\n" + "  Praticien : " + nomPracticien + "\n" + "  Compte Rendu: :\n" + p.getListeExam().get(i).getCr() + "\n";
+
+                }
+
+                this.jTextArea1.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString() + "\n" + "Sexe :" + p.getSexe().toString() + "\n" + "Examens : \n" + AffichageLE);
+
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
 
 
     }//GEN-LAST:event_jList1MouseClicked
@@ -1109,6 +1177,11 @@ public class ManipRadio extends javax.swing.JFrame {
         jList1.setModel(model);
     }//GEN-LAST:event_jButton7MouseClicked
 
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        Imprimer imp=new Imprimer(this.jTextArea1);
+         imp.print();
+    }//GEN-LAST:event_jButton8MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1197,7 +1270,9 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

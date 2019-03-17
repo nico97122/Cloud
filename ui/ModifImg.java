@@ -8,6 +8,7 @@ package Cloud.ui;
 import Cloud.fc.ConnexionPACS;
 import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Image;
+import Cloud.fc.Imprimer;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -146,6 +147,14 @@ public class ModifImg extends javax.swing.JFrame {
 
             }
         });//ajout d'un listenner si on clique sur  le bouton rotation90g
+        
+          imprimer.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imprimerMouseClicked(evt);
+
+            }
+        });
         b2.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,7 +202,7 @@ public class ModifImg extends javax.swing.JFrame {
         setSize(new Dimension(1000, 700));
         try {
             // TODO add your handling code here:
-            this.PanelImg.setImage("src/Cloud/imageBD/027663872.png");  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
+            this.PanelImg.setImage("src/Cloud/imageBD/335064581.png");  //setL'image a partir de l'url extraite de la bd ou de la fenetre précédente
             this.Imginitial = PanelImg.getImage();
             this.ImgAnnoter = PanelImg.getImage();
         } catch (IOException ex) {
@@ -489,7 +498,7 @@ public ModifImg(Image img){
               System.out.println(listeImg.get(i).getPath());
               System.out.println(this.path);
               PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
-              //sauv l'img dans cloudimgbd
+              
                 co.changeImage(listeImg.get(i).getId(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
                 co.retrieveImageId(listeImg.get(i).getId(),"src/Cloud/imageBD/" , "png");
                 
@@ -553,6 +562,10 @@ public ModifImg(Image img){
         this.ImgAnnoter = PanelImg.getImage();
         this.incre = 0;
         this.incre2 = 0;
+    }
+     private void imprimerMouseClicked(java.awt.event.MouseEvent evt) {
+        Imprimer imp=new Imprimer(this.PanelImg);
+         imp.print();
     }
 
     private void JSliderContrasteStateChanged(javax.swing.event.ChangeEvent evt) {

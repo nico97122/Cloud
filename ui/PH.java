@@ -181,6 +181,8 @@ public class PH extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -311,6 +313,11 @@ public class PH extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Imprimer");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
         jPanel3.add(jButton5);
         jButton5.setBounds(815, 599, 87, 27);
 
@@ -352,11 +359,23 @@ public class PH extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jList1MouseEntered(evt);
+            }
         });
         jScrollPane4.setViewportView(jList1);
 
         jPanel3.add(jScrollPane4);
-        jScrollPane4.setBounds(270, 170, 540, 410);
+        jScrollPane4.setBounds(200, 170, 540, 410);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("selectionnez un patient...");
+        jScrollPane5.setViewportView(jTextArea2);
+
+        jPanel3.add(jScrollPane5);
+        jScrollPane5.setBounds(850, 170, 330, 420);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel4);
@@ -747,7 +766,58 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15MouseClicked
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+  if (jList1.isSelectionEmpty() == false) {
 
+            Patient p = new Patient();
+
+            try {
+
+                String IdNomPrenom = jList1.getSelectedValue().toString();
+                String nom = IdNomPrenom.split("   ")[1];
+                String prenom = IdNomPrenom.split("   ")[2];
+                String Id = IdNomPrenom.split("   ")[0];
+                FonctionnaliteBD f = new FonctionnaliteBD();
+                ArrayList<Examen> listeE = f.ListeExamenBD();
+                ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+                ArrayList<PersonneH> listePersonnel = f.ListePersonnelBD();
+                for (int i = 0; i < listeP.size(); i++) {
+                    if (listeP.get(i).getId().equals(Id)) {
+                        p.setDateN(listeP.get(i).getDateN());
+                        p.setId(Id);
+                        p.setListeExam(listeP.get(i).getListeExam());
+                        p.setNom(nom);
+                        p.setPrenom(prenom);
+                        p.setSexe(listeP.get(i).getSexe());
+
+                    }
+
+                }
+                String AffichageLE = "";
+                String nomPracticien = "";
+
+                for (int j = 0; j < p.getListeExam().size(); j++) {
+                    for (int x = 0; x < listePersonnel.size(); x++) {
+                        //System.out.println("idmed"+p.getListeExam().get(j).);
+                        //  System.out.println("idmed"+listePersonnel.get(x).getId());
+                        if (p.getListeExam().get(j).getIdMed().equals(listePersonnel.get(x).getId())) {
+
+                            nomPracticien = listePersonnel.get(x).getNom() + listePersonnel.get(x).getPrenom();
+                        }
+                    }
+
+                }
+                for (int i = 0; i < p.getListeExam().size(); i++) {
+                    AffichageLE += "\n  Type Examen : " + p.getListeExam().get(i).getTypeExamen().toString() + "\n" + "  Date : " + p.getListeExam().get(i).getDate() + "\n" + "  Praticien : " + nomPracticien + "\n" + "  Compte Rendu: :\n" + p.getListeExam().get(i).getCr() + "\n";
+
+                }
+
+                this.jTextArea2.setText("Nom :" + nom + "\n" + "Prénom" + prenom + "\n" + "Date de Naissance :" + p.getDateN().toString() + "\n" + "Sexe :" + p.getSexe().toString() + "\n" + "Examens : \n" + AffichageLE);
+
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }//GEN-LAST:event_jList1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1025,6 +1095,15 @@ public class PH extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1MouseEntered
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+           Imprimer imp=new Imprimer(this.jTextArea2);
+         imp.print();
+    }//GEN-LAST:event_jButton5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1111,8 +1190,10 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

@@ -18,6 +18,7 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.util.Vector;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
@@ -32,7 +33,12 @@ public class Imprimer implements Printable {
         this.panel = panel;
         initPrintablePanel();
     }
+ public Imprimer(JPanel panel) {
 
+        documentTitle = "";
+        this.panel2 = panel;
+        initPrintablePanel();
+    }
     public void initPrintablePanel() {
 
         showPrintZone = false;
@@ -238,6 +244,7 @@ public class Imprimer implements Printable {
     }
 
     private JTextArea panel;
+    private JPanel panel2;
     private boolean showPrintZone;
     private boolean fitIntoPage;
     private boolean wrapComponent;

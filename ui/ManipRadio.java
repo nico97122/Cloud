@@ -75,6 +75,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -94,7 +95,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        jList2 = new javax.swing.JList<>();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -175,9 +176,13 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel5.add(jLabel15);
         jLabel15.setBounds(80, 190, 260, 60);
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/nurse_person_woman_people_1697.png"))); // NOI18N
+        jPanel5.add(jLabel20);
+        jLabel20.setBounds(970, 70, 200, 256);
+
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel5.add(jLabel16);
-        jLabel16.setBounds(0, 0, 1420, 650);
+        jLabel16.setBounds(0, -30, 1420, 660);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -206,7 +211,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Type d'examen");
         jPanel7.add(jLabel6);
-        jLabel6.setBounds(460, 70, 170, 22);
+        jLabel6.setBounds(460, 70, 170, 24);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,7 +234,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "rx", "radio", "echographie", "scanner", "irm", "mammographie", "scintigraphie" }));
         jPanel7.add(jComboBox2);
-        jComboBox2.setBounds(640, 70, 170, 27);
+        jComboBox2.setBounds(640, 70, 170, 25);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -318,7 +323,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Sélectionner une image :");
         jPanel7.add(jLabel17);
-        jLabel17.setBounds(210, 560, 230, 22);
+        jLabel17.setBounds(210, 560, 230, 24);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Parcourir");
@@ -328,12 +333,12 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton5);
-        jButton5.setBounds(670, 560, 110, 29);
+        jButton5.setBounds(670, 560, 110, 27);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "selectionnez une image..." };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jList2);
 
@@ -408,13 +413,13 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom : ");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(360, 60, 90, 30);
+        jLabel1.setBounds(360, 60, 90, 32);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(330, 140, 116, 30);
+        jLabel2.setBounds(330, 140, 110, 32);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -481,7 +486,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton14);
-        jButton14.setBounds(800, 290, 140, 29);
+        jButton14.setBounds(800, 290, 140, 25);
 
         jLabel19.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -534,32 +539,32 @@ public class ManipRadio extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par ..." }));
         jPanel6.add(jComboBox3);
-        jComboBox3.setBounds(238, 74, 132, 27);
+        jComboBox3.setBounds(238, 74, 101, 25);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Trier ");
         jPanel6.add(jButton6);
-        jButton6.setBounds(382, 73, 81, 29);
+        jButton6.setBounds(382, 73, 67, 27);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("OK");
         jPanel6.add(jButton7);
-        jButton7.setBounds(870, 73, 75, 29);
+        jButton7.setBounds(870, 73, 53, 27);
 
         jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField7.setText("Rechercher..");
         jPanel6.add(jTextField7);
-        jTextField7.setBounds(765, 72, 99, 29);
+        jTextField7.setBounds(765, 72, 88, 25);
 
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Imprimer");
         jPanel6.add(jButton8);
-        jButton8.setBounds(838, 602, 107, 29);
+        jButton8.setBounds(838, 602, 87, 27);
 
         jButton9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton9.setText("Exporter en PDF");
         jPanel6.add(jButton9);
-        jButton9.setBounds(665, 602, 155, 29);
+        jButton9.setBounds(665, 602, 137, 27);
 
         jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton10.setText("Consulter");
@@ -569,7 +574,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton10);
-        jButton10.setBounds(536, 602, 111, 29);
+        jButton10.setBounds(536, 602, 93, 27);
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel6.add(jLabel18);
@@ -1023,6 +1028,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

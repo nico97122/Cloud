@@ -85,6 +85,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -156,6 +157,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel2.add(jLabel9);
         jLabel9.setBounds(90, 240, 220, 50);
 
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/sm.png"))); // NOI18N
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(960, 80, 220, 260);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel2.add(jLabel1);
         jLabel1.setBounds(0, 0, 1570, 710);
@@ -182,7 +187,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(70, 130, 770, 450);
+        jScrollPane1.setBounds(80, 140, 770, 450);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "nom", "prenom", "identifiant" }));
@@ -789,6 +794,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

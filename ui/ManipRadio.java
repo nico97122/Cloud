@@ -9,6 +9,7 @@ import Cloud.fc.ConnexionBD;
 import Cloud.fc.ConnexionPACS;
 import Cloud.fc.Date2;
 import Cloud.fc.Examen;
+import Cloud.fc.Fonctionnalite;
 import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Patient;
 import Cloud.fc.PersonneH;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -137,6 +139,11 @@ public class ManipRadio extends javax.swing.JFrame {
         });
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel5.setLayout(null);
 
@@ -454,8 +461,16 @@ public class ManipRadio extends javax.swing.JFrame {
         });
         jPanel3.add(jTextField2);
         jTextField2.setBounds(460, 130, 310, 40);
+
+        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextField1MouseClicked(evt);
+            }
+        });
         jPanel3.add(jFormattedTextField1);
         jFormattedTextField1.setBounds(460, 210, 160, 40);
+
+        jTextField3.setEditable(false);
         jPanel3.add(jTextField3);
         jTextField3.setBounds(460, 280, 310, 40);
 
@@ -469,11 +484,6 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
         jPanel3.add(jButton1);
@@ -493,6 +503,12 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel19.setText("Adresse :");
         jPanel3.add(jLabel19);
         jLabel19.setBounds(310, 370, 120, 30);
+
+        jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField6MouseClicked(evt);
+            }
+        });
         jPanel3.add(jTextField6);
         jTextField6.setBounds(460, 360, 310, 40);
 
@@ -537,22 +553,37 @@ public class ManipRadio extends javax.swing.JFrame {
         jScrollPane1.setBounds(238, 114, 707, 476);
 
         jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par ..." }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Nom", "Prenom", "Id" }));
         jPanel6.add(jComboBox3);
-        jComboBox3.setBounds(238, 74, 101, 25);
+        jComboBox3.setBounds(238, 74, 97, 25);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Trier ");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         jPanel6.add(jButton6);
         jButton6.setBounds(382, 73, 67, 27);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("OK");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
         jPanel6.add(jButton7);
         jButton7.setBounds(870, 73, 53, 27);
 
         jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField7.setText("Rechercher..");
+        jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField7MouseClicked(evt);
+            }
+        });
         jPanel6.add(jTextField7);
         jTextField7.setBounds(765, 72, 88, 25);
 
@@ -664,20 +695,11 @@ public class ManipRadio extends javax.swing.JFrame {
         try {
             ConsulterDMRMR consultMR = new ConsulterDMRMR(idPatient);
             consultMR.setVisible(true);
-            this.dispose();
+          
         } catch (Exception ex) {
             Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//       if(patient existe deja){
-//        JOptionPane.showMessageDialog(this, "Ce patient existe déjà", "Erreur", JOptionPane.WARNING_MESSAGE);
-//    }
-//       else{
-//        JOptionPane.showMessageDialog(this, "Le patient a bien été ajouté", "Confirmation", JOptionPane.WARNING_MESSAGE);       
-//               }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
@@ -705,7 +727,7 @@ public class ManipRadio extends javax.swing.JFrame {
         }
         for (int i = 0; i < listenompatient.size(); i++) {
             System.out.println(listenompatient.get(i).toLowerCase());
-            if (listenompatient.get(i).toLowerCase().equals(this.jTextField4.getText().toLowerCase())) {
+            if (listenompatient.get(i).toLowerCase().equalsIgnoreCase(this.jTextField4.getText().toLowerCase())) {
                 b = true;
             }
         }
@@ -862,6 +884,7 @@ public class ManipRadio extends javax.swing.JFrame {
             this.jTextField3.setText("");
             this.jFormattedTextField1.setText("jj/mm/aaaa");
             this.jTextField5.setText("");
+            this.jTextField6.setText("");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -905,6 +928,9 @@ public class ManipRadio extends javax.swing.JFrame {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         idPatient = jList1.getSelectedValue().toString().split(" ")[0];
+       
+
+
     }//GEN-LAST:event_jList1MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -958,6 +984,128 @@ public class ManipRadio extends javax.swing.JFrame {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton14MouseClicked
+
+    private void jFormattedTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MouseClicked
+        this.jFormattedTextField1.selectAll();
+    }//GEN-LAST:event_jFormattedTextField1MouseClicked
+
+    private void jTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField6MouseClicked
+        this.jTextField6.selectAll();
+    }//GEN-LAST:event_jTextField6MouseClicked
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+         if (this.jTabbedPane1.getSelectedIndex() == 3) {
+            try {
+                FonctionnaliteBD f = new FonctionnaliteBD();
+                DefaultListModel model = new DefaultListModel();
+                ArrayList<String> listNom = new ArrayList<>();
+                ArrayList<String> listPrenom = new ArrayList<>();
+                ArrayList<ArrayList<String>> listepatient = new ArrayList<>();
+
+                ArrayList<Examen> listeE = f.ListeExamenBD();
+
+                ArrayList<Patient> listeP = f.ListePatientBD(listeE);
+
+                for (int i = 0; i < listeP.size(); i++) {
+                    model.addElement(listeP.get(i).getId() + "   " + listeP.get(i).getNom() + "   " + listeP.get(i).getPrenom());
+
+                }
+                jList1.setModel(model);
+                modelFromBD = model;
+
+            } catch (Exception ex) {
+                Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
+        this.jTextField7.selectAll();
+    }//GEN-LAST:event_jTextField7MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+         if (this.jComboBox3.getSelectedIndex() == 3) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                model.addElement(listeTrie.get(j));
+            }
+            this.jList1.setModel(model);
+        }
+
+        if (this.jComboBox3.getSelectedIndex() == 1) {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[1]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[1].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+        if (this.jComboBox3.getSelectedIndex() == 2) {
+            ArrayList<String> listeTrie = new ArrayList<>();
+            DefaultListModel model = new DefaultListModel();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList1.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[2]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[2].contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList1.setModel(model);
+        }
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+         ListModel l = this.jList1.getModel();
+        DefaultListModel model = new DefaultListModel();
+
+        ArrayList<String> listepourrecherche = new ArrayList<>();
+        for (int i = 0; i < modelFromBD.getSize(); i++) {
+            listepourrecherche.add((String) modelFromBD.getElementAt(i));
+        }
+
+        Fonctionnalite f = new Fonctionnalite();
+        ArrayList<String> listeElementTrouve = f.recherche(this.jTextField7.getText(), listepourrecherche);
+        for (int i = 0; i < listeElementTrouve.size(); i++) {
+            model.addElement(listeElementTrouve.get(i));
+        }
+        jList1.setModel(model);
+    }//GEN-LAST:event_jButton7MouseClicked
 
     /**
      * @param args the command line arguments

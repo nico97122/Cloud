@@ -191,5 +191,30 @@ public class ConnexionPACS {
             System.out.println("pas connecté");}
 
     }
-    
+    public boolean changeImage(int id, String path){
+        boolean b = false;
+
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            File imgfile = new File(path);
+            InputStream img = new FileInputStream(imgfile);
+            String sql = "UPDATE PACS"+" SET image = ?"+" WHERE id= ? ";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            //pst.setInt(1,2);
+            pst.setBinaryStream(1,(InputStream)img,(int)imgfile.length());
+            pst.setInt(2,id);
+            pst.executeUpdate();
+
+            pst.close();
+            con.close();
+
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return b;
+    }
 }

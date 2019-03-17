@@ -72,7 +72,7 @@ public class ConnexionPACS {
         }
     }
 
-    public void retrieveImageId(int id,String path,String format){
+    public void retrieveImageId(String id,String path,String format){
         try{
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
@@ -81,7 +81,7 @@ public class ConnexionPACS {
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
-                OutputStream f = new FileOutputStream(new File(path+id+"-"+i+"."+format));
+                OutputStream f = new FileOutputStream(new File(path+id+"."+format));
                 i++;
                 int c = 0;
                 while ((c = in.read()) > -1) {
@@ -191,7 +191,7 @@ public class ConnexionPACS {
             System.out.println("pas connecté");}
 
     }
-    public boolean changeImage(int id, String path){
+    public boolean changeImage(String id, String path){
         boolean b = false;
 
         try{
@@ -205,9 +205,9 @@ public class ConnexionPACS {
 
             //pst.setInt(1,2);
             pst.setBinaryStream(1,(InputStream)img,(int)imgfile.length());
-            pst.setInt(2,id);
+            pst.setString(2,id);
             pst.executeUpdate();
-
+            pst.toString();
             pst.close();
             con.close();
 

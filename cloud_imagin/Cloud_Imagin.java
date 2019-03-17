@@ -40,11 +40,11 @@ public class Cloud_Imagin {
 ////        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
 //         String locR="src/Cloud/imageBD/ ";
 //        String locRes = "src/ResultImages/";
-//        String loc = "src/jpg.png";
-//        String loc2 = "src/pic.png";
-//        String loc3 = "src/testpgm.pgm";
-//        ConnexionPACS con = new ConnexionPACS();
-        //con.saveImage(loc,1234,"15022019");
+       String loc = "src/Cloud/imageBD/test.png";
+       String loc2 = "src/pic.png";
+        String loc3 = "src/testpgm.pgm";
+        ConnexionPACS con = new ConnexionPACS();
+        con.saveImage(loc, "test", "1254265");
         //con.saveImage(loc2,2345,"15022019");
 //FonctionnaliteBD f=new FonctionnaliteBD();
 //f.ListeExamenBD();

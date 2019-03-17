@@ -462,6 +462,8 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel3.add(jTextField2);
         jTextField2.setBounds(460, 130, 310, 40);
 
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jFormattedTextField1.setText("jj/mm/aaaa");
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);

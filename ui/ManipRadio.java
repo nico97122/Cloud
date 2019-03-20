@@ -834,7 +834,7 @@ public class ManipRadio extends javax.swing.JFrame {
                 while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
                     iddbExamen = r.genererId(9);
                 }
-                con.saveImage(this.jList2.getModel().getElementAt(j), idImg, iddbExamen);
+                con.saveImage(this.dataUrlImg.elementAt(j), idImg, iddbExamen);
             }
 
             JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);

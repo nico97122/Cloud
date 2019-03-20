@@ -9,6 +9,7 @@ import Cloud.fc.ConnexionPACS;
 import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Image;
 import Cloud.fc.Imprimer;
+import Cloud.fc.random;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -16,6 +17,7 @@ import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -494,7 +496,7 @@ public ModifImg(Image img){
         ArrayList<Image> listeImg = f.ListeImageBD(f.ListeExamenBD());
         for (int i = 0; i < listeImg.size(); i++) {
               
-            if (listeImg.get(i).getPath().equals(this.path)) {
+            if (listeImg.get(i).getPath().equals(this.path)) {//modifie l'image correspondante
               System.out.println(listeImg.get(i).getPath());
               System.out.println(this.path);
               PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
@@ -503,6 +505,21 @@ public ModifImg(Image img){
                 co.retrieveImageId(listeImg.get(i).getId(),"src/Cloud/imageBD/" , "png");
                 
             }
+//            if (listeImg.get(i).getPath().equals(this.path)) {// ajoute l'image modifier a tester
+//              System.out.println(listeImg.get(i).getPath());
+//              System.out.println(this.path);
+//              PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+"modifié"+".png");
+//              String id= new random().genererId(9);
+//              while(listeImg.contains(id)){
+//                   id= new random().genererId(9);
+//              }
+//              
+//              co.saveImage(path,id+"modifié" , listeImg.get(i).getNumArchivage());
+//              
+//                
+//                co.retrieveImageId(listeImg.get(i).getId(),"src/Cloud/imageBD/" , "png");
+//                
+//            }
         }
         JOptionPane.showMessageDialog(this, "Image modifié", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
     }

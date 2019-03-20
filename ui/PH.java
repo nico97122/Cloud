@@ -1067,13 +1067,14 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-
+     
+        if (jTree1.getSelectionCount()>0){
         if (jTree1.getSelectionModel().getSelectionPath().getPathCount() == 6) {
-            System.out.println("je suis la");
+           
             String s = jTree1.getSelectionPath().getLastPathComponent().toString();
             ModifImg modif = new ModifImg(s);
             modif.setVisible(true);
-        }
+        }}
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed

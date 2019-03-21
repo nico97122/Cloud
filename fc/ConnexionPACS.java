@@ -46,6 +46,32 @@ public class ConnexionPACS {
             System.out.println(e1.getMessage());
         }
     }
+       public void saveImageM(String path,String id,String numero){
+
+        try{
+            Class.forName(driverName);
+            con = DriverManager.getConnection(url,userName,password);
+            Statement st = con.createStatement();
+            File imgfile = new File(path);
+
+            FileInputStream fin = new FileInputStream(imgfile);
+
+            PreparedStatement pre =
+                    con.prepareStatement("insert into PACS values(?,?,?,?)");
+
+            pre.setString(1,id+"modifié");
+            pre.setString(2,numero);
+            pre.setInt(3,4);
+            pre.setBinaryStream(4,(InputStream)fin,(int)imgfile.length());
+            pre.executeUpdate();
+            System.out.println("Successfully inserted the file into the database!");
+
+            pre.close();
+            con.close();
+        }catch (Exception e1){
+            System.out.println(e1.getMessage());
+        }
+    }
 
     public void retrieveImage(String numero,String path,String format){
         try{
@@ -77,7 +103,7 @@ public class ConnexionPACS {
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select image from PACS where id ="+id+";" );
+            ResultSet rs = stmt.executeQuery("select image from PACS where id = '"+id+"'"+";" );
             int i = 0;
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream(1);
@@ -190,6 +216,13 @@ public class ConnexionPACS {
         }else{
             System.out.println("pas connecté");}
 
+    }
+    public void deconnexion() throws Exception
+    {
+        if(con != null)
+        {
+            con.close();
+        }
     }
     public boolean changeImage(String id, String path){
         boolean b = false;

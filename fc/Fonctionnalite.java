@@ -13,7 +13,7 @@ import java.util.Comparator;
  * @author nicol
  */
 public class Fonctionnalite {
-    
+     
    public Fonctionnalite(){
        
    }

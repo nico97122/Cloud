@@ -493,36 +493,39 @@ public ModifImg(Image img){
         FonctionnaliteBD f = new FonctionnaliteBD();
         ConnexionPACS co = new ConnexionPACS();
         co.connexion();
+        f.connexion();
         ArrayList<Image> listeImg = f.ListeImageBD(f.ListeExamenBD());
         for (int i = 0; i < listeImg.size(); i++) {
               
-            if (listeImg.get(i).getPath().equals(this.path)) {//modifie l'image correspondante
-              System.out.println(listeImg.get(i).getPath());
-              System.out.println(this.path);
-              PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
-              
-                co.changeImage(listeImg.get(i).getId(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
-                co.retrieveImageId(listeImg.get(i).getId(),"src/Cloud/imageBD/" , "png");
-                
-            }
-//            if (listeImg.get(i).getPath().equals(this.path)) {// ajoute l'image modifier a tester
+//            if (listeImg.get(i).getPath().equals(this.path)) {//modifie l'image correspondante  // code fonctionnel
 //              System.out.println(listeImg.get(i).getPath());
 //              System.out.println(this.path);
-//              PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+"modifié"+".png");
-//              String id= new random().genererId(9);
-//              while(listeImg.contains(id)){
-//                   id= new random().genererId(9);
-//              }
+//              PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
 //              
-//              co.saveImage(path,id+"modifié" , listeImg.get(i).getNumArchivage());
-//              
-//                
+//                co.changeImage(listeImg.get(i).getId(), "src/Cloud/imageBD/"+listeImg.get(i).getId()+".png");
 //                co.retrieveImageId(listeImg.get(i).getId(),"src/Cloud/imageBD/" , "png");
 //                
 //            }
+            if (listeImg.get(i).getPath().equals(this.path)) {// ajoute l'image modifier a tester
+             
+         
+              
+              String id= new random().genererId(9);
+              while(listeImg.contains(id)){
+                   id= new random().genererId(9);
+              }
+                PanelImg.sauvegarderImg(PanelImg.getImage(), "src/Cloud/imageBD/"+id+"modifié"+".png");
+              co.saveImage("src/Cloud/imageBD/"+id+"modifié"+".png",id+"modifié" , listeImg.get(i).getNumArchivage());
+              
+                
+                co.retrieveImageId(id+"modifié","src/Cloud/imageBD/" , "png");
+                
+            }
         }
         JOptionPane.showMessageDialog(this, "Image modifié", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        f.decoBD();
     }
+    
 
     private void b3MouseClicked(java.awt.event.MouseEvent evt) {
         BufferedImage img = PanelImg.getImage();

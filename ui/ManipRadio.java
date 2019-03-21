@@ -32,7 +32,8 @@ import javax.swing.ListModel;
  */
 public class ManipRadio extends javax.swing.JFrame {
 
-    Vector<String> dataUrlImg = new Vector();
+    Vector<String> dataUrlImg = new Vector(); 
+    Vector<String> dataNomImg=new Vector();
     Vector<String> ListeImgV = new Vector();
     public ArrayList<ArrayList<String>> ListeImgR = new ArrayList<ArrayList<String>>();
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
@@ -778,7 +779,7 @@ public class ManipRadio extends javax.swing.JFrame {
             random r = new random();
 //            int sexe = this.jComboBox1.getSelectedIndex();
             String typeE = (String) this.jComboBox2.getSelectedItem();
-            String NumArchivage = dateE.toString() + this.jFormattedTextField4.getText();
+            String NumArchivage = dateE.toString() +" "+ this.jFormattedTextField4.getText();
 
             try {
                 listeIdExamen = co.requete("iddbexamen", "examen", "");
@@ -811,12 +812,14 @@ public class ManipRadio extends javax.swing.JFrame {
                 co.deconnexion();
             } catch (Exception ex) {
                 Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ConnexionPACS con = new ConnexionPACS();//gestion de l'enregistrement des images
+            }       
+        
+        
+        ConnexionPACS con = new ConnexionPACS();//gestion de l'enregistrement des images
             try {
                 con.connexion();
             } catch (Exception ex) {
-                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
             ArrayList<ArrayList<String>> listeIdImg = new ArrayList<>();
 
@@ -824,23 +827,23 @@ public class ManipRadio extends javax.swing.JFrame {
                 listeIdImg = con.requetePACS("id", "PACS", "");
 
             } catch (SQLException ex) {
-                Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String numArchivage = this.jFormattedTextField3.getText() + " " + this.jFormattedTextField4.getText();
 
+            String numArchivage = this.jFormattedTextField2.getText() + " " + this.jFormattedTextField3.getText();
             for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
-                String idImg = r.genererId(9); //générer un id pour la database
-
+                String idImg = r.genererId(9);  //generer un id pour la database
                 while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
-                    iddbExamen = r.genererId(9);
+                    idImg = r.genererId(9);
                 }
-                con.saveImage(this.dataUrlImg.elementAt(j), idImg, iddbExamen);
+                
+                con.saveImage(this.dataUrlImg.elementAt(j), idImg, numArchivage);
+
             }
-
             JOptionPane.showMessageDialog(this, "Examen ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
+        
+
         }
-
-
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
@@ -912,18 +915,19 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        Vector<String> dataIni = new Vector();
-        dataIni.add("");
+          Vector<String> dataIni = new Vector();
+        dataUrlImg.clear();
+        dataNomImg.clear();
         jList2.setListData(dataIni);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        JFileChooser fileOuvrir = new JFileChooser();
+         JFileChooser fileOuvrir = new JFileChooser();
 
         if (fileOuvrir.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-
-            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
-            this.jList2.setListData(dataUrlImg);
+            this.dataUrlImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getPath());
+            dataNomImg.add(new File(fileOuvrir.getSelectedFile().getAbsolutePath()).getName());
+            this.jList2.setListData(dataNomImg);
         }
     }//GEN-LAST:event_jButton5MouseClicked
 
@@ -936,9 +940,12 @@ public class ManipRadio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
-        int elemASup = this.jList2.getSelectedIndex();
-        dataUrlImg.remove(elemASup);
-        jList2.setListData(dataUrlImg);
+          if (jList2.getSelectedIndex() != -1) {
+            int elemASup = this.jList2.getSelectedIndex();
+            dataUrlImg.remove(elemASup);
+            dataNomImg.remove(elemASup);
+            jList2.setListData(dataNomImg);
+        }
     }//GEN-LAST:event_jButton12MouseClicked
 
     private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed

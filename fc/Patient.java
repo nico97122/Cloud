@@ -13,7 +13,50 @@ import java.util.ArrayList;
  */
 public class Patient {
 
+   
+    private String nom;
+    private String prenom;
+    private Date2 dateN;
+    private String id;
+    private Sexe sexe;
+    private ArrayList<Examen> ListeExam=new ArrayList<>();
+    
+     public Patient(){
+         
+     }
+    public Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam){
+        this.dateN=dateN;
+        this.nom=nom;
+        this.prenom=prenom;
+        this.sexe=sexe;
+        this.id=id;
+        this.ListeExam=ListeExam;
+    }
+    
     /**
+     * @return the ListeExam
+     */
+    public ArrayList<Examen> getListeExam() {
+        return ListeExam;
+    }
+
+    /**
+     * @param ListeExam the ListeExam to set
+     */
+    public void setListeExam(ArrayList<Examen> ListeExam) {
+        this.ListeExam = ListeExam;
+    }
+      public void addExam(Examen Exam) {
+          this.getListeExam().add(Exam);
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+     /**
      * @return the nom
      */
     public String getNom() {
@@ -76,46 +119,4 @@ public class Patient {
         this.sexe = sexe;
     }
 
-    private String nom;
-    private String prenom;
-    private Date2 dateN;
-    private String id;
-    private Sexe sexe;
-    private ArrayList<Examen> ListeExam=new ArrayList<>();
-    
-     public Patient(){
-         
-     }
-    public Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam){
-        this.dateN=dateN;
-        this.nom=nom;
-        this.prenom=prenom;
-        this.sexe=sexe;
-        this.id=id;
-        this.ListeExam=ListeExam;
-    }
-    
-    /**
-     * @return the ListeExam
-     */
-    public ArrayList<Examen> getListeExam() {
-        return ListeExam;
-    }
-
-    /**
-     * @param ListeExam the ListeExam to set
-     */
-    public void setListeExam(ArrayList<Examen> ListeExam) {
-        this.ListeExam = ListeExam;
-    }
-      public void addExam(Examen Exam) {
-          this.getListeExam().add(Exam);
-    }
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
 }

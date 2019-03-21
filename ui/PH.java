@@ -215,6 +215,20 @@ public class PH extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList<>();
+        jTextField4 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jButton16 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -622,6 +636,75 @@ public class PH extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ajouter un examen", jPanel1);
 
+        jPanel5.setLayout(null);
+
+        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "id exam numarchiv  patient ", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane7.setViewportView(jList4);
+
+        jPanel5.add(jScrollPane7);
+        jScrollPane7.setBounds(300, 130, 570, 400);
+
+        jTextField4.setText("Rechercher...");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jTextField4);
+        jTextField4.setBounds(650, 90, 140, 30);
+
+        jButton2.setText("OK");
+        jPanel5.add(jButton2);
+        jButton2.setBounds(820, 90, 79, 25);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par...", "identifiant examen", "date", "nom patient" }));
+        jPanel5.add(jComboBox3);
+        jComboBox3.setBounds(270, 90, 110, 30);
+
+        jButton16.setText("Trier");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton16);
+        jButton16.setBounds(430, 90, 61, 25);
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jTextArea3.setText("selectionnez une image à ajouter...");
+        jScrollPane6.setViewportView(jTextArea3);
+
+        jPanel5.add(jScrollPane6);
+        jScrollPane6.setBounds(330, 560, 300, 110);
+
+        jButton17.setText("Parcourir");
+        jPanel5.add(jButton17);
+        jButton17.setBounds(655, 565, 100, 30);
+
+        jButton18.setText("visualiser");
+        jPanel5.add(jButton18);
+        jButton18.setBounds(790, 565, 100, 30);
+
+        jButton19.setText("retirerImgS");
+        jPanel5.add(jButton19);
+        jButton19.setBounds(650, 620, 110, 30);
+
+        jButton20.setText("ViderListe");
+        jButton20.setToolTipText("");
+        jPanel5.add(jButton20);
+        jButton20.setBounds(790, 620, 100, 30);
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
+        jPanel5.add(jLabel17);
+        jLabel17.setBounds(0, 0, 1800, 739);
+
+        jTabbedPane1.addTab("ajouter une image", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -974,6 +1057,7 @@ public class PH extends javax.swing.JFrame {
                 f = new FonctionnaliteBD();
                 this.listeExamen = f.ListeExamenBD();
                 this.listePatient = f.ListePatientBD(listeExamen);
+                this.listeImage=f.ListeImageBD(listeExamen);
             } catch (Exception ex) {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1105,6 +1189,14 @@ public class PH extends javax.swing.JFrame {
          imp.print();
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1153,6 +1245,12 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1162,6 +1260,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
@@ -1173,6 +1272,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1183,21 +1283,27 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }

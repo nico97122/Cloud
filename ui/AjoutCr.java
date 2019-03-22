@@ -298,6 +298,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
             System.out.println(this.jTextArea1.getText()+"\n fait le: "+dateCr+"par "+ nomMed);
             co.update("examen", "compterendu= '"+this.jTextArea1.getText()+"\n fait le: "+dateCr+" par "+ nomMed+"'" , "where numeroarchivage="+"'"+this.jLabel9.getText()+"'");
              JOptionPane.showMessageDialog(this,"Compte-rendu ajouté","Confirmation", JOptionPane.INFORMATION_MESSAGE);
+             this.dispose();
        }
     }//GEN-LAST:event_jButton2MouseClicked
 

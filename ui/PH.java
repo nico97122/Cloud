@@ -1095,7 +1095,7 @@ public class PH extends javax.swing.JFrame {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(NumArchivage);
-            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient,compterendu", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'" + "," + "'" + cr + "'");
+            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient,compterendu", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'" + "," + "'" + cr +"\n fait le :"+this.jFormattedTextField2.getText()+" à :"+this.jFormattedTextField3.getText()+ "'");
 
             try {
                 co.deconnexion();

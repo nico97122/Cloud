@@ -7,7 +7,7 @@ package Cloud.ui;
 
 /**
  *
- * @author nicolas
+ * @author nicolas tyndal
  */
 public class AjoutCr extends javax.swing.JFrame {
 

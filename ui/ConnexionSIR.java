@@ -143,10 +143,16 @@ public class ConnexionSIR extends javax.swing.JFrame {
             nom=listeNomPrenom.get(0).get(0);
             prenom=listeNomPrenom.get(1).get(0);
           
-            PH ph = new PH(nom,prenom);
+            PH ph;
+            try {
+                ph = new PH(nom,prenom);
+                ph.setVisible(true);
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println(listeNomPrenom.toString());
             
-           ph.setVisible(true);
+           
         
             try {
                 con.deconnexion();

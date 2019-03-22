@@ -52,15 +52,17 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
                 jLabel5.setText(listePatient.get(i).getSexe().toString());
             }
         }
-
+        // on appelle notre setter de model de jTree
         jTree1.setModel(this.buildTree());
     }
 
     public DefaultTreeModel buildTree() {
         id = jLabel7.getText();
+        //on créé la racine du jTree
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
         int y = 0;
+        // on parcours la liste d'examen du patient sélectionné
         for (int i = 0; i < listeExamen.size(); i++) {
             if (listeExamen.get(i).getIdPat().equals(id)) {
                 y += 1;
@@ -71,6 +73,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
                 DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
                 DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                //on parcours la liste des images des examens du patient sélectionné
                 for (int x = 0; x < listeImage.size(); x++) {
                     System.out.println(this.listeImage.get(x).getNumArchivage());
                     System.out.println(listeExamen.get(i).getNumArchiv());

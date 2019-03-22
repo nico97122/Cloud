@@ -9,6 +9,7 @@ import Cloud.fc.ConnexionBD;
 import Cloud.fc.Date2;
 import Cloud.fc.Examen;
 import Cloud.fc.FonctionnaliteBD;
+import Cloud.fc.Image;
 import Cloud.fc.Patient;
 import Cloud.fc.Sexe;
 import java.sql.SQLException;
@@ -32,6 +33,8 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
      */
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
+    private ArrayList<Image> listeImage = new ArrayList<>();
+
     private String id = "";
     private Patient p = new Patient();
 
@@ -45,45 +48,57 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
         id = idPat;
         jLabel7.setText(id);
 
+        // L'interface est remplie avec les informations du patient (pour que le PH sache le patient dont il regarde le DMR)
         for (int i = 0; i < listePatient.size(); i++) {
             if (listePatient.get(i).getId().equals(id)) {
                 jLabel1.setText(listePatient.get(i).getNom());
                 jLabel2.setText(listePatient.get(i).getPrenom());
                 jLabel3.setText(listePatient.get(i).getDateN().toString());
-                jLabel4.setText(listePatient.get(i).getSexe().toString());            
+                jLabel4.setText(listePatient.get(i).getSexe().toString());
             }
         }
 
-        jTree1.setModel(this.buildTree());
+        jTree1.setModel(this.buildTree()); // on applique le modèle du Tree dévelopé plus bas pour qu'il soit mis à jour 
 
     }
 
     ConnexionBD co = new ConnexionBD();
 
+    //on construit le jTree ici 
     public DefaultTreeModel buildTree() {
         id = jLabel7.getText();
-        int k=0;
+        int k = 0;
+        //on défini la racine 
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
+        //on parcours la liste d'examen en appliquant une condition qui nous permet de sélectionner uniquement le patient sélectionné par le MR dans l'interface précédente
         for (int i = 0; i < listeExamen.size(); i++) {
             if (listeExamen.get(i).getIdPat().equals(id)) {
-                k+=1;
+                k += 1;
+                // on récupère ensuite toutes les informations de tous les examens du patient 
                 DefaultMutableTreeNode examens = new DefaultMutableTreeNode("Examen n°" + k);
                 DefaultMutableTreeNode type = new DefaultMutableTreeNode(listeExamen.get(i).getTypeExamen());
                 DefaultMutableTreeNode date = new DefaultMutableTreeNode(listeExamen.get(i).getDate());
                 DefaultMutableTreeNode heure = new DefaultMutableTreeNode(listeExamen.get(i).getDate().getheure());
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
-            //DefaultMutableTreeNode images = new DefaultMutableTreeNode(listeExamen.get(i)???);
-                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
-                //DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeExamen.get(i)???);
+                DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                for (int x = 0; x < listeImage.size(); x++) {
+                    System.out.println(this.listeImage.get(x).getNumArchivage());
+                    System.out.println(listeExamen.get(i).getNumArchiv());
+                    if (this.listeImage.get(x).getNumArchivage().equals(listeExamen.get(i).getNumArchiv())) {
+                        DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeImage.get(x).getPath());
+                        images.add(image);
+                    }
+                }
+
                 examens.add(type);
                 examens.add(date);
                 examens.add(heure);
                 examens.add(nomPH);
-               
-//            examens.add(images);
-//            images.add(image);
-//            images.add(image);
+                examens.add(images);
+                racine.add(examens);
+
+
                 racine.add(examens);
             }
         }
@@ -91,21 +106,6 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
 
     }
 
-//      public void TreeDemo() {
-//
-//        DefaultMutableTreeNode top = new DefaultMutableTreeNode("Liste des patients");
-//        createNodes(top);
-//        jTree1 = new JTree(top);
-//        JScrollPane treeView = new JScrollPane(jTree1);
-//
-//    }
-//   
-//    private void createNodes(DefaultMutableTreeNode top) {
-//    DefaultMutableTreeNode category = null;
-//    DefaultMutableTreeNode book = null;
-//    category = new DefaultMutableTreeNode();
-//    top.add(category);
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

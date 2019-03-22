@@ -39,6 +39,7 @@ public class PH extends javax.swing.JFrame {
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
     private ArrayList<Image> listeImage = new ArrayList<>();
+    private ArrayList<PersonneH> listePerso = new ArrayList<>();
     int p = 0; //compteur pour reinitialiser la fenetre d'affichage des url;
     String NomPatient = "";
     String PrenomPatient = "";
@@ -75,10 +76,24 @@ public class PH extends javax.swing.JFrame {
         jLabel2.setText(prenomPH);
         co.connexion();
         FonctionnaliteBD f = new FonctionnaliteBD();
+        listePerso = f.ListePersonnelBD();
         listeExamen = f.ListeExamenBD();
         listeImage = f.ListeImageBD(listeExamen);
         listePatient = f.ListePatientBD(listeExamen);
         jTree1.setModel(this.buildTree());
+        String idPH=""; //là on va indiquer au PH le nombre de compte rendu qui ne sont pas remplis
+        for(int j=0;j<listePerso.size();j++){
+            if(listePerso.get(j).getNom().equals(nomPH)){
+                idPH=listePerso.get(j).getId();
+            }
+        }
+        int q=0;
+        for(int i=0;i<listeExamen.size();i++){   
+            if(listeExamen.get(i).getCr().equals("non fait") && listeExamen.get(i).getIdMed().equals(idPH)){
+                q=q+1;
+            }
+        }
+        jLabel18.setText("Vous avez "+q+" comptes-rendus à écrire");
 
     }
 
@@ -99,6 +114,19 @@ public class PH extends javax.swing.JFrame {
         if (TypePerso.contentEquals("INT")) {
             jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/ph.png")));
         }
+        String idPH=""; //là on va indiquer au PH le nombre de compte rendu qui ne sont pas remplis
+        for(int j=0;j<listePerso.size();j++){
+            if(listePerso.get(j).getNom().equals(nomPH)){
+                idPH=listePerso.get(j).getId();
+            }
+        }
+        int q=0;
+        for(int i=0;i<listeExamen.size();i++){   
+            if(listeExamen.get(i).getCr().equals("non fait") && listeExamen.get(i).getIdMed().equals(idPH)){
+                q=q+1;
+            }
+        }
+        jLabel18.setText("Vous avez "+q+" comptes-rendus à écrire");
     }
 
     public DefaultTreeModel buildTree() {
@@ -171,6 +199,7 @@ public class PH extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jButton15 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
@@ -284,6 +313,12 @@ public class PH extends javax.swing.JFrame {
         });
         jPanel4.add(jButton15);
         jButton15.setBounds(810, 565, 120, 50);
+
+        jLabel18.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("jLabel18");
+        jPanel4.add(jLabel18);
+        jLabel18.setBounds(110, 440, 730, 30);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel4.add(jLabel3);
@@ -1438,6 +1473,7 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

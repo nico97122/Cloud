@@ -147,7 +147,6 @@ public class ConnexionSIR extends javax.swing.JFrame {
             try {
                 ph = new PH(nom,prenom);
                 ph.setVisible(true);
-                
             } catch (Exception ex) {
                 Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -53,15 +53,17 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
                 jLabel5.setText(listePatient.get(i).getSexe().toString());
             }
         }
-
+        // on appelle notre setter de model de jTree
         jTree1.setModel(this.buildTree());
     }
 
     public DefaultTreeModel buildTree() {
         id = jLabel7.getText();
+        //on créé la racine du jTree
         DefaultMutableTreeNode racine = new DefaultMutableTreeNode("Liste des examens :");
         DefaultTreeModel myModel = new DefaultTreeModel(racine);
         int y = 0;
+        // on parcours la liste d'examen du patient sélectionné
         for (int i = 0; i < listeExamen.size(); i++) {
             if (listeExamen.get(i).getIdPat().equals(id)) {
                 y += 1;
@@ -72,6 +74,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
                 DefaultMutableTreeNode CR = new DefaultMutableTreeNode(listeExamen.get(i).getCr());
                 DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
+                //on parcours la liste des images des examens du patient sélectionné
                 for (int x = 0; x < listeImage.size(); x++) {
                     System.out.println(this.listeImage.get(x).getNumArchivage());
                     System.out.println(listeExamen.get(i).getNumArchiv());
@@ -125,31 +128,31 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Dossier Médical Radiologique");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(79, 26, 344, 32);
+        jLabel1.setBounds(79, 26, 369, 30);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nom");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(360, 70, 130, 24);
+        jLabel2.setBounds(360, 70, 130, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Prénom");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(360, 100, 150, 24);
+        jLabel3.setBounds(360, 100, 150, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date de naissance");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(780, 80, 149, 24);
+        jLabel4.setBounds(780, 80, 157, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexe");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(840, 120, 100, 24);
+        jLabel5.setBounds(840, 120, 100, 22);
 
         jTree1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des examens");
@@ -189,13 +192,21 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Modifier Image");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(805, 593, 125, 27);
+        jButton1.setBounds(805, 593, 147, 29);
 
         jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("Ajouter Compte Rendu ");
@@ -205,7 +216,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(594, 593, 181, 27);
+        jButton2.setBounds(594, 593, 205, 29);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -214,13 +225,13 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(6, 6, 53, 29);
+        jButton3.setBounds(6, 6, 36, 32);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("id");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(360, 130, 110, 24);
+        jLabel7.setBounds(360, 130, 110, 22);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel6);
@@ -251,7 +262,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ModifImg modif = new ModifImg();
         modif.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -282,6 +293,10 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
             Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

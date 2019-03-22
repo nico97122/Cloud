@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import Cloud.ui.*;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -33,25 +35,26 @@ public class Cloud_Imagin {
 //        System.out.println(l.toString());
 //      FonctionnaliteBD f = new FonctionnaliteBD();
 //      
-//      
+        int jour=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        
 //        System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
 //        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getId());
 //        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getImg().getHeight());
 ////        System.out.println(f.ListePatientBD(f.ListeExamenBD()).get(1).getSexe()+f.ListePatientBD(f.ListeExamenBD()).get(1).getNom());
 //         String locR="src/Cloud/imageBD/ ";
 //        String locRes = "src/ResultImages/";
-       String loc = "src/Cloud/imageBD/test.png";
-       String loc2 = "src/pic.png";
-        String loc3 = "src/testpgm.pgm";
-        ConnexionPACS con = new ConnexionPACS();
-        con.saveImage(loc, "test", "1254265");
-        //con.saveImage(loc2,2345,"15022019");
-//FonctionnaliteBD f=new FonctionnaliteBD();
-//f.ListeExamenBD();
-ConnexionBD co=new ConnexionBD();
-co.connexion();
-//System.out.println(co.requete("dateexam", "examen ", "").get(0).get(0));
-System.out.println(co.requete("dateexam", "examen join personnel on iddbpersonnel=iddbmedecin", "").get(0).get(0));
+//       String loc = "src/Cloud/imageBD/test.png";
+//       String loc2 = "src/pic.png";
+//        String loc3 = "src/testpgm.pgm";
+//        ConnexionPACS con = new ConnexionPACS();
+//        con.saveImage(loc, "test", "1254265");
+//        //con.saveImage(loc2,2345,"15022019");
+////FonctionnaliteBD f=new FonctionnaliteBD();
+////f.ListeExamenBD();
+//ConnexionBD co=new ConnexionBD();
+//co.connexion();
+////System.out.println(co.requete("dateexam", "examen ", "").get(0).get(0));
+//System.out.println(co.requete("dateexam", "examen join personnel on iddbpersonnel=iddbmedecin", "").get(0).get(0));
 
        // System.out.println(co.requete("dateexam,compterendu", "examen ", "").get(1).get(0));
       //  ConnexionPACS con=new ConnexionPACS();

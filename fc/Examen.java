@@ -20,14 +20,16 @@ public class Examen {
     private String cr;
     private TypeExam typeExamen;
     private String idMed;
+    private String idExamen;
     
-    public Examen(Date2 date, String IdPat, String numArchiv , String cr,TypeExam typeExamen, String idMed){
+    public Examen(Date2 date, String IdPat, String numArchiv , String cr,TypeExam typeExamen, String idMed, String idExamen){
         this.date=date;
         this.cr=cr;
         this.IdPat=IdPat;
         this.typeExamen=typeExamen;
         this.idMed=idMed;
         this.numArchiv=numArchiv;
+        this.idExamen=idExamen;
     }
      public Examen(){
          
@@ -38,6 +40,10 @@ public class Examen {
      */
     public Date2 getDate() {
         return date;
+    }
+     
+    public String getidExamen() {
+        return idExamen;
     }
 
     /**

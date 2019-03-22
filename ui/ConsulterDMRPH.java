@@ -36,6 +36,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     public ConsulterDMRPH(String idPat, String PrenomPH, String NomPH) throws SQLException, Exception {
         initComponents();
         setSize(1500, 700);
+        this.NomPH=NomPH;
         jLabel6.setSize(1500, 700);
         FonctionnaliteBD f = new FonctionnaliteBD();
         listeExamen = f.ListeExamenBD();
@@ -188,11 +189,6 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Modifier Image");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -203,6 +199,11 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("Ajouter Compte Rendu ");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(594, 593, 181, 27);
 
@@ -250,12 +251,37 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ModifImg modif = new ModifImg();
         modif.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+      FonctionnaliteBD f;
+       ArrayList<Examen> listeExamPat=new ArrayList<>();
+           String numAr = null;
+           String idExam="";
+           
+           String typeExamen="";
+             for(int i =0;i<this.listeExamen.size();i++){
+                 if(this.listeExamen.get(i).getIdPat().equals(this.jLabel7.getText())){
+                     listeExamPat.add(this.listeExamen.get(i));
+                 }
+             }
+             
+             if(jTree1.getSelectionPath().getPathCount()==2){
+      String indexExamen=(jTree1.getSelectionPath().getLastPathComponent().toString()).split("°")[1];
+                 numAr=listeExamPat.get(Integer.parseInt(indexExamen)-1).getNumArchiv();
+                 idExam=listeExamPat.get(Integer.parseInt(indexExamen)-1).getidExamen();
+                 typeExamen=listeExamPat.get(Integer.parseInt(indexExamen)-1).getTypeExamen().toString();
+                 
+              }
+        try {
+            AjoutCr cr=new AjoutCr(this.jLabel2.getText(),numAr,idExam,this.jLabel7.getText(),typeExamen,this.NomPH);
+            cr.setVisible(true);
+//AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, String TypeExamen,String nomMed)
+        } catch (Exception ex) {
+            Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

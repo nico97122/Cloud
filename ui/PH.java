@@ -59,7 +59,7 @@ public class PH extends javax.swing.JFrame {
         listeImage = f.ListeImageBD(listeExamen);
         listePatient = f.ListePatientBD(listeExamen);
         jTree1.setModel(this.buildTree());
-        System.out.println(this.listeImage.toString());
+      
 
     }
 
@@ -177,7 +177,6 @@ public class PH extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
@@ -345,16 +344,6 @@ public class PH extends javax.swing.JFrame {
         jPanel3.add(jButton6);
         jButton6.setBounds(648, 599, 137, 27);
 
-        jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton7.setText("Consulter");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7);
-        jButton7.setBounds(520, 600, 93, 27);
-
         jButton14.setText("Editer un CR");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +351,7 @@ public class PH extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton14);
-        jButton14.setBounds(357, 600, 120, 30);
+        jButton14.setBounds(460, 600, 120, 30);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -686,7 +675,7 @@ public class PH extends javax.swing.JFrame {
         jPanel5.add(jButton17);
         jButton17.setBounds(655, 565, 100, 30);
 
-        jButton18.setText("visualiser");
+        jButton18.setText("Visualiser");
         jPanel5.add(jButton18);
         jButton18.setBounds(790, 565, 100, 30);
 
@@ -728,22 +717,6 @@ public class PH extends javax.swing.JFrame {
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if (this.jList1.getSelectedIndex() != -1) {
-            idPatient = jList1.getSelectedValue().toString().split(" ")[0];
-            try {
-                ConsulterDMRPH consultDMR = new ConsulterDMRPH(idPatient, this.jLabel2.getText(), this.jLabel1.getText());
-                consultDMR.setVisible(true);
-                //BD
-            } catch (Exception ex) {
-                Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Veuillez selectionner un patient", "Erreur", JOptionPane.WARNING_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
         jTextField3.setText("");
@@ -1255,7 +1228,6 @@ public class PH extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;

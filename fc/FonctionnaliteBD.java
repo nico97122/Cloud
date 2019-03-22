@@ -87,7 +87,7 @@ public class FonctionnaliteBD {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         ArrayList<Examen> listeExamen = new ArrayList<>();
-        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel,iddbpersonnel", "examen join personnel on iddbpersonnel=iddbmedecin", "");
+        ArrayList<ArrayList<String>> listeDonneesExamens = co.requete("dateexam,idpatient,numeroarchivage,compterendu,typeexam,idpersonnel,iddbpersonnel,iddbexamen", "examen join personnel on iddbpersonnel=iddbmedecin", "");
         for (int k = 0; k < listeDonneesExamens.get(1).size(); k++) {
             Date2 dateExam = new Date2(listeDonneesExamens.get(0).get(k));
             
@@ -99,9 +99,9 @@ public class FonctionnaliteBD {
             String cr = listeDonneesExamens.get(3).get(k);
             TypeExam e = TypeExam.valueOf(listeDonneesExamens.get(4).get(k).toLowerCase());
             String IdMed = listeDonneesExamens.get(6).get(k);
-
+            String idExam=listeDonneesExamens.get(7).get(k);
             Examen exam;
-            exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed);
+            exam = new Examen(dateExam, IdPat, numArchiv, cr, e, IdMed, idExam);
 
             listeExamen.add(exam);
 

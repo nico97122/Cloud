@@ -215,7 +215,7 @@ private String iddbpersonnel;
              listeResultat = con.requete("mdp","personnel","where iddbpersonnel ="+"'"+id+"'");
                           
              if(listeResultat.get(0).get(0).equals(mdp)){
-                 System.out.println("je suis la 1");
+                 
                  con.update("personnel","mdp='"+nmdp+"'","where iddbpersonnel ="+"'"+id+"'");
                  
                   JOptionPane.showMessageDialog(this, "MDP modifié ", "Confirmation", JOptionPane.INFORMATION_MESSAGE);

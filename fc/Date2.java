@@ -9,19 +9,18 @@ package Cloud.fc;
  *
  * @author nicol
  */
-import java.util.Arrays;
 import java.util.Date;
 
 public class Date2 {
 
-    private int année;
+    private int annee;
     private int mois;
     private int jour;
     private int heure;
     private int minute;
 
-    public Date2(int année, int mois, int jour) {
-        this.année = année;
+    public Date2(int annee, int mois, int jour) {
+        this.annee = annee;
         this.mois = mois;
         this.jour = jour;
         this.heure = 0;
@@ -39,12 +38,12 @@ public class Date2 {
                 String[] TabHeure = TabJourHeure[1].split(":");
                 this.heure = Integer.parseInt(TabHeure[0]);
                 this.minute = Integer.parseInt(TabHeure[1]);
-                this.année = Integer.parseInt(dateTab[0]);
+                this.annee = Integer.parseInt(dateTab[0]);
                 this.mois = Integer.parseInt(dateTab[1]);
             } else {
                 this.jour = Integer.parseInt(dateTab[2]);
                 this.mois = Integer.parseInt(dateTab[1]);
-                this.année = Integer.parseInt(dateTab[0]);
+                this.annee = Integer.parseInt(dateTab[0]);
                 this.minute = 0;
                 this.heure = 0;
 
@@ -54,7 +53,7 @@ public class Date2 {
             String[] dateTab = date.split("/");
             if (dateTab[2].contains(":")) {
                 String[] TabAnneeHeure = dateTab[2].split(" ");
-                this.année = Integer.parseInt(TabAnneeHeure[0]);
+                this.annee = Integer.parseInt(TabAnneeHeure[0]);
                 String[] TabHeure = TabAnneeHeure[1].split(":");
                 this.heure = Integer.parseInt(TabHeure[0]);
                 this.minute = Integer.parseInt(TabHeure[1]);
@@ -64,7 +63,7 @@ public class Date2 {
             } else {
                 this.jour = Integer.parseInt(dateTab[0]);
                 this.mois = Integer.parseInt(dateTab[1]);
-                this.année = Integer.parseInt(dateTab[2]);
+                this.annee = Integer.parseInt(dateTab[2]);
                 this.minute = 0;
                 this.heure = 0;
 
@@ -73,8 +72,8 @@ public class Date2 {
 
     }
 
-    public Date2(int année, int mois, int jour, int heure, int minute) {
-        this.année = année;
+    public Date2(int annee, int mois, int jour, int heure, int minute) {
+        this.annee = annee;
         this.mois = mois;
         this.jour = jour;
         this.heure = heure;
@@ -123,7 +122,7 @@ public class Date2 {
         } else {
             s += mois + "/";
         }
-        s += année;
+        s += annee;
         return s;
     }
 
@@ -140,7 +139,7 @@ public class Date2 {
         } else {
             s += mois + "/";
         }
-        s += année+" ";
+        s += annee+" ";
         if (heure < 10) {
             s += "0" + heure + ":";
         } else {
@@ -158,7 +157,7 @@ public class Date2 {
 
     public int[] modifFormat(Date2 date) { //renvoie la date dans un tableau de 5 éléments
         int[] d = new int[5];
-        d[0] = date.année;
+        d[0] = date.annee;
         d[1] = date.mois;
         d[2] = date.jour;
         d[3] = date.heure;
@@ -167,6 +166,6 @@ public class Date2 {
     }
 
     public String toStringDateNaissDB() { //renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
-        return "" + this.année + "-" + this.mois + "-" + this.jour + " " + this.heure + ":" + this.minute;
+        return "" + this.annee + "-" + this.mois + "-" + this.jour + " " + this.heure + ":" + this.minute;
     }
 }

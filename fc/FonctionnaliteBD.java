@@ -131,6 +131,7 @@ public class FonctionnaliteBD {
                 
                 listeImage.add(new Image("src/Cloud/imageBD/"+listeIdImg.get(x)+".png",listeIdImg.get(x),listeNumArchiv.get(i)));
             }
+            cop.deconnexion();
         } //Image(String pathIm, String id, String NumArchivage)
        return listeImage;
     }

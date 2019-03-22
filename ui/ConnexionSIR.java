@@ -136,7 +136,7 @@ public class ConnexionSIR extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(listeIdentifiants.get(0).size());
+        System.out.println(listeIdentifiants.get(0).toString());
         System.out.println(listeIdentifiants.toString());
         
         if (listeIdentifiants.get(0).toString().equals("[PH]")) {
@@ -151,6 +151,30 @@ public class ConnexionSIR extends javax.swing.JFrame {
                 Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(listeNomPrenom.toString());
+            
+           
+        
+            try {
+                con.deconnexion();
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);// on se deco de la base de données
+            }
+              this.dispose();
+           
+        }
+         if (listeIdentifiants.get(0).toString().equals("[INT]")) {
+            nom=listeNomPrenom.get(0).get(0);
+            prenom=listeNomPrenom.get(1).get(0);
+          
+            PH ph;
+            try {
+                ph = new PH(nom,prenom,"INT");
+                ph.setVisible(true);
+                
+            } catch (Exception ex) {
+                Logger.getLogger(ConnexionSIR.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             
            
         

@@ -36,6 +36,7 @@ public class PH extends javax.swing.JFrame {
     public ArrayList<String> ListeImgR2 = new ArrayList<String>();
     private String idPatient;
     private DefaultListModel modelFromBD = new DefaultListModel();
+    private DefaultListModel modelFromBDExam = new DefaultListModel();
     private ArrayList<Examen> listeExamen = new ArrayList<>();
     private ArrayList<Patient> listePatient = new ArrayList<>();
     private ArrayList<Image> listeImage = new ArrayList<>();
@@ -400,9 +401,6 @@ public class PH extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jList1MouseEntered(evt);
-            }
         });
         jScrollPane4.setViewportView(jList1);
 
@@ -468,6 +466,14 @@ public class PH extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTree1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTree1MouseEntered(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree1);
 
         jPanel2.add(jScrollPane1);
@@ -1010,7 +1016,7 @@ public class PH extends javax.swing.JFrame {
                 model2.addElement(listeE.get(j).getTypeExamen() + "  " + listeE.get(j).getNumArchiv() + "  " + NomPatient + " " + PrenomPatient);
             }
             jList4.setModel(model2);
-            modelFromBD = model2;
+            modelFromBDExam = model2;
 
         } catch (Exception ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
@@ -1266,10 +1272,6 @@ public class PH extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jList1MouseEntered
-
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         Imprimer imp = new Imprimer(this.jTextArea2);
         imp.print();
@@ -1368,6 +1370,14 @@ public class PH extends javax.swing.JFrame {
     private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
         jTextField4.setText("");
     }//GEN-LAST:event_jTextField4MouseClicked
+
+    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTree1MouseClicked
+
+    private void jTree1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTree1MouseEntered
 
     /**
      * @param args the command line arguments

@@ -326,7 +326,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jList1MouseClicked"/>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jList1MouseEntered"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -422,6 +421,10 @@
                       <TreeModel code="Liste des patients&#xa; Nom du patient1&#xa;  pr&#xe9;nom&#xa;  adresse&#xa;  id&#xa;  examen&#xa;   type exam1&#xa;    url image1&#xa;    num&#xe9;ro archivage1&#xa;   type examen 2&#xa;    url image 2&#xa;    num archivage2&#xa;"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTree1MouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTree1MouseEntered"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

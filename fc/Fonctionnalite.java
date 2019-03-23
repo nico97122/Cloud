@@ -19,8 +19,10 @@ public class Fonctionnalite {
    }
    public ArrayList<String> recherche(String recherche,ArrayList<String> liste){
         ArrayList<String> listeElement = new ArrayList<>();
+         ArrayList<String> listeLowerCase = liste;
+         
        for (int i=0;i<liste.size();i++){
-           if (liste.get(i).toLowerCase().contains(recherche.toLowerCase())){
+           if (listeLowerCase.get(i).toLowerCase().contains(recherche.toLowerCase())){
                listeElement.add(liste.get(i));
                
            }
@@ -28,11 +30,7 @@ public class Fonctionnalite {
            
 
        }
-                  for (int j=0;j<listeElement.size();j++){
-               String replace = listeElement.get(j).replace(listeElement.get(j).charAt(0), listeElement.get(j).toUpperCase().charAt(0));
-               listeElement.set(j, replace);
-              
-           }
+
        
        return listeElement;
    }

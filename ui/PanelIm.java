@@ -19,6 +19,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Integer.max;
+import static java.lang.Integer.min;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -117,12 +119,13 @@ public class PanelIm extends JPanel {
         int pix;
         int ligne = img.getWidth();
         int colonne = img.getHeight();
-        BufferedImage imgr = new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
-
-        for (int i = 0; i < ligne; i++) {
-            for (int j = 0; j < colonne; j++) {
-                pix = img.getRGB(i, j);
-                imgr.setRGB(ligne - j - 1, i, pix);
+        BufferedImage imgr = new BufferedImage(colonne,ligne, BufferedImage.TYPE_BYTE_GRAY);
+       
+        for (int i = 0; i < colonne; i++) {
+            for (int j = 0; j < ligne; j++) {
+                pix = img.getRGB(ligne-j-1, i);
+              
+                imgr.setRGB(i , j, pix);
 
             }
 
@@ -134,12 +137,12 @@ public class PanelIm extends JPanel {
         int pix;
         int ligne = img.getWidth();
         int colonne = img.getHeight();
-        BufferedImage imgr = new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
+        BufferedImage imgr = new BufferedImage(colonne,ligne, BufferedImage.TYPE_BYTE_GRAY);
 
-        for (int i = 0; i < ligne; i++) {
-            for (int j = 0; j < colonne; j++) {
-                pix = img.getRGB(i, j);
-                imgr.setRGB(j, colonne - 1 - i, pix);
+        for (int i = 0; i < colonne; i++) {
+            for (int j = 0; j < ligne; j++) {
+                pix = img.getRGB(j, colonne - 1 - i);
+                imgr.setRGB(i, j, pix);
 
             }
 
@@ -253,7 +256,7 @@ public class PanelIm extends JPanel {
         panneauImage.paint(g);
         ImageIO.write(tamponSauvegarde, "JPG", new File(racineFichier + nomFichier));
     }
-    protected BufferedImage annoterImg(BufferedImage image,int x, int y,  String text) {
+    public BufferedImage annoterImg(BufferedImage image,int x, int y,  String text) {
         int ligne = image.getWidth();
         int colonne = image.getHeight();
         Color pix;
@@ -274,10 +277,44 @@ public class PanelIm extends JPanel {
         Graphics2D gO = imgDest.createGraphics();
 
        
-        gO.setColor(Color.red);
+        gO.setColor(Color.WHITE);
+        
+        
         gO.setFont(new Font("SansSerif", Font.BOLD, 12));
-        gO.drawString(text, x, y);
-        System.err.println(text + x + y);
+        gO.drawString(text, 20, 20);
+      
+        System.err.println(text + 30 + 20);
+        return imgDest;
+
+    }
+    public BufferedImage dessinerCercle(BufferedImage image,int x, int y,int rayon) {
+        int ligne = image.getWidth();
+        int colonne = image.getHeight();
+        Color pix;
+
+        BufferedImage imgDest =new BufferedImage(ligne, colonne, BufferedImage.TYPE_BYTE_GRAY);
+        for (int i = 0; i < ligne; i++) {
+            for (int j = 0; j < colonne; j++) {
+        pix = new Color(image.getRGB(i, j));
+                int r = pix.getRed();
+                int g = pix.getGreen();
+                int b = pix.getBlue();
+                Color pix2 = new Color(r, g, b);
+                int pixInt = pix2.getRGB();
+                imgDest.setRGB(i, j, pixInt);
+            }
+
+        }
+        Graphics2D gO = imgDest.createGraphics();
+
+       
+        gO.setColor(Color.WHITE);
+        
+        
+        gO.setFont(new Font("SansSerif", Font.BOLD, 12));
+        gO.drawOval(x-rayon/2, y-rayon/2, rayon, rayon);
+      
+       
         return imgDest;
 
     }

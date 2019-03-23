@@ -197,15 +197,15 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         panelIm1.setLayout(panelIm1Layout);
         panelIm1Layout.setHorizontalGroup(
             panelIm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 214, Short.MAX_VALUE)
+            .addGap(0, 314, Short.MAX_VALUE)
         );
         panelIm1Layout.setVerticalGroup(
             panelIm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 174, Short.MAX_VALUE)
+            .addGap(0, 204, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelIm1);
-        panelIm1.setBounds(880, 270, 220, 180);
+        panelIm1.setBounds(810, 280, 320, 210);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "img1", "img2", "img3" };

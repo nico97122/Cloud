@@ -65,25 +65,8 @@ public class Cloud_Imagin {
       //  System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
       //  con.retrieveImage("15022019", locR, "png");
     }
+}
         
-       // String loc="src/Cloud/image/img.jpg";
-       
-        
-        
-       // con.saveImage(loc, 11110, "99999");
-        
-        // con.retrieveImage("15022019", locR, "png");
-   
 
-//                ListePatientBD listeP = new ListePatientBD(listeE.getListeExamen());
-//                System.out.println(listeE.getListeExamen().toString());
-//             System.out.println( listeP.getListePatient().get(0).getNom()+ listeP.getListePatient().get(0).getListeExam().size());
-//               
-        //  TraitementImg tr= new TraitementImg(new File("src\\Cloud\\image\\cor494-i43.jpg"));
-        //  BufferedImage img=tr.getImg();
-        //   int[]tab= tr.getHauteurLargeur(img);
-        //  tr.sauvegarderImg(img,new File("src\\Cloud\\image\\img.jpg"));
-        //  System.out.println(tab[1]);
-    }
 
 

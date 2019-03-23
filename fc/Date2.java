@@ -18,7 +18,7 @@ public class Date2 {
     private int jour;
     private int heure;
     private int minute;
-
+//constructeur de la date sans l'heure
     public Date2(int annee, int mois, int jour) {
         this.annee = annee;
         this.mois = mois;
@@ -27,7 +27,7 @@ public class Date2 {
         this.minute = 0;
 
     }
-
+//constructeur de la date a partir d'un string 
     public Date2(String date) {
         if (date.contains("-")) {//traitement pour les dates venant de la BD;
             String[] dateTab = date.split("-");
@@ -71,7 +71,7 @@ public class Date2 {
         }
 
     }
-
+//constructeur de la date avec heure
     public Date2(int annee, int mois, int jour, int heure, int minute) {
         this.annee = annee;
         this.mois = mois;
@@ -80,7 +80,7 @@ public class Date2 {
         this.minute = minute;
 
     }
-
+//return l'heure
     public String getheure() {
         String s = "";
         if (heure < 10) {
@@ -96,8 +96,8 @@ public class Date2 {
 
         return s;
     }
-
-    public Date2 comparerDate(Date2 d1, Date2 d2) {  // renvoie la date la plus récente
+// renvoie la date la plus récente entre 2 date de type Date2
+    public Date2 comparerDate(Date2 d1, Date2 d2) {  
         Date da1 = new Date(d1.modifFormat(d1)[0], d1.modifFormat(d1)[1], d1.modifFormat(d1)[2], d1.modifFormat(d1)[3], d1.modifFormat(d1)[4]);
         Date da2 = new Date(d2.modifFormat(d2)[0], d2.modifFormat(d2)[1], d2.modifFormat(d2)[2], d2.modifFormat(d1)[3], d2.modifFormat(d2)[4]);
         int compare = da1.compareTo(da2);
@@ -108,7 +108,14 @@ public class Date2 {
         }
 
     }
+     public int comparerDateint(Date2 d1, Date2 d2) {  
+        Date da1 = new Date(d1.modifFormat(d1)[0], d1.modifFormat(d1)[1], d1.modifFormat(d1)[2], d1.modifFormat(d1)[3], d1.modifFormat(d1)[4]);
+        Date da2 = new Date(d2.modifFormat(d2)[0], d2.modifFormat(d2)[1], d2.modifFormat(d2)[2], d2.modifFormat(d1)[3], d2.modifFormat(d2)[4]);
+        return da1.compareTo(da2);
+        
 
+    }
+// renvoie uniquement la date (sans l'heure)
     public String toString() {
         String s = "";
         if (jour < 10) {
@@ -125,7 +132,7 @@ public class Date2 {
         s += annee;
         return s;
     }
-
+// renvoie la date avec l'heure sous forme de string
     public String toStringDateHeure() {
         String s = "";
         if (jour < 10) {
@@ -154,8 +161,8 @@ public class Date2 {
 
         return (s);
     }
-
-    public int[] modifFormat(Date2 date) { //renvoie la date dans un tableau de 5 éléments
+//renvoie la date dans un tableau de 5 éléments
+    public int[] modifFormat(Date2 date) { 
         int[] d = new int[5];
         d[0] = date.annee;
         d[1] = date.mois;
@@ -164,8 +171,8 @@ public class Date2 {
         d[4] = date.minute;
         return d;
     }
-
-    public String toStringDateNaissDB() { //renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
+//renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
+    public String toStringDateNaissDB() { 
         return "" + this.annee + "-" + this.mois + "-" + this.jour + " " + this.heure + ":" + this.minute;
     }
 }

@@ -36,7 +36,7 @@ public class Fonctionnalite {
    }
    
    public ArrayList<String> tri(ArrayList<String> liste){
-       //liste.sort(new ComparatorImpl());
+       liste.sort(new ComparatorImpl());
         return liste;
     }
 
@@ -48,6 +48,21 @@ public class Fonctionnalite {
         @Override
         public int compare(String o1, String o2) {
             return  o1.compareToIgnoreCase(o2);
+        }
+    }
+     public ArrayList<Date2> triDate(ArrayList<Date2> liste){
+       liste.sort(new ComparatorImpl2());
+        return liste;
+    }
+
+    private static class ComparatorImpl2 implements Comparator<Date2> {
+
+        public ComparatorImpl2() {
+        }
+
+        @Override
+        public int compare(Date2 o1, Date2 o2) {
+            return  o1.comparerDateint(o1, o2);
         }
     }
     

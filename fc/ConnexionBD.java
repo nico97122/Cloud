@@ -84,7 +84,7 @@ public class ConnexionBD {
         nbChamps = tempArray.length;
         
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
-        System.out.println(compositionRequete);
+        
         resultatRequete = result(compositionRequete);
 
         ArrayList<ArrayList<String>> listResultat = new ArrayList<ArrayList<String>>(nbChamps);
@@ -145,7 +145,7 @@ public int insert(String table,String attributs,String attributsValeurs) {
         
         return i;
     }
-    // ajouter patient ajouter exam a faire
+    
 
     public void update(String table, String set, String condition){
         String requete = "UPDATE "+table+" SET "+set+" "+condition;

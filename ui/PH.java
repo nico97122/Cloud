@@ -63,7 +63,19 @@ public class PH extends javax.swing.JFrame {
         listeImage = f.ListeImageBD(listeExamen);
         listePatient = f.ListePatientBD(listeExamen);
         jTree1.setModel(this.buildTree());
-      
+         String idPH=""; //là on va indiquer au PH le nombre de compte rendu qui ne sont pas remplis
+        for(int j=0;j<listePerso.size();j++){
+            if(listePerso.get(j).getNom().equals(jLabel1.getText())){
+                idPH=listePerso.get(j).getId();
+            }
+        }
+      int q=0;
+        for(int i=0;i<listeExamen.size();i++){   
+            if(listeExamen.get(i).getCr().equals("non fait") && listeExamen.get(i).getIdMed().equals(idPH)){
+                q=q+1;
+            }
+        }
+        jLabel18.setText("Vous avez "+q+" comptes-rendus à écrire");
 
     }
 
@@ -393,7 +405,7 @@ public class PH extends javax.swing.JFrame {
         jButton14.setBounds(460, 600, 120, 30);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "nom prenom id", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -1013,7 +1025,7 @@ public class PH extends javax.swing.JFrame {
                         PrenomPatient = listeP.get(k).getPrenom();
                     }
                 }
-                model2.addElement(listeE.get(j).getTypeExamen() + "  " + listeE.get(j).getNumArchiv() + "  " + NomPatient + " " + PrenomPatient);
+                model2.addElement(listeE.get(j).getTypeExamen() + "   " + listeE.get(j).getNumArchiv() + "   " + NomPatient + " " + PrenomPatient);
             }
             jList4.setModel(model2);
             modelFromBDExam = model2;
@@ -1100,8 +1112,8 @@ public class PH extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(NumArchivage);
-            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient,compterendu", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'" + "," + "'" + cr +"\n fait le :"+this.jFormattedTextField2.getText()+" à :"+this.jFormattedTextField3.getText()+ "'");
+           
+            int i = co.insert("examen", "iddbexamen,iddbmedecin,dateexam,typeexam,numeroarchivage,idpatient,compterendu", "'" + iddbExamen + "'" + "," + "'" + iddbPersonnel + "'" + "," + "'" + dateE.toStringDateNaissDB() + "'" + "," + "'" + typeE + "'" + "," + "'" + NumArchivage + "'" + "," + "'" + idPatient + "'" + "," + "'" + cr +"\n fait le :"+this.jFormattedTextField2.getText()+" à :"+this.jFormattedTextField3.getText()+" par Dr."+this.jLabel1.getText()+ "'");
 
             try {
                 co.deconnexion();
@@ -1228,7 +1240,7 @@ public class PH extends javax.swing.JFrame {
                 listeInitial.add((String) l.getElementAt(i));
             }
             listeTrie = f.tri(listePourTri);
-            for (int j = 0; j < listeTrie.size(); j++) {
+            for (int j = 0; j < listeTrie.size(); j++) {      
                 for (int k = 0; k < listeInitial.size(); k++) {
                     if (listeInitial.get(k).split("   ")[2].contains(listeTrie.get(j))) {
                         model.addElement(listeInitial.get(k));
@@ -1282,7 +1294,92 @@ public class PH extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+         if (this.jComboBox3.getSelectedIndex() == 1) {//trier selon id
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<String> listeTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList4.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+            for (int j = 0; j < listeTrie.size(); j++) {
+                model.addElement(listeTrie.get(j));
+            }
+            this.jList4.setModel(model);
+        }
+
+        if (this.jComboBox3.getSelectedIndex() == 2) {//trier selon date
+            DefaultListModel model = new DefaultListModel();
+            ArrayList<Date2> listeTrie = new ArrayList<>();
+            ArrayList<String> SlisteTrie = new ArrayList<>();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList4.getModel();
+            ArrayList<Date2> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(new Date2(((String) l.getElementAt(i)).split("   ")[1]));
+                
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            
+            listeTrie = f.triDate(listePourTri);
+             for (int i = 0; i < listeTrie.size(); i++) {
+                 SlisteTrie.add(listeTrie.get(i).toStringDateHeure());
+             }
+            
+            for (int j = 0; j < SlisteTrie.size(); j++) {
+                for (int k = 0; k < listeInitial.size(); k++) {
+                    if (listeInitial.get(k).split("   ")[1].contains(SlisteTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                    }
+
+                }
+
+            }
+            this.jList4.setModel(model);
+        }
+        
+        if (this.jComboBox3.getSelectedIndex() == 3) {//trie selon nom du patient
+            ArrayList<String> listeTrie = new ArrayList<>();
+            DefaultListModel model = new DefaultListModel();
+            Fonctionnalite f = new Fonctionnalite();
+            ListModel l = this.jList4.getModel();
+            ArrayList<String> listePourTri = new ArrayList<>();
+            ArrayList<String> listeInitial = new ArrayList<>();
+            for (int i = 0; i < l.getSize(); i++) {
+                listePourTri.add(((String) l.getElementAt(i)).split("   ")[2]);
+                listeInitial.add((String) l.getElementAt(i));
+            }
+            listeTrie = f.tri(listePourTri);
+//            for (int j = 0; j < listeTrie.size(); j++) {
+//                int k =0;
+//                while(model.getSize()<=j){
+//                    if (listeInitial.get(k).split("   ")[2].contains(listeTrie.get(j))) {
+//                        model.addElement(listeInitial.get(k));
+//                        
+//                    }
+//                    k+=1;
+//                }
+   for (int j = 0; j < listeTrie.size(); j++) {
+                int k =0;
+                boolean b=false;
+                while(b==false && k<listeInitial.size()){
+                    if (listeInitial.get(k).contains(listeTrie.get(j))) {
+                        model.addElement(listeInitial.get(k));
+                        listeInitial.remove(k);
+                        b=true;
+                    }
+                    k+=1;
+                }
+
+            
+
+            }
+            this.jList4.setModel(model);
+        }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
@@ -1336,9 +1433,9 @@ public class PH extends javax.swing.JFrame {
             Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String DebutnumArchivage = jList4.getSelectedValue().toString().split(" ")[1];
-        String FinnumArchivage = jList4.getSelectedValue().toString().split(" ")[2];
-        String numArchivageFinal = DebutnumArchivage + " " + FinnumArchivage;
+        String DebutnumArchivage = jList4.getSelectedValue().toString().split("   ")[1];
+       // String FinnumArchivage = jList4.getSelectedValue().toString().split("   ")[2];
+        String numArchivageFinal = DebutnumArchivage; //+ " " + FinnumArchivage;
 
         for (int j = 0; j < this.jList3.getModel().getSize(); j++) {
             String idImg = r2.genererId(9);  //generer un id pour la database pour pouvoir rentrer dans le while

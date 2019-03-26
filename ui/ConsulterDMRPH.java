@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -263,7 +264,7 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-      FonctionnaliteBD f;
+      
        ArrayList<Examen> listeExamPat=new ArrayList<>();
            String numAr = null;
            String idExam="";
@@ -274,21 +275,31 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
                      listeExamPat.add(this.listeExamen.get(i));
                  }
              }
-             
-             if(jTree1.getSelectionPath().getPathCount()==2){
+          
+             if(jTree1.getSelectionCount()!=0){
+                 if (jTree1.getSelectionPath().getLastPathComponent().toString().split("°")[0].equals("Examen")){
+                     
+                 
       String indexExamen=(jTree1.getSelectionPath().getLastPathComponent().toString()).split("°")[1];
                  numAr=listeExamPat.get(Integer.parseInt(indexExamen)-1).getNumArchiv();
                  idExam=listeExamPat.get(Integer.parseInt(indexExamen)-1).getidExamen();
                  typeExamen=listeExamPat.get(Integer.parseInt(indexExamen)-1).getTypeExamen().toString();
                  
-              }
-        try {
+                 try {
             AjoutCr cr=new AjoutCr(this.jLabel2.getText(),numAr,idExam,this.jLabel7.getText(),typeExamen,this.NomPH);
             cr.setVisible(true);
 //AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, String TypeExamen,String nomMed)
         } catch (Exception ex) {
             Logger.getLogger(ConsulterDMRPH.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
+              else{
+                   JOptionPane.showMessageDialog(this,"selectionnez le numéro de l'examen","erreur", JOptionPane.WARNING_MESSAGE);
+             }   
+              }
+             else{
+                   JOptionPane.showMessageDialog(this,"selectionnez le numéro de l'examen","erreur", JOptionPane.WARNING_MESSAGE);
+             }
+        
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

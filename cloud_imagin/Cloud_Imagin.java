@@ -33,9 +33,11 @@ public class Cloud_Imagin {
 //        l.add("zi");
 //        l.add("ai");
 //        System.out.println(l.toString());
-//      FonctionnaliteBD f = new FonctionnaliteBD();
-//      
-        int jour=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+      FonctionnaliteBD f = new FonctionnaliteBD();
+
+f.ListePersonnelBD();
+        
+
         
 //        System.out.println(f.ListeImageBD(f.ListeExamenBD()).toString());
 //        System.out.println(f.ListeImageBD(f.ListeExamenBD()).get(0).getId());

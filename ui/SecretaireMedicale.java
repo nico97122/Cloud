@@ -494,16 +494,16 @@ public class SecretaireMedicale extends javax.swing.JFrame {
                 iddbpatient = r.genererId(9);
             }
             String attribut = "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'";
-            System.out.println(attribut);
+           // System.out.println(attribut);
             int i = co.insert("patient", "iddbpatient,datenaissance,nom,prenom,sexe,idpatient,adresse", "'" + iddbpatient + "'" + "," + "'" + date.toStringDateNaissDB() + "'" + "," + "'" + nom + "'" + "," + "'" + prenom + "'" + "," + "'" + sexe + "'" + "," + "'" + id + "'" + "," + "'" + adresse + "'");
-            System.out.println(i);
+           // System.out.println(i);
 
             try {
                 liste = co.requete("nom", "patient", "");
             } catch (SQLException ex) {
                 Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(liste.toString());
+           // System.out.println(liste.toString());
             JOptionPane.showMessageDialog(this, "Patient ajouté", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 
             try {
@@ -546,7 +546,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         }
         try {
             listeId = co.requete("idpatient", "patient", "");
-            System.out.println(listeId.toString());
+           
 
         } catch (SQLException ex) {
             Logger.getLogger(SecretaireMedicale.class.getName()).log(Level.SEVERE, null, ex);

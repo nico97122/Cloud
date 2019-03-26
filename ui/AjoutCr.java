@@ -134,7 +134,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
@@ -247,13 +247,14 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
     }// </editor-fold>//GEN-END:initComponents
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+       if(!this.jList1.getModel().getElementAt(0).equals("aucune image pour cet examen")){
         if (jList1.isSelectionEmpty() == false) {
             try {
                 this.panelIm1.setImage(jList1.getSelectedValue());
             } catch (IOException ex) {
                 Logger.getLogger(AjoutCr.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }}
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jTextArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseClicked
@@ -296,7 +297,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
                 Logger.getLogger(AjoutCr.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(this.jTextArea1.getText()+"\n fait le: "+dateCr+"par "+ nomMed);
-            co.update("examen", "compterendu= '"+this.jTextArea1.getText()+"\n fait le: "+dateCr+" par "+ nomMed+"'" , "where numeroarchivage="+"'"+this.jLabel9.getText()+"'");
+            co.update("examen", "compterendu= '"+this.jTextArea1.getText()+"\n fait le: "+dateCr+" par Dr."+ nomMed+"'" , "where numeroarchivage="+"'"+this.jLabel9.getText()+"'");
              JOptionPane.showMessageDialog(this,"Compte-rendu ajouté","Confirmation", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
        }

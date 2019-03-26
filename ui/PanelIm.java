@@ -283,7 +283,7 @@ public class PanelIm extends JPanel {
         gO.setFont(new Font("SansSerif", Font.BOLD, 12));
         gO.drawString(text, 20, 20);
       
-        System.err.println(text + 30 + 20);
+        
         return imgDest;
 
     }

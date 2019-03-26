@@ -78,7 +78,7 @@ public class ConnexionPACS {
             Class.forName(driverName);
             con = DriverManager.getConnection(url,userName,password);
             Statement stmt = con.createStatement();
-            System.out.println("select image,id from PACS where numeroArchivage ="+"'"+numero+"'"+";");
+           // System.out.println("select image,id from PACS where numeroArchivage ="+"'"+numero+"'"+";");
             ResultSet rs = stmt.executeQuery("select image,id from PACS where numeroArchivage ="+"'"+numero+"'"+";" );
             int i = 0;
             while (rs.next()) {
@@ -157,7 +157,7 @@ public class ConnexionPACS {
         tempArray = stringToSplit.split(delimiter);// les champs sont séparés et stocké dans un Array
         nbChamps = tempArray.length;
         compositionRequete = "SELECT "+ champs +" FROM "+ table +" "+ condition + ";" ; //élaboration de la requete à partir des paramètres
-        System.out.println(compositionRequete);
+      // System.out.println(compositionRequete);
         resultatRequete = result(compositionRequete);
 
 

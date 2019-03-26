@@ -135,7 +135,7 @@ public class ConnexionBD {
 public int insert(String table,String attributs,String attributsValeurs) {
         int i = 0;
         String requete = "INSERT INTO "+table+"("+attributs+")VALUES("+attributsValeurs+");";
-        //System.out.println(requete);
+        
         try {
             i = stmt.executeUpdate(requete);
         } catch (SQLException ex) {
@@ -149,7 +149,7 @@ public int insert(String table,String attributs,String attributsValeurs) {
 
     public void update(String table, String set, String condition){
         String requete = "UPDATE "+table+" SET "+set+" "+condition;
-        System.out.println(requete);
+       // System.out.println(requete);
         try{
             stmt.executeUpdate(requete);
 

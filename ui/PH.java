@@ -102,7 +102,7 @@ public class PH extends javax.swing.JFrame {
         }
         int q=0;
         for(int i=0;i<listeExamen.size();i++){   
-            if(listeExamen.get(i).getCr().equals("non fait") && listeExamen.get(i).getIdMed().equals(idPH)){
+            if(listeExamen.get(i).getCr().equals("non fait")){
                 q=q+1;
             }
         }

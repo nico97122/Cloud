@@ -334,7 +334,7 @@ public class PH extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel4.add(jLabel3);
-        jLabel3.setBounds(0, 0, 1310, 740);
+        jLabel3.setBounds(0, 0, 1400, 740);
 
         jTabbedPane1.addTab("Accueil", jPanel4);
 
@@ -405,7 +405,7 @@ public class PH extends javax.swing.JFrame {
         jButton14.setBounds(800, 600, 130, 40);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "nom prenom id", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Patient 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

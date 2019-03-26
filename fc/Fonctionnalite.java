@@ -36,7 +36,7 @@ public class Fonctionnalite {
    }
    
    public ArrayList<String> tri(ArrayList<String> liste){
-       liste.sort(new ComparatorImpl());
+    //   liste.sort(new ComparatorImpl());
         return liste;
     }
 
@@ -51,7 +51,7 @@ public class Fonctionnalite {
         }
     }
      public ArrayList<Date2> triDate(ArrayList<Date2> liste){
-       liste.sort(new ComparatorImpl2());
+       //liste.sort(new ComparatorImpl2());
         return liste;
     }
 

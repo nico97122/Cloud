@@ -5,6 +5,7 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.PanelIm;
 import Cloud.fc.ConnexionPACS;
 import Cloud.fc.FonctionnaliteBD;
 import Cloud.fc.Image;

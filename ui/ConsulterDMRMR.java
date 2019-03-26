@@ -40,7 +40,8 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
 
     public ConsulterDMRMR(String idPat) throws SQLException, Exception {
         initComponents();
-        setSize(1500, 700);
+        setSize(1500, 750);
+      this.setResizable(false);
         jLabel6.setSize(1500, 700);
         FonctionnaliteBD f = new FonctionnaliteBD();
         listeExamen = f.ListeExamenBD();

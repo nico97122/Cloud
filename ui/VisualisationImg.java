@@ -5,6 +5,7 @@
  */
 package Cloud.ui;
 
+import Cloud.fc.PanelIm;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;

@@ -51,6 +51,7 @@ public class PH extends javax.swing.JFrame {
     public PH() throws SQLException, Exception {
         initComponents();
         setSize(1400, 700);
+        this.setResizable(false);
         jLabel3.setSize(1380, 660);
         jLabel4.setSize(1300, 660);
         jLabel13.setSize(1380, 660);

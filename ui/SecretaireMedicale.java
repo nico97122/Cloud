@@ -37,7 +37,6 @@ public class SecretaireMedicale extends javax.swing.JFrame {
      */
     public SecretaireMedicale() throws SQLException, Exception {
         initComponents();
-
         setResizable(false);
         jLabel1.setSize(1500, 700);
         jLabel7.setSize(1500, 700);

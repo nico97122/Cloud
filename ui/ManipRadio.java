@@ -45,8 +45,8 @@ public class ManipRadio extends javax.swing.JFrame {
      */
     public ManipRadio() {
         initComponents();
-        setResizable(false);
         setSize(1500, 700);
+        this.setResizable(false);
         jLabel12.setSize(1400, 700);
         jLabel16.setSize(1400, 700);
         jLabel13.setSize(1400, 700);

@@ -36,7 +36,6 @@ public class ConsulterDMRPH extends javax.swing.JFrame {
 
     public ConsulterDMRPH(String idPat, String PrenomPH, String NomPH) throws SQLException, Exception {
         initComponents();
-       
          setSize(1500, 700);
       this.setResizable(false);
         this.NomPH=NomPH;

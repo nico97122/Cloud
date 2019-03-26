@@ -34,6 +34,8 @@ public class AjoutCr extends javax.swing.JFrame {
      */
     public AjoutCr() throws Exception {
         initComponents();
+        setSize(1500, 700);
+        this.setResizable(false);
         nomP="TYNDAL";
         numArchiv="13/03/2019 22:20";
         idExamen="538698839";

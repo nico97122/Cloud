@@ -68,6 +68,7 @@ public class AjoutCr extends javax.swing.JFrame {
        jList1.setSelectedIndex(0);
        
        this.panelIm1.setImage(this.jList1.getSelectedValue());}
+          this.setSize(1200, 800);
     }
 public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, String TypeExamen,String nomMed) throws Exception {
         initComponents();
@@ -103,7 +104,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
            if(!this.jList1.getModel().getElementAt(0).equals("aucune image pour cet examen")){
        jList1.setSelectedIndex(0);
        this.panelIm1.setImage(this.jList1.getSelectedValue());}
-       this.setSize(1200, 650);
+       this.setSize(1200, 800);
        
     }
     /**
@@ -126,9 +127,9 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        panelIm1 = new Cloud.ui.PanelIm();
+        panelIm1 = new Cloud.fc.PanelIm();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
+        jList1 = new javax.swing.JList<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -220,10 +221,10 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         getContentPane().add(panelIm1);
         panelIm1.setBounds(810, 280, 320, 210);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "img1", "img2", "img3" };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,7 +263,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 10, 1190, 620);
+        jLabel1.setBounds(0, -10, 1310, 790);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -389,6 +390,6 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private Cloud.ui.PanelIm panelIm1;
+    private Cloud.fc.PanelIm panelIm1;
     // End of variables declaration//GEN-END:variables
 }

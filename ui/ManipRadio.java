@@ -99,7 +99,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        jList2 = new javax.swing.JList<>();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -193,14 +193,13 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel5.add(jLabel16);
-        jLabel16.setBounds(0, -30, 1420, 660);
+        jLabel16.setBounds(0, -10, 1350, 700);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -208,8 +207,8 @@ public class ManipRadio extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Accueil", jPanel4);
@@ -245,7 +244,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "rx", "radio", "echographie", "scanner", "irm", "mammographie", "scintigraphie" }));
         jPanel7.add(jComboBox2);
-        jComboBox2.setBounds(640, 70, 170, 27);
+        jComboBox2.setBounds(640, 70, 170, 25);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -339,7 +338,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Sélectionner une image :");
         jPanel7.add(jLabel17);
-        jLabel17.setBounds(50, 550, 350, 34);
+        jLabel17.setBounds(50, 550, 350, 37);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Parcourir");
@@ -349,12 +348,12 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton5);
-        jButton5.setBounds(670, 560, 130, 29);
+        jButton5.setBounds(670, 560, 130, 27);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "selectionnez une image..." };
             public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jList2);
 
@@ -429,13 +428,13 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom : ");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(340, 60, 110, 34);
+        jLabel1.setBounds(340, 60, 110, 37);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(300, 140, 134, 34);
+        jLabel2.setBounds(300, 140, 131, 37);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -453,7 +452,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexe : ");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(340, 446, 110, 34);
+        jLabel5.setBounds(340, 446, 110, 37);
 
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -571,7 +570,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Nom", "Prenom", "Id" }));
         jPanel6.add(jComboBox3);
-        jComboBox3.setBounds(238, 74, 128, 27);
+        jComboBox3.setBounds(238, 74, 97, 25);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Trier ");
@@ -581,7 +580,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton6);
-        jButton6.setBounds(382, 73, 81, 29);
+        jButton6.setBounds(382, 73, 67, 27);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("OK");
@@ -591,7 +590,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton7);
-        jButton7.setBounds(790, 70, 75, 29);
+        jButton7.setBounds(790, 70, 53, 27);
 
         jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField7.setText("Rechercher..");
@@ -601,7 +600,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jTextField7);
-        jTextField7.setBounds(680, 70, 99, 29);
+        jTextField7.setBounds(680, 70, 88, 25);
 
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Imprimer");
@@ -649,14 +648,14 @@ public class ManipRadio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1481, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -666,32 +665,6 @@ public class ManipRadio extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ConnexionSIR connect1 = new ConnexionSIR();
-        connect1.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            String iddbPerso = "";
-
-            FonctionnaliteBD f = new FonctionnaliteBD();
-            ArrayList<PersonneH> listePerso = f.ListePersonnelBD();
-            for (int i = 0; i < listePerso.size(); i++) {
-
-                if (listePerso.get(i).getNom().equals(this.jLabel14.getText() + "")) {
-                    iddbPerso = listePerso.get(i).getId();
-
-                }
-            }
-            ChangerMdp changemanip = new ChangerMdp(iddbPerso);
-            changemanip.setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -730,13 +703,6 @@ public class ManipRadio extends javax.swing.JFrame {
             Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-        ConnexionSIR co = new ConnexionSIR();
-        this.dispose();
-        co.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
@@ -1198,6 +1164,39 @@ public class ManipRadio extends javax.swing.JFrame {
         Imprimer imp=new Imprimer(this.jTextArea1);
          imp.print();
     }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ConnexionSIR connect1 = new ConnexionSIR();
+        connect1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        ConnexionSIR co = new ConnexionSIR();
+        this.dispose();
+        co.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            String iddbPerso = "";
+
+            FonctionnaliteBD f = new FonctionnaliteBD();
+            ArrayList<PersonneH> listePerso = f.ListePersonnelBD();
+            for (int i = 0; i < listePerso.size(); i++) {
+
+                if (listePerso.get(i).getNom().equals(this.jLabel14.getText() + "")) {
+                    iddbPerso = listePerso.get(i).getId();
+
+                }
+            }
+            ChangerMdp changemanip = new ChangerMdp(iddbPerso);
+            changemanip.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(ManipRadio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

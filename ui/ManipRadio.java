@@ -99,7 +99,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jList2 = new javax.swing.JList<String>();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -177,7 +177,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Onette ");
+        jLabel14.setText("Nom");
         jPanel5.add(jLabel14);
         jLabel14.setBounds(70, 70, 270, 80);
 
@@ -185,7 +185,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Prenom");
         jPanel5.add(jLabel15);
-        jLabel15.setBounds(80, 190, 260, 60);
+        jLabel15.setBounds(70, 190, 260, 60);
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/nurse_person_woman_people_1697.png"))); // NOI18N
         jPanel5.add(jLabel20);
@@ -218,47 +218,48 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jPanel7.setLayout(null);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Type d'examen");
         jPanel7.add(jLabel6);
-        jLabel6.setBounds(460, 70, 170, 24);
+        jLabel6.setBounds(410, 62, 220, 30);
 
-        jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Nom : ");
         jPanel7.add(jLabel9);
-        jLabel9.setBounds(230, 230, 80, 30);
+        jLabel9.setBounds(200, 230, 110, 30);
 
-        jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Prénom : ");
         jPanel7.add(jLabel10);
-        jLabel10.setBounds(200, 320, 100, 30);
+        jLabel10.setBounds(170, 320, 130, 30);
 
-        jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Date de naissance : ");
         jPanel7.add(jLabel11);
-        jLabel11.setBounds(120, 420, 190, 30);
+        jLabel11.setBounds(30, 420, 280, 30);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "rx", "radio", "echographie", "scanner", "irm", "mammographie", "scintigraphie" }));
         jPanel7.add(jComboBox2);
-        jComboBox2.setBounds(640, 70, 170, 25);
+        jComboBox2.setBounds(640, 70, 170, 27);
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Date : ");
         jPanel7.add(jLabel7);
-        jLabel7.setBounds(810, 270, 80, 30);
+        jLabel7.setBounds(800, 260, 100, 30);
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Heure : ");
         jPanel7.add(jLabel8);
-        jLabel8.setBounds(810, 370, 70, 40);
+        jLabel8.setBounds(790, 370, 110, 40);
 
+        jTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField4MouseClicked(evt);
@@ -267,6 +268,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel7.add(jTextField4);
         jTextField4.setBounds(350, 230, 260, 40);
 
+        jTextField5.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField5MouseClicked(evt);
@@ -282,6 +284,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField2.setText("jj/mm/aaaa");
+        jFormattedTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField2MouseClicked(evt);
@@ -292,6 +295,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField3.setText("jj/mm/aaaa");
+        jFormattedTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jFormattedTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField3MouseClicked(evt);
@@ -307,6 +311,7 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         jFormattedTextField4.setText("hh:mm");
+        jFormattedTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jFormattedTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField4MouseClicked(evt);
@@ -328,13 +333,13 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton4);
-        jButton4.setBounds(1050, 560, 170, 50);
+        jButton4.setBounds(1040, 570, 170, 50);
 
-        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Sélectionner une image :");
         jPanel7.add(jLabel17);
-        jLabel17.setBounds(210, 560, 230, 24);
+        jLabel17.setBounds(50, 550, 350, 34);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("Parcourir");
@@ -344,12 +349,12 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton5);
-        jButton5.setBounds(670, 560, 110, 27);
+        jButton5.setBounds(670, 560, 130, 29);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "selectionnez une image..." };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jList2);
 
@@ -369,27 +374,27 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel7.add(jButton11);
-        jButton11.setBounds(790, 560, 120, 30);
+        jButton11.setBounds(810, 560, 130, 30);
 
         jButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton12.setText("RetirerImgS");
+        jButton12.setText("Retirer l'image");
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton12MouseClicked(evt);
             }
         });
         jPanel7.add(jButton12);
-        jButton12.setBounds(670, 600, 110, 30);
+        jButton12.setBounds(670, 600, 130, 30);
 
         jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton13.setText("ViderListe");
+        jButton13.setText("Vider la liste");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
         jPanel7.add(jButton13);
-        jButton13.setBounds(790, 600, 120, 30);
+        jButton13.setBounds(810, 600, 130, 30);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jLabel12.setText("jj/mm/aaaa");
@@ -420,70 +425,74 @@ public class ManipRadio extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom : ");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(360, 60, 90, 32);
+        jLabel1.setBounds(340, 60, 110, 34);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(330, 140, 110, 32);
+        jLabel2.setBounds(300, 140, 134, 34);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date de naissance : ");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(200, 220, 250, 20);
+        jLabel3.setBounds(150, 200, 300, 40);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Identifiant : ");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(290, 290, 170, 30);
+        jLabel4.setBounds(260, 290, 180, 30);
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Sexe : ");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(380, 460, 70, 20);
+        jLabel5.setBounds(340, 446, 110, 34);
 
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(460, 60, 310, 40);
+        jTextField1.setBounds(460, 60, 370, 40);
 
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(460, 130, 310, 40);
+        jTextField2.setBounds(460, 130, 370, 40);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField1.setText("jj/mm/aaaa");
+        jFormattedTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
             }
         });
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(460, 210, 160, 40);
+        jFormattedTextField1.setBounds(460, 210, 370, 40);
 
         jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(460, 280, 310, 40);
+        jTextField3.setBounds(460, 280, 370, 40);
 
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(470, 447, 170, 40);
+        jComboBox1.setBounds(470, 437, 220, 50);
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Ajouter ce patient");
@@ -502,21 +511,22 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton14);
-        jButton14.setBounds(800, 290, 140, 25);
+        jButton14.setBounds(840, 280, 150, 40);
 
-        jLabel19.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Adresse :");
         jPanel3.add(jLabel19);
-        jLabel19.setBounds(310, 370, 120, 30);
+        jLabel19.setBounds(290, 370, 140, 30);
 
+        jTextField6.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField6MouseClicked(evt);
             }
         });
         jPanel3.add(jTextField6);
-        jTextField6.setBounds(460, 360, 310, 40);
+        jTextField6.setBounds(460, 360, 370, 40);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel13);
@@ -544,7 +554,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jPanel6.setLayout(null);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Patient 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -556,12 +566,12 @@ public class ManipRadio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel6.add(jScrollPane1);
-        jScrollPane1.setBounds(238, 114, 707, 476);
+        jScrollPane1.setBounds(238, 114, 630, 470);
 
         jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "Nom", "Prenom", "Id" }));
         jPanel6.add(jComboBox3);
-        jComboBox3.setBounds(238, 74, 97, 25);
+        jComboBox3.setBounds(238, 74, 128, 27);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Trier ");
@@ -571,7 +581,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton6);
-        jButton6.setBounds(382, 73, 67, 27);
+        jButton6.setBounds(382, 73, 81, 29);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("OK");
@@ -581,7 +591,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton7);
-        jButton7.setBounds(870, 73, 53, 27);
+        jButton7.setBounds(790, 70, 75, 29);
 
         jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTextField7.setText("Rechercher..");
@@ -591,7 +601,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jTextField7);
-        jTextField7.setBounds(765, 72, 88, 25);
+        jTextField7.setBounds(680, 70, 99, 29);
 
         jButton8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton8.setText("Imprimer");
@@ -601,12 +611,12 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton8);
-        jButton8.setBounds(838, 602, 87, 27);
+        jButton8.setBounds(1190, 599, 120, 40);
 
         jButton9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton9.setText("Exporter en PDF");
         jPanel6.add(jButton9);
-        jButton9.setBounds(665, 602, 137, 27);
+        jButton9.setBounds(1020, 600, 160, 40);
 
         jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton10.setText("Consulter");
@@ -616,7 +626,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton10);
-        jButton10.setBounds(536, 602, 93, 27);
+        jButton10.setBounds(890, 600, 120, 40);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -625,7 +635,7 @@ public class ManipRadio extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTextArea1);
 
         jPanel6.add(jScrollPane3);
-        jScrollPane3.setBounds(1000, 110, 320, 470);
+        jScrollPane3.setBounds(930, 120, 340, 470);
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel6.add(jLabel18);

@@ -19,8 +19,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Integer.max;
-import static java.lang.Integer.min;
+//import static java.lang.Integer.max;
+//import static java.lang.Integer.min;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 

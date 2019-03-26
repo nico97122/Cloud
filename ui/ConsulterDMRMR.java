@@ -137,31 +137,31 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(360, 80, 160, 24);
+        jLabel1.setBounds(360, 80, 160, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(360, 120, 170, 24);
+        jLabel2.setBounds(360, 120, 170, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date de naissance");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(767, 90, 160, 24);
+        jLabel3.setBounds(800, 90, 160, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sexe");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(820, 130, 100, 24);
+        jLabel4.setBounds(870, 150, 100, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Dossier Médical Radiologique");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(100, 20, 344, 32);
+        jLabel5.setBounds(100, 20, 369, 30);
 
         jTree1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liste des examens");
@@ -212,7 +212,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(821, 628, 129, 27);
+        jButton1.setBounds(821, 628, 151, 29);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +227,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("id");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(360, 150, 130, 24);
+        jLabel7.setBounds(360, 150, 130, 22);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel6);

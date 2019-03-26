@@ -8,6 +8,8 @@ package Cloud.ui;
 import Cloud.fc.ConnexionBD;
 import Cloud.fc.*;
 import Cloud.fc.random;
+import static java.awt.PageAttributes.MediaType.A4;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +19,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+
+
 
 /**
  *
@@ -134,7 +138,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(80, 570, 50, 50);
+        jButton1.setBounds(100, 570, 50, 50);
 
         jButton2.setText("Déconnexion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +147,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(1000, 570, 150, 40);
+        jButton2.setBounds(1040, 570, 150, 40);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,7 +163,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/sm.png"))); // NOI18N
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(960, 80, 220, 260);
+        jLabel12.setBounds(1000, 60, 220, 260);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel2.add(jLabel1);
@@ -170,7 +174,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Patien 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", "Patient 6", "Patient 7", "Patien 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", "Patient 6", "Patient 7", "Patien 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", "Patient 6", "Patient 7", "Patien 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", "Patient 6", "Patient 7" };
+            String[] strings = { "Patien 1", "Patient 2", "Patient 3", "Patient 4", "Patient 5", "Patient 6", "Patient 7", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -187,7 +191,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(80, 140, 770, 450);
+        jScrollPane1.setBounds(160, 130, 670, 450);
 
         jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Trier par...", "nom", "prenom", "identifiant" }));
@@ -197,7 +201,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(100, 90, 130, 25);
+        jComboBox2.setBounds(150, 90, 130, 27);
 
         jButton4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton4.setText("Trier");
@@ -207,7 +211,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(270, 90, 63, 27);
+        jButton4.setBounds(290, 90, 77, 29);
 
         jTextField4.setText("Rechercher...");
         jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,7 +220,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(520, 90, 144, 22);
+        jTextField4.setBounds(610, 90, 144, 28);
 
         jButton5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton5.setText("OK");
@@ -226,12 +230,17 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(710, 90, 53, 27);
+        jButton5.setBounds(760, 90, 75, 29);
 
         jButton6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton6.setText("Exporter en PDF");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton6);
-        jButton6.setBounds(800, 610, 150, 40);
+        jButton6.setBounds(880, 600, 150, 40);
 
         jButton7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton7.setText("Imprimer");
@@ -241,7 +250,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton7);
-        jButton7.setBounds(950, 610, 110, 40);
+        jButton7.setBounds(1130, 600, 110, 40);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -250,7 +259,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(910, 130, 430, 450);
+        jScrollPane2.setBounds(880, 130, 360, 450);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel10);
@@ -260,49 +269,51 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nom : ");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(310, 70, 90, 32);
+        jLabel2.setBounds(440, 80, 120, 34);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Prénom : ");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(280, 170, 130, 32);
+        jLabel3.setBounds(400, 180, 170, 34);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Date de Naissance : ");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(150, 260, 260, 32);
+        jLabel4.setBounds(250, 270, 320, 34);
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Identifiant : ");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(240, 350, 170, 32);
+        jLabel5.setBounds(360, 360, 200, 34);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("adresse: ");
+        jLabel6.setText("Adresse: ");
         jPanel3.add(jLabel6);
-        jLabel6.setBounds(260, 450, 110, 32);
+        jLabel6.setBounds(390, 460, 160, 34);
 
         jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Femme", "Homme" }));
         jPanel3.add(jComboBox1);
-        jComboBox1.setBounds(430, 530, 150, 27);
+        jComboBox1.setBounds(610, 540, 150, 27);
 
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField1MouseClicked(evt);
             }
         });
         jPanel3.add(jTextField1);
-        jTextField1.setBounds(440, 70, 250, 30);
+        jTextField1.setBounds(600, 80, 340, 40);
 
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField2.setToolTipText("");
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -310,11 +321,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(440, 170, 250, 30);
+        jTextField2.setBounds(600, 180, 340, 40);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextField1.setText("jj/mm/aaaa");
         jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jFormattedTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jFormattedTextField1MouseClicked(evt);
@@ -326,9 +338,10 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(440, 260, 250, 30);
+        jFormattedTextField1.setBounds(600, 270, 340, 40);
 
         jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField3MouseClicked(evt);
@@ -340,7 +353,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField3);
-        jTextField3.setBounds(440, 360, 250, 30);
+        jTextField3.setBounds(600, 360, 340, 40);
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Ajouter ce patient");
@@ -355,14 +368,15 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton3);
-        jButton3.setBounds(1090, 580, 180, 50);
+        jButton3.setBounds(1130, 610, 180, 50);
 
-        jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 28)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Sexe : ");
         jPanel3.add(jLabel13);
-        jLabel13.setBounds(300, 530, 90, 32);
+        jLabel13.setBounds(430, 540, 90, 34);
 
+        jTextField5.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextField5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField5MouseClicked(evt);
@@ -374,7 +388,7 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField5);
-        jTextField5.setBounds(440, 450, 250, 30);
+        jTextField5.setBounds(600, 460, 340, 40);
 
         jButton8.setText("Générer un id");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -383,11 +397,11 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton8);
-        jButton8.setBounds(730, 360, 120, 25);
+        jButton8.setBounds(950, 360, 130, 40);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel3.add(jLabel7);
-        jLabel7.setBounds(10, 20, 1730, 830);
+        jLabel7.setBounds(0, 0, 1730, 830);
 
         jTabbedPane1.addTab("Ajouter un patient", jPanel3);
 
@@ -439,17 +453,15 @@ public class SecretaireMedicale extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-             String iddbPerso="";
-             
+            String iddbPerso = "";
+
             FonctionnaliteBD f = new FonctionnaliteBD();
-            ArrayList<PersonneH> listePerso =f.ListePersonnelBD();
-            for (int i=0;i<listePerso.size();i++){
-                
-               
-                
-                if(listePerso.get(i).getNom().equals(this.jLabel8.getText()+"")){
-                    iddbPerso=listePerso.get(i).getId();
-                   
+            ArrayList<PersonneH> listePerso = f.ListePersonnelBD();
+            for (int i = 0; i < listePerso.size(); i++) {
+
+                if (listePerso.get(i).getNom().equals(this.jLabel8.getText() + "")) {
+                    iddbPerso = listePerso.get(i).getId();
+
                 }
             }
             ChangerMdp changemanip = new ChangerMdp(iddbPerso);
@@ -699,12 +711,12 @@ public class SecretaireMedicale extends javax.swing.JFrame {
             ListModel l = this.jList1.getModel();
             ArrayList<String> listePourTri = new ArrayList<>();
             ArrayList<String> listeInitial = new ArrayList<>();
-            
+
             for (int i = 0; i < l.getSize(); i++) {
                 listePourTri.add(((String) l.getElementAt(i)).split("   ")[1]);
                 listeInitial.add((String) l.getElementAt(i));
             }
-            
+
             listeTrie = f.tri(listePourTri);
             for (int j = 0; j < listeTrie.size(); j++) {
                 for (int k = 0; k < listeInitial.size(); k++) {
@@ -744,9 +756,14 @@ public class SecretaireMedicale extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-           Imprimer imp=new Imprimer(this.jTextArea1);
-         imp.print();
+        Imprimer imp = new Imprimer(this.jTextArea1);
+        imp.print();
     }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // on va utiliser l'API itext
+
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
      * @param args the command line arguments

@@ -128,7 +128,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jLabel9 = new javax.swing.JLabel();
         panelIm1 = new Cloud.ui.PanelIm();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -147,6 +147,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jButton1.setBounds(40, 20, 50, 40);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("entrez votre compte rendu...");
         jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,39 +158,51 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(150, 240, 560, 300);
+        jScrollPane1.setBounds(80, 240, 630, 330);
 
-        jLabel2.setText("nom patient :");
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nom :");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(160, 100, 110, 40);
+        jLabel2.setBounds(160, 100, 90, 40);
 
-        jLabel3.setText("date examen :");
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Date examen :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(450, 170, 120, 30);
+        jLabel3.setBounds(420, 170, 210, 30);
 
-        jLabel4.setText("idExamen :");
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Id Examen :");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 30, 150, 30);
+        jLabel4.setBounds(270, 40, 170, 30);
 
-        jLabel5.setText("idPatient :");
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Identifiant :");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(460, 110, 90, 30);
+        jLabel5.setBounds(450, 110, 170, 30);
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(290, 110, 100, 16);
+        jLabel6.setBounds(260, 110, 100, 30);
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(380, 40, 110, 16);
+        jLabel7.setBounds(460, 40, 110, 0);
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(590, 120, 90, 16);
+        jLabel8.setBounds(620, 110, 90, 0);
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(590, 180, 90, 16);
+        jLabel9.setBounds(630, 170, 90, 0);
 
         panelIm1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -207,10 +220,10 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         getContentPane().add(panelIm1);
         panelIm1.setBounds(810, 280, 320, 210);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "img1", "img2", "img3" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -220,24 +233,32 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jScrollPane2.setViewportView(jList1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(820, 90, 350, 150);
+        jScrollPane2.setBounds(810, 90, 320, 140);
 
+        jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Type de l'examen:");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(120, 180, 160, 20);
+        jLabel10.setBounds(20, 170, 260, 40);
 
-        jLabel11.setText("jLabel11");
+        jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(310, 180, 110, 16);
+        jLabel11.setBounds(280, 180, 110, 0);
 
-        jButton2.setText("ajouter compte-rendu");
+        jButton2.setText("Ajouter ce compte rendu\n");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(930, 520, 160, 40);
+        jButton2.setBounds(940, 530, 190, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -305,6 +326,10 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

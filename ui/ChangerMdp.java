@@ -60,27 +60,34 @@ private String iddbpersonnel;
 
         jPanel1.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ancien mot de passe : ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(380, 250, 220, 40);
+        jLabel2.setBounds(280, 210, 320, 80);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nouve mot de passe :");
+        jLabel3.setText("Nouveau mot de passe :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(390, 360, 220, 30);
+        jLabel3.setBounds(260, 340, 330, 50);
 
+        jPasswordField1.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField1MouseClicked(evt);
             }
         });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(650, 250, 270, 40);
+        jPasswordField1.setBounds(640, 220, 310, 50);
 
+        jPasswordField2.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jPasswordField2.setText("jPasswordField2");
         jPasswordField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,7 +95,7 @@ private String iddbpersonnel;
             }
         });
         jPanel1.add(jPasswordField2);
-        jPasswordField2.setBounds(650, 360, 270, 40);
+        jPasswordField2.setBounds(640, 340, 310, 50);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/flecheRetour.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +114,7 @@ private String iddbpersonnel;
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(670, 520, 250, 40);
+        jButton1.setBounds(700, 520, 250, 40);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         jPanel1.add(jLabel4);
@@ -153,6 +160,10 @@ private String iddbpersonnel;
     private void jPasswordField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField2MouseClicked
         jPasswordField2.setText("");
     }//GEN-LAST:event_jPasswordField2MouseClicked
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments

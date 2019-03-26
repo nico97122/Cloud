@@ -18,7 +18,15 @@ public class Date2 {
     private int jour;
     private int heure;
     private int minute;
-//constructeur de la date sans l'heure
+    
+    /**
+     * 
+     * 
+     * constructeur de la date sans l'heure
+     * @param annee
+     * @param mois
+     * @param jour 
+     */
     public Date2(int annee, int mois, int jour) {
         this.annee = annee;
         this.mois = mois;
@@ -27,7 +35,13 @@ public class Date2 {
         this.minute = 0;
 
     }
-//constructeur de la date a partir d'un string 
+//
+    /**
+     * 
+     * 
+     * constructeur de la date a partir d'un string 
+     * @param date 
+     */
     public Date2(String date) {
         if (date.contains("-")) {//traitement pour les dates venant de la BD;
             String[] dateTab = date.split("-");
@@ -71,7 +85,16 @@ public class Date2 {
         }
 
     }
-//constructeur de la date avec heure
+/**
+ * constructeur de la date avec heure
+ * @param annee
+ * @param mois
+ * @param jour
+ * @param heure
+ * @param minute 
+ */
+ 
+
     public Date2(int annee, int mois, int jour, int heure, int minute) {
         this.annee = annee;
         this.mois = mois;
@@ -80,7 +103,11 @@ public class Date2 {
         this.minute = minute;
 
     }
-//return l'heure
+
+    /**
+     * return l'heure dans le format hh:mm
+     * @return  l'heure
+     */
     public String getheure() {
         String s = "";
         if (heure < 10) {
@@ -96,7 +123,13 @@ public class Date2 {
 
         return s;
     }
-// renvoie la date la plus récente entre 2 date de type Date2
+
+    /**
+     * 
+     * @param d1
+     * @param d2
+     * @return la date la plus récente par rapport aux 2 dates entrée en paramètre
+     */
     public Date2 comparerDate(Date2 d1, Date2 d2) {  
         Date da1 = new Date(d1.modifFormat(d1)[0], d1.modifFormat(d1)[1], d1.modifFormat(d1)[2], d1.modifFormat(d1)[3], d1.modifFormat(d1)[4]);
         Date da2 = new Date(d2.modifFormat(d2)[0], d2.modifFormat(d2)[1], d2.modifFormat(d2)[2], d2.modifFormat(d1)[3], d2.modifFormat(d2)[4]);
@@ -108,6 +141,14 @@ public class Date2 {
         }
 
     }
+    
+    /**
+     * 
+     * @param d1
+     * @param d2
+     * @return un int négatif si d1 est plus récente que D2, 0 si d1=d2, et un int positif si d2 est plus récente que d1
+     * 
+     */
      public int comparerDateint(Date2 d1, Date2 d2) {  
         Date da1 = new Date(d1.modifFormat(d1)[0], d1.modifFormat(d1)[1], d1.modifFormat(d1)[2], d1.modifFormat(d1)[3], d1.modifFormat(d1)[4]);
         Date da2 = new Date(d2.modifFormat(d2)[0], d2.modifFormat(d2)[1], d2.modifFormat(d2)[2], d2.modifFormat(d1)[3], d2.modifFormat(d2)[4]);
@@ -115,7 +156,11 @@ public class Date2 {
         
 
     }
-// renvoie uniquement la date (sans l'heure)
+
+     /**
+      * 
+      * @return uniquement la date (sans l'heure)
+      */
     public String toString() {
         String s = "";
         if (jour < 10) {
@@ -133,6 +178,12 @@ public class Date2 {
         return s;
     }
 // renvoie la date avec l'heure sous forme de string
+    
+    
+   /**
+    * 
+    * @return la date avec l'heure sous la forme d'un string du type jj/mm/aaaa hh:mm
+    */
     public String toStringDateHeure() {
         String s = "";
         if (jour < 10) {
@@ -161,7 +212,12 @@ public class Date2 {
 
         return (s);
     }
-//renvoie la date dans un tableau de 5 éléments
+
+    /**
+     * 
+     * @param date
+     * @return  la date dans un tableau de 5 elements(annee,mois,jour,heure,minute)
+     */
     public int[] modifFormat(Date2 date) { 
         int[] d = new int[5];
         d[0] = date.annee;
@@ -171,7 +227,11 @@ public class Date2 {
         d[4] = date.minute;
         return d;
     }
-//renvoie la date sous forme de texte adapté a l'enregistrement dans la base de données
+//renvoie la date sous forme de texte adapté a l'enregistrement dans la base de donnees
+    /**
+     * 
+     * @return la date sous forme de texte adapté a l'enregistrement dans la base de donnees
+     */
     public String toStringDateNaissDB() { 
         return "" + this.annee + "-" + this.mois + "-" + this.jour + " " + this.heure + ":" + this.minute;
     }

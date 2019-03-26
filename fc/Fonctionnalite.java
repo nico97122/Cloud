@@ -13,7 +13,9 @@ import java.util.Comparator;
  * @author nicol
  */
 public class Fonctionnalite {
-     
+     /**
+      *  constructeur utilisé pour ensuite utilisé la fonction recherche et tri
+      */
    public Fonctionnalite(){
        
    }
@@ -34,14 +36,21 @@ public class Fonctionnalite {
        
        return listeElement;
    }
-   
+   /**
+    * 
+    * @param liste , la liste a trier
+    * @return la liste trie
+    */
    public ArrayList<String> tri(ArrayList<String> liste){
-    //   liste.sort(new ComparatorImpl());
+      liste.sort(new ComparatorImpl());
         return liste;
     }
-
+/**
+ * classe qui definie la facon de comparer deux string
+ */
     private static class ComparatorImpl implements Comparator<String> {
 
+        
         public ComparatorImpl() {
         }
 
@@ -51,7 +60,7 @@ public class Fonctionnalite {
         }
     }
      public ArrayList<Date2> triDate(ArrayList<Date2> liste){
-       //liste.sort(new ComparatorImpl2());
+       liste.sort(new ComparatorImpl2());
         return liste;
     }
 

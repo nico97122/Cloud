@@ -18,7 +18,15 @@ public class PersonneH {
     private String idcon;
     
     
-    
+    /**
+     * 
+     * @param nom du personnel
+     * @param prenom du personnel
+     * @param mdp du personnel
+     * @param idcon du personnel
+     * @param tp proffession du personnel
+     * @param id  du personnel
+     */
     public PersonneH(String nom,String prenom,String mdp, String idcon,TypePersonnel tp,String id){
         this.id=id;
         this.mdp=mdp;

@@ -5,10 +5,6 @@
  */
 package Cloud.fc;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
 /**
  *
  * @author nicol
@@ -21,7 +17,17 @@ public class Examen {
     private TypeExam typeExamen;
     private String idMed;
     private String idExamen;
-    
+    /**
+     * 
+     * @param date
+     * @param IdPat
+     * @param numArchiv
+     * @param cr
+     * @param typeExamen
+     * @param idMed
+     * @param idExamen 
+     * cree un examen a partir de Date2 date, String IdPat, String numArchiv , String cr,TypeExam typeExamen, String idMed et String idExamen
+     */
     public Examen(Date2 date, String IdPat, String numArchiv , String cr,TypeExam typeExamen, String idMed, String idExamen){
         this.date=date;
         this.cr=cr;
@@ -31,9 +37,7 @@ public class Examen {
         this.numArchiv=numArchiv;
         this.idExamen=idExamen;
     }
-     public Examen(){
-         
-     }
+  
 
     /**
      * @return the date
@@ -41,7 +45,10 @@ public class Examen {
     public Date2 getDate() {
         return date;
     }
-     
+     /**
+      * 
+      * @return l'id de l'examen 
+      */
     public String getidExamen() {
         return idExamen;
     }

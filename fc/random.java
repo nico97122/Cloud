@@ -12,10 +12,17 @@ import java.util.Random;
  * @author nicol
  */
 public class random {
-
+/**
+ * constructeur qui permet d'utiliser la methode generer id
+ */
    public random(){
        
    }
+   /**
+    * 
+    * @param nbChiffre nombre de chiffre du nombre aleatoire generer
+    * @return  un nombre aleatoire de nbChiffre chiffre
+    */
    public String genererId(int nbChiffre){
         String idPatient="";
         for (int i = 0; i < nbChiffre; i++) {

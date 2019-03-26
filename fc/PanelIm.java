@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
@@ -30,27 +29,38 @@ public class PanelIm extends JPanel {
     private BufferedImage imgIni;
 
     /**
-     * Creates new form PanelIm
+     * cree un nouveau panel Image
      */
     public PanelIm() {
 
         super();
 
     }
-
+/**
+ * 
+ * @param image image a afficher
+ */
     public PanelIm(BufferedImage image) {
         super();
 
         setStartImage(image);
     }
-
+/**
+ * 
+ * @param path le chemin du l'image a afficher
+ * @throws IOException 
+ */
     public PanelIm(String path) throws IOException {
         super();
 
         setStartImage(path);
 
     }
-
+/**
+ * 
+ * @param path de l'image de depart
+ * @throws IOException 
+ */
     public void setStartImage(String path) throws IOException {//set img avec path
         try {
             this.imgIni = ImageIO.read(new File(path));
@@ -60,13 +70,19 @@ public class PanelIm extends JPanel {
             throw new IOException(path + " introuvable", e);
         }
     }
-
+/**
+ * 
+ * @param image, image a afficher au debut 
+ */
     public void setStartImage(BufferedImage image) { //set img avec img
         this.image = image;
         this.imgIni = image;
         repaint();
     }
-
+/**
+ * 
+ * @param image , image a afficher
+ */
     public void setImage(BufferedImage image) { //set img avec img
         this.image = image;
         setStartImage(image);
@@ -74,6 +90,8 @@ public class PanelIm extends JPanel {
         repaint();
     }
 
+
+    
     public void setImgIni(String path) throws IOException {
 
         try {
@@ -84,7 +102,7 @@ public class PanelIm extends JPanel {
         }
     }
 
-    ;
+
               public void setImgIni(BufferedImage img) {
         imgIni = img;
     }
@@ -97,7 +115,10 @@ public class PanelIm extends JPanel {
             throw new IOException(path + " introuvable", e);
         }
     }
-
+/**
+ * 
+ * @return l'image afficher 
+ */
     public BufferedImage getImage() {
         return image;
     }
@@ -114,7 +135,11 @@ public class PanelIm extends JPanel {
             g2d.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         }
     }
-
+/**
+ * 
+ * @param img l'image a tourner
+ * @return l'imge tourner de 90 degres sur la droite
+ */
     public BufferedImage rotation90D(BufferedImage img) {
         int pix;
         int ligne = img.getWidth();
@@ -132,7 +157,11 @@ public class PanelIm extends JPanel {
         }
         return imgr;
     }
-
+/**
+ * 
+ * @param img l'image a tourner
+ * @return l'imge tourner de 90 degres sur la gauche
+ */
     public BufferedImage rotation90G(BufferedImage img) {
         int pix;
         int ligne = img.getWidth();
@@ -149,7 +178,11 @@ public class PanelIm extends JPanel {
         }
         return imgr;
     }
-
+/**
+ * 
+ * @param img l'image a retourner
+ * @return l'image retourner
+ */
     public BufferedImage retourner(BufferedImage img) {
         int pix;
         int ligne = img.getWidth();
@@ -165,7 +198,11 @@ public class PanelIm extends JPanel {
         }
         return imgr;
     }
-
+/**
+ * 
+ * @param img l'image dont il faut modifier les niveaux de gris
+ * @return l'image avec les niveaux de gris inverses
+ */
     public BufferedImage inversionGris(BufferedImage img) {
         Color pix;
         int ligne = img.getWidth();
@@ -188,7 +225,11 @@ public class PanelIm extends JPanel {
         }
         return imginv;
     }
-
+/**
+ * @param m l'amplitude du contraste a modifié
+ * @param img l'image a contraster
+ * @return l'image avec le contraste augmenter de m
+ */
     public BufferedImage contraste(BufferedImage img, float m) {
         int ligne = img.getWidth();
         Color pix;
@@ -223,7 +264,12 @@ public class PanelIm extends JPanel {
         }
         return imgDest;
     }
-
+/**
+ * 
+ * @param img image a eclairer ou assombrir
+ * @param m l'amplitude de l'eclaississment
+ * @return  l'image eclairer ou assombri
+ */
     public BufferedImage eclairerAssombrir(BufferedImage img, float m) {
         int ligne = img.getWidth();
         int colonne = img.getHeight();
@@ -233,8 +279,12 @@ public class PanelIm extends JPanel {
         imgeclair.filter(img, imgDest);
         return imgDest;
     }
-
-    public void sauvegarderImg(BufferedImage img, String filePath) {//filePath est le chemin ou on enregistre l'img. pensez à faire new File("chemin\\nomNouvelleImg ex: new File("src\\Cloud\\image\\img.jpg")
+/**
+ * 
+ * @param img l'image a sauvegarder
+ * @param filePath  est le chemin ou on enregistre l'img. pensez à faire new File("chemin\\nomNouvelleImg ex: new File("src\\Cloud\\image\\img.jpg")
+ */
+    public void sauvegarderImg(BufferedImage img, String filePath) {
         try {
             ImageIO.write(img, "jpg", new File(filePath));
         } catch (IOException ex) {
@@ -242,7 +292,13 @@ public class PanelIm extends JPanel {
         }
 
     }
-
+/**
+ * 
+ * @param panneauImage l'image a modifier
+ * @param racineFichier la racine du fichier
+ * @param nomFichier le nom du fichier  a enregistrer
+ * @throws IOException 
+ */
     public void sauverJPanelDansFile(JPanel panneauImage, String racineFichier, String nomFichier)
             throws IOException {
         BufferedImage tamponSauvegarde = new BufferedImage(
@@ -256,6 +312,15 @@ public class PanelIm extends JPanel {
         panneauImage.paint(g);
         ImageIO.write(tamponSauvegarde, "JPG", new File(racineFichier + nomFichier));
     }
+    
+    /**
+     * 
+     * @param image a annoter
+     * @param x ordonnee horizontal du lieu ou il faut annoter
+     * @param y ordonnee verticaal du lieu ou il faut annoter
+     * @param text texte a ecrire sur l'image
+     * @return  l'image annotee
+     */
     public BufferedImage annoterImg(BufferedImage image,int x, int y,  String text) {
         int ligne = image.getWidth();
         int colonne = image.getHeight();
@@ -287,6 +352,14 @@ public class PanelIm extends JPanel {
         return imgDest;
 
     }
+    /**
+     * 
+     * @param image sur laquelle il faut dessiner un cercle
+     * @param x ordonnee horizontal du lieu ou il faut dessiner un cercle
+     * @param y ordonnee vertical du lieu ou il faut dessiner un cercle
+     * @param rayon du cercle dessiner
+     * @return l'image avec le cercle dessine
+     */
     public BufferedImage dessinerCercle(BufferedImage image,int x, int y,int rayon) {
         int ligne = image.getWidth();
         int colonne = image.getHeight();

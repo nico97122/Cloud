@@ -17,11 +17,19 @@ import java.util.logging.Logger;
 public class FonctionnaliteBD {
 
     private ConnexionBD co = new ConnexionBD();
-
+/**
+ * constructeur utilise pour aller chercher soit les listes soit de patients , soit d'images, soit de personnels, soit d'examens
+ * @throws Exception 
+ */
     public FonctionnaliteBD() throws Exception {
 
     }
-
+/**
+ * 
+ * @param listeExamen la liste d'examen de la base de donnees
+ * @return la liste de patient de la base de donnees
+ * @throws SQLException 
+ */
     public ArrayList<Patient> ListePatientBD(ArrayList<Examen> listeExamen) throws SQLException {
         try {
             co.connexion();
@@ -41,7 +49,7 @@ public class FonctionnaliteBD {
             }
 
             listePatient.add(new Patient(listeDonneesDesPatients.get(1).get(j), listeDonneesDesPatients.get(2).get(j), new Date2(listeDonneesDesPatients.get(0).get(j)), listeDonneesDesPatients.get(4).get(j), s, new ArrayList<Examen>()));
-        }// Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam)
+        }
         for (int i = 0; i < listePatient.size(); i++) {
             for (int k = 0; k < listeExamen.size(); k++) {
                 if (listePatient.get(i).getId().equals(listeExamen.get(k).getIdPat())) {
@@ -57,7 +65,11 @@ public class FonctionnaliteBD {
         }
         return listePatient;
     }
-
+/**
+ * 
+ * @return la liste de personnel de la base de donnees
+ * @throws SQLException 
+ */
     public ArrayList<PersonneH> ListePersonnelBD() throws SQLException {
         try {
             co.connexion();
@@ -79,7 +91,11 @@ public class FonctionnaliteBD {
         //A faire
 
     }
-
+/**
+ * 
+ * @return la liste d'examen de la base de donnees
+ * @throws SQLException 
+ */
     public ArrayList<Examen> ListeExamenBD() throws SQLException {
         try {
             co.connexion();
@@ -113,7 +129,13 @@ public class FonctionnaliteBD {
         }
         return listeExamen;
     }
-
+/**
+ * 
+ * @param listeExamen de la base de donnees
+ * @return la listes d'Images de la base de donnee
+ * @throws SQLException
+ * @throws Exception 
+ */
     public ArrayList<Image> ListeImageBD(ArrayList<Examen> listeExamen) throws SQLException, Exception {
         ArrayList<Image> listeImage = new ArrayList<>();
         ConnexionPACS cop = new ConnexionPACS();
@@ -134,7 +156,9 @@ public class FonctionnaliteBD {
             cop.deconnexion();
         } //Image(String pathIm, String id, String NumArchivage)
        return listeImage;
-    }
+    }/**
+     * pour se connecter a la base de donnees
+     */
     public void connexion() {
         try {
             co.connexion();
@@ -142,6 +166,9 @@ public class FonctionnaliteBD {
             Logger.getLogger(FonctionnaliteBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    /**
+     * pour se deconnecter de la base de donnees
+     */
     public void decoBD() {
         try {
             co.deconnexion();

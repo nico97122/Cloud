@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author nicol
+ * defini la classe 
  */
 public class Image {
 
@@ -57,6 +58,10 @@ public class Image {
     public void setImg(BufferedImage img) {
         this.img = img;
     }
+    /**
+     * 
+     * @param path de l'image a set 
+     */
 public void setImg(String path) {
         try {
             this.img = ImageIO.read(new File(path));
@@ -79,14 +84,14 @@ public void setImg(String path) {
     }
 
     /**
-     * @return the NumArchivage
+     * @return the Numero Archivage
      */
     public String getNumArchivage() {
         return NumArchivage;
     }
 
     /**
-     * @param NumArchivage the NumArchivage to set
+     * @param NumArchivage the Numerop Archivage to set
      */
     public void setNumArchivage(String NumArchivage) {
         this.NumArchivage = NumArchivage;

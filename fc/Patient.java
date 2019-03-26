@@ -21,9 +21,18 @@ public class Patient {
     private Sexe sexe;
     private ArrayList<Examen> ListeExam=new ArrayList<>();
     
-     public Patient(){
-         
-     }
+     /**
+      * 
+      * @param nom du patient
+      * @param prenom du patient
+      * @param dateN du patient
+      * @param id du patient
+      * @param sexe du patient
+      * @param ListeExam  liste d'examen du patient
+      */
+    public Patient(){
+        
+    }
     public Patient(String nom,String prenom,Date2 dateN,String id,Sexe sexe,ArrayList<Examen> ListeExam){
         this.dateN=dateN;
         this.nom=nom;
@@ -34,7 +43,7 @@ public class Patient {
     }
     
     /**
-     * @return the ListeExam
+     * @return the ListeExam la liste d'examen du patient
      */
     public ArrayList<Examen> getListeExam() {
         return ListeExam;

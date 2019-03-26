@@ -26,19 +26,27 @@ import javax.swing.JTextArea;
  * @author nico
  */
 public class Imprimer implements Printable {
-
+/**
+ * 
+ * @param panel  le panel a  imprimer
+ */
     public Imprimer(JTextArea panel) {
 
         documentTitle = "";
         this.panel = panel;
         initPrintablePanel();
     }
+    /**
+     * 
+     * @param panel le Jpanel a imprimer
+     */
  public Imprimer(JPanel panel) {
 
         documentTitle = "";
         this.panel2 = panel;
         initPrintablePanel();
     }
+ 
     public void initPrintablePanel() {
 
         showPrintZone = false;

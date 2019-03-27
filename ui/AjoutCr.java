@@ -42,11 +42,11 @@ public class AjoutCr extends javax.swing.JFrame {
         idPatient="7239192132";
         typeExamen="rx";
         this.nomMed="HOUSE";
-         this.jLabel6.setText(nomP);
-       this.jLabel8.setText(idPatient);
-       this.jLabel7.setText(idExamen);
-       this.jLabel9.setText(numArchiv);
-       this.jLabel11.setText(typeExamen);
+         this.jLabel15.setText(nomP);
+       this.jLabel12.setText(idPatient);
+       this.jLabel14.setText(idExamen);
+       this.jLabel13.setText(numArchiv);
+       this.jLabel6.setText(typeExamen);
        this.setSize(1200, 650);
         FonctionnaliteBD f=new FonctionnaliteBD();
        ArrayList<Examen> ListeExam=f.ListeExamenBD();
@@ -80,11 +80,11 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
        this.idPatient=idPatient;
        this.typeExamen=TypeExamen;
        this.nomMed=nomMed;
-       this.jLabel6.setText(nomP);
-       this.jLabel8.setText(idPatient);
-       this.jLabel7.setText(idExamen);
-       this.jLabel9.setText(NumArchiv);
-       this.jLabel11.setText(TypeExamen);
+       this.jLabel15.setText(nomP);
+       this.jLabel12.setText(idPatient);
+       this.jLabel14.setText(idExamen);
+       this.jLabel13.setText(numArchiv);
+       this.jLabel6.setText(typeExamen);
        FonctionnaliteBD f=new FonctionnaliteBD();
        ArrayList<Examen> ListeExam=f.ListeExamenBD();
        ArrayList<Image> ListeImg=f.ListeImageBD(ListeExam);
@@ -129,12 +129,16 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        panelIm1 = new Cloud.fc.PanelIm();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        panelIm1 = new Cloud.fc.PanelIm();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -161,7 +165,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(80, 240, 630, 330);
+        jScrollPane1.setBounds(80, 220, 630, 330);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,7 +177,7 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date examen :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(420, 170, 210, 30);
+        jLabel3.setBounds(390, 170, 200, 30);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,8 +193,10 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("jLabel6");
+        jLabel6.setToolTipText("");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(260, 110, 100, 30);
+        jLabel6.setBounds(250, 180, 140, 30);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,22 +212,6 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel9);
         jLabel9.setBounds(630, 170, 90, 0);
-
-        panelIm1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout panelIm1Layout = new javax.swing.GroupLayout(panelIm1);
-        panelIm1.setLayout(panelIm1Layout);
-        panelIm1Layout.setHorizontalGroup(
-            panelIm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 314, Short.MAX_VALUE)
-        );
-        panelIm1Layout.setVerticalGroup(
-            panelIm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(panelIm1);
-        panelIm1.setBounds(810, 280, 320, 210);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "img1", "img2", "img3" };
@@ -262,6 +252,33 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(940, 530, 190, 40);
+        getContentPane().add(panelIm1);
+        panelIm1.setBounds(850, 280, 240, 190);
+
+        jLabel12.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("jLabel12");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(600, 110, 130, 30);
+
+        jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("jLabel13");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(610, 170, 200, 30);
+
+        jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("jLabel14");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(440, 40, 100, 30);
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 0, 20)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("jLabel15");
+        jLabel15.setToolTipText("");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(260, 110, 130, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cloud/image/wallpaperFinal-4.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -321,7 +338,8 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
                 Logger.getLogger(AjoutCr.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println(this.jTextArea1.getText()+"\n fait le: "+dateCr+"par "+ nomMed);
-            co.update("examen", "compterendu= '"+this.jTextArea1.getText()+"\n fait le: "+dateCr+" par Dr."+ nomMed+"'" , "where numeroarchivage="+"'"+this.jLabel9.getText()+"'");
+            
+            co.update("examen", "compterendu= '"+this.jTextArea1.getText()+"\n fait le: "+dateCr+" par Dr."+ nomMed+"'" , "where numeroarchivage="+"'"+this.jLabel13.getText()+"'");
              JOptionPane.showMessageDialog(this,"Compte-rendu ajouté","Confirmation", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
        }
@@ -380,6 +398,10 @@ public AjoutCr(String nomP,String NumArchiv,String idExamen, String idPatient, S
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

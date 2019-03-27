@@ -45,7 +45,7 @@ public class ManipRadio extends javax.swing.JFrame {
      */
     public ManipRadio() {
         initComponents();
-        setSize(1500, 700);
+        setSize(1450, 700);
         this.setResizable(false);
         jLabel12.setSize(1400, 700);
         jLabel16.setSize(1400, 700);
@@ -55,7 +55,7 @@ public class ManipRadio extends javax.swing.JFrame {
     public ManipRadio(String nom, String prenom) {
         initComponents();
         setResizable(false);
-        setSize(1500, 700);
+        setSize(1450, 700);
         jLabel12.setSize(1400, 700);
         jLabel16.setSize(1400, 700);
         jLabel13.setSize(1400, 700);
@@ -129,7 +129,6 @@ public class ManipRadio extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jTextField7 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -173,7 +172,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton3);
-        jButton3.setBounds(1060, 559, 140, 50);
+        jButton3.setBounds(1030, 560, 140, 50);
 
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,7 +200,7 @@ public class ManipRadio extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -610,12 +609,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton8);
-        jButton8.setBounds(1190, 599, 120, 40);
-
-        jButton9.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton9.setText("Exporter en PDF");
-        jPanel6.add(jButton9);
-        jButton9.setBounds(1020, 600, 160, 40);
+        jButton8.setBounds(1150, 600, 120, 40);
 
         jButton10.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton10.setText("Consulter");
@@ -625,7 +619,7 @@ public class ManipRadio extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton10);
-        jButton10.setBounds(890, 600, 120, 40);
+        jButton10.setBounds(940, 600, 120, 40);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -648,8 +642,8 @@ public class ManipRadio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,7 +800,7 @@ public class ManipRadio extends javax.swing.JFrame {
                 Logger.getLogger(PH.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            String numArchivage = this.jFormattedTextField2.getText() + " " + this.jFormattedTextField3.getText();
+            String numArchivage = this.jFormattedTextField3.getText() + " " + this.jFormattedTextField4.getText();
             for (int j = 0; j < this.jList2.getModel().getSize(); j++) {
                 String idImg = r.genererId(9);  //generer un id pour la database
                 while (listeIdImg.get(0).contains(idImg)) {  //sert à eviter les doublons d'id dans la base de donnée.
@@ -910,7 +904,7 @@ public class ManipRadio extends javax.swing.JFrame {
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
         if (jList2.getLastVisibleIndex() != -1) {
             if (!"selectionnez une image...".equals(jList2.getModel().getElementAt(0))) {
-                new VisualisationImg(jList2.getSelectedValue()).setVisible(true);
+                new VisualisationImg(this.dataUrlImg.elementAt(jList2.getSelectedIndex())).setVisible(true);
             }
         }
     }//GEN-LAST:event_jButton11MouseClicked
@@ -1247,7 +1241,6 @@ public class ManipRadio extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;

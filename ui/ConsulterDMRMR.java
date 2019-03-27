@@ -46,6 +46,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
         FonctionnaliteBD f = new FonctionnaliteBD();
         listeExamen = f.ListeExamenBD();
         listePatient = f.ListePatientBD(listeExamen);
+        listeImage=f.ListeImageBD(listeExamen);
         id = idPat;
         jLabel7.setText(id);
 
@@ -84,8 +85,7 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
                 DefaultMutableTreeNode nomPH = new DefaultMutableTreeNode(listeExamen.get(i).getIdMed());
                 DefaultMutableTreeNode images = new DefaultMutableTreeNode("Images");
                 for (int x = 0; x < listeImage.size(); x++) {
-                    System.out.println(this.listeImage.get(x).getNumArchivage());
-                    System.out.println(listeExamen.get(i).getNumArchiv());
+                    
                     if (this.listeImage.get(x).getNumArchivage().equals(listeExamen.get(i).getNumArchiv())) {
                         DefaultMutableTreeNode image = new DefaultMutableTreeNode(listeImage.get(x).getPath());
                         images.add(image);
@@ -259,9 +259,14 @@ public class ConsulterDMRMR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ModifImg modif = new ModifImg();
-        modif.setVisible(true);
+              if (jTree1.getSelectionCount() > 0) {
+            if (jTree1.getSelectionModel().getSelectionPath().getPathCount() == 4) {
 
+                String s = jTree1.getSelectionPath().getLastPathComponent().toString();
+                ModifImg modif = new ModifImg(s);
+                modif.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTree1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTree1ComponentShown

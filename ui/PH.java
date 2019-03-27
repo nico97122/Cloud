@@ -1460,7 +1460,7 @@ public class PH extends javax.swing.JFrame {
                 idImg = r2.genererId(9);
             }
             con.saveImage(this.dataUrlImg.elementAt(j), idImg, numArchivageFinal);
-
+            JOptionPane.showMessageDialog(this, "Image ajouté", "confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton21MouseClicked
 
@@ -1469,8 +1469,8 @@ public class PH extends javax.swing.JFrame {
         DefaultListModel model = new DefaultListModel();
 
         ArrayList<String> listepourrecherche = new ArrayList<>();
-        for (int i = 0; i < modelFromBD.getSize(); i++) {
-            listepourrecherche.add((String) modelFromBD.getElementAt(i));
+        for (int i = 0; i < this.modelFromBDExam.getSize(); i++) {
+            listepourrecherche.add((String) modelFromBDExam.getElementAt(i));
         }
 
         Fonctionnalite f = new Fonctionnalite();

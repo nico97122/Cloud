@@ -74,7 +74,7 @@ public class ModifImg extends javax.swing.JFrame {
      * Creates new form ModifImg
      */
     public ModifImg() {
-        this.path = "src/Cloud/imageBD/468706562.png";
+        this.path = "src/Cloud/imageBD/455617997.png";
         setResizable(false);
         setSize(1700, 500);
         PanelImg.setSize(256, 256);
@@ -365,8 +365,14 @@ public class ModifImg extends javax.swing.JFrame {
                 b5MouseClicked(evt);
 
             }
-        });//ajout d'un listenner si on clique sur  le bouton inverserGris
-      
+        });
+       b6.addMouseListener(new java.awt.event.MouseAdapter() {//ajout d'un listenner si on clique sur  le bouton b6(annoter)
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b6MouseClicked(evt);
+
+            }
+        });
 //ajout d'un listenner si on clique sur  le field ajouter une note
         note.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -602,7 +608,7 @@ public class ModifImg extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifImg("src/Cloud/imageBD/468706562.png").setVisible(true);
+                new ModifImg("src/Cloud/imageBD/601847135.png").setVisible(true);
             }
         });
     }
